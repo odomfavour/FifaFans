@@ -1,6 +1,4 @@
 import express from 'express';
-import auth from './auth';
-
 export default (app) => {
 	app.use(express.json());
 	app.use(express.urlencoded({ extended: false }));
@@ -8,13 +6,13 @@ export default (app) => {
 	app.get('/api/v1', (req, res) =>
 		res.status(200).send({
 			status: 'success',
-			data: 'Welcome to jointtaskfoundation API'
+			data: 'Welcome to Fifa Fans API'
 		})
 	);
 
-	app.use('/api/v1', [
-		auth
-	]);
+	// app.use('/api/v1', [
+	// 	auth
+	// ]);
 
 	app.all('/*', (req, res) =>
 		res.status(404).send({
