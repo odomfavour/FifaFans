@@ -10,7 +10,7 @@ FifaFan is a plattform that connect footabl players, fans, personels.
 - [Node/Express](https://nodejs.org/en/)
 - [NPM](npmjs.com)
 - [PostgreSQL](https://www.postgresql.org/)
--[Handlebars](https://handlebarsjs.com/)
+- [Handlebars](https://handlebarsjs.com/)
 
 ---
 
