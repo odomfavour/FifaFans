@@ -28,4 +28,23 @@ router.get('/editprofile', function (req, res, next){
 	res.render('editprofile', { title: 'FIFA FANS' });
 });
 
+//this is login page
+router.get('/forgetpassword', function (req, res, next){
+	res.render('forgetpassword', { title: 'FIFA FANS' });
+});
+
+//this is change password page
+router.get('/changepassword', function (req, res, next){
+	res.render('changepassword', { title: 'FIFA FANS' });
+});
+
+//this is about user page
+router.get('/aboutuser', function (req, res, next){
+	res.render('aboutuser', { title: 'FIFA FANS' });
+});
+
+//this is contact info page
+router.get('/usercontactinfo', function (req, res, next){
+	res.render('usercontactinfo', { title: 'FIFA FANS' });
+});
 module.exports = router;
