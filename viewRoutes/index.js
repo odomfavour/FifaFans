@@ -47,4 +47,9 @@ router.get('/aboutuser', function (req, res, next){
 router.get('/usercontactinfo', function (req, res, next){
 	res.render('usercontactinfo', { title: 'FIFA FANS' });
 });
+
+//this is profile page
+router.get('/profile', function (req, res, next){
+	res.render('profile', { title: 'FIFA FANS' });
+});
 module.exports = router;
