@@ -1,0 +1,67 @@
+{{> header}}
+
+<div class="container mt-4">
+    <div class="bg-white">
+        <div class="about-user-hd bg-light"><h5>Edit Profile</h5></div>
+        <div class="row">
+            {{> aboutsidebar}}
+            <div class="col-md-9 mt-5">
+                 {{> profilepix}}
+                <form class="mt-5">
+                    <div class="form-group row">
+                        <label for="inputName3" class="col-sm-2 col-form-label">Full Name</label>
+                        <div class="col-sm-7">
+                        <input type="text" class="form-control" id="inputFullName3">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="inputUserName3" class="col-sm-2 col-form-label">User Name</label>
+                        <div class="col-sm-7">
+                        <input type="text" class="form-control" id="inputName3">
+                        </div>
+                    </div>
+                     <div class="form-group row">
+                        <label for="inputEmail3" class="col-sm-2 col-form-label">Email</label>
+                        <div class="col-sm-7">
+                        <input type="email" class="form-control" id="inputUserName3">
+                        </div>
+                    </div>                    
+                    <div class="form-group row">
+                        <label for="inputGender3" class="col-sm-2 col-form-label">Gender</label>
+                        <div class="col-sm-7">
+                            <select class="form-control form-control-lg">
+                                <option>Male</option>
+                                <option>Female</option>
+                                <option>Others</option>
+                            </select>
+                        </div>
+                    </div>
+                     <div class="form-group row">
+                        <label for="inputStatus3" class="col-sm-2 col-form-label">Status</label>
+                        <div class="col-sm-7">
+                            <select class="form-control form-control-lg">
+                                <option>Coach</option>
+                                <option>Player</option>
+                                <option>Fan</option>
+                            </select>
+                        </div>
+                    </div>
+                     <div class="form-group row">
+                        <label for="inputBio3" class="col-sm-2 col-form-label">Short Bio</label>
+                        <div class="col-sm-7">
+                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                        </div>
+                    </div>
+                   
+                    <div class="form-group row">
+                        <div class="col-sm-9">
+                        <button type="submit" class="btn btn-primary pull-right">Submit</button>
+                        </div>
+                    </div>
+                    </form>
+            </div>
+        </div>
+        
+    </div>
+</div>
+
