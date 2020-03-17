@@ -165,12 +165,18 @@ display: flex;
   }
   
   .flex-container > div {
-	padding: 10px;
+	padding: 7px 0;
+  }
+  .status-color{
+	  color:green;
+	  margin-top:-7px !important;
+	  font-weight: normal;
   }
   .flex-container img{
 	  width:35px;
 	  border: 1px solid;
 	  border-radius: 50%;
+	  margin-right: 10px;
   }
   .navbar-nav i{
 	  font-size: 19px !important;
@@ -185,13 +191,15 @@ display: flex;
   .side-like {
     background: #EBEAEA;
     border-radius: 10px;
-	padding: 4px;
+	padding: 11px;
 	font-weight: 900;
   }
   .side-button button{
-	padding: 1px 14px;
+	padding: 2px 7px;
     border: 0;
     font-weight: 900;
+    margin: 0;
+    text-transform: none;
   }
   .logout-img {
 	  font-weight: 900;
@@ -213,13 +221,16 @@ display: flex;
   }
   .see-more{
 	  text-align: right;
-	  color: #372a5d;;
+	  color: #372a5d;
+	  margin-top: 2rem;
   }
   .color-black{
 	  color: #212529;
   }
   .btn-default{
 	border: 1px solid #372a5d !important;
+	background-color: #cccccc !important;
+	color:#212529;
 
   }
   .side-button{
@@ -227,8 +238,9 @@ display: flex;
 	  text-align: right;
   }
   .btn-default:hover{
-	border: 1px solid #372a5d;
-	background-color: #372a5d;
+	border: 1px solid #372a5d !important;
+	background-color: #372a5d !important;
+	transition-delay: 1s;
 	color: #ffffff;
   }
   .side-content{
@@ -238,11 +250,8 @@ display: flex;
 	font-size: 12px;
     font-weight: normal;
   }
-  .prorile-img {
+  .profile-img {
 	  background: url(../img/bg-img.jpg);
-  }
-  .profile-img{
-	display: flex;
   }
 
   .color-blue{
@@ -251,4 +260,23 @@ display: flex;
 
 .width-50{
 	width: 50%;
+}
+.img-text{
+	display: flex;
+    color: #ffffff;
+    font-weight: 900;
+}
+.edit-message{
+	font-size: inherit;
+    float: right;
+    top: -30px;
+    position: relative;
+}
+.profile-img img{
+	vertical-align: middle;
+    border-style: none;
+    width: 50px;
+    height: 50px;
+    border: 2px solid #372a5d;
+    border-radius: 50%;
 }
