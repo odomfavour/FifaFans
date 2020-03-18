@@ -52,4 +52,11 @@ router.get('/usercontactinfo', function (req, res, next){
 router.get('/profile', function (req, res, next){
 	res.render('profile', { title: 'FIFA FANS' });
 });
+
+//this is profile page
+router.get('/forgetpass_verification', function (req, res, next){
+	res.render('forgetpass_verification', { title: 'FIFA FANS' });
+});
+
+
 module.exports = router;
