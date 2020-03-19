@@ -8,7 +8,7 @@ import jwt from 'jsonwebtoken';
  */
 export const createToken = (payload) =>
 	jwt.sign(payload, `${process.env.JWT_SECRET}`, {
-		expiresIn: '8h'
+		expiresIn: '24h'
 	});
 
 /**
@@ -18,7 +18,7 @@ export const createToken = (payload) =>
  */
 export const verifyToken = (token) =>
 	jwt.verify(token, `${process.env.JWT_SECRET}`, {
-		expiresIn: '8h',
+		expiresIn: '24h',
 		algorithms: [
 			'HS256'
 		]
