@@ -7,6 +7,7 @@ import token from 'uuid';
 import { SendMail, sendForgotPasswordMail } from './../services/emailsender';
 import { createToken } from './../utils/processToken';
 import { checkExpiredToken } from './../utils/dateChecker';
+import helperMethods from './../utils/helpers';
 const { User, Token, Profile } = model;
 
 //Returns token for logged/signup in Users
@@ -89,15 +90,15 @@ const AuthController = {
 		}
 	},
 
-	// async getAllUserUsernameAndEmail (req, res, next) {
-	// 	try {
-	// 		const usernames = await helperMethods.getAllUsernameAndEmail(User);
+	async getAllUserUsernameAndEmail (req, res, next) {
+		try {
+			const usernames = await helperMethods.getAllUsernameAndEmail(User);
 
-	// 		return sendSuccessResponse(res, 200, usernames);
-	// 	} catch (e) {
-	// 		return next(e);
-	// 	}
-	// },
+			return sendSuccessResponse(res, 200, usernames);
+		} catch (e) {
+			return next(e);
+		}
+	},
 
 	/**
 	 *Verification link confirmation from email link
