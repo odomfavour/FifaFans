@@ -50,13 +50,14 @@ module.exports = {
 				values: [
 					'coach',
 					'player',
-					'fan'
-				],
-				defaultValue: 'inactive'
-      },
-      club: {
-        type: Sequelize.STRING,
-      },
+					'fan',
+					'inactive'
+				]
+				// defaultValue: 'inactive'
+			},
+			club: {
+				type: Sequelize.STRING
+			},
 			createdAt: {
 				allowNull: false,
 				type: Sequelize.DATE

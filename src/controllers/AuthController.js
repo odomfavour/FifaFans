@@ -7,7 +7,6 @@ import token from 'uuid';
 import { SendMail, sendForgotPasswordMail } from './../services/emailsender';
 import { createToken } from './../utils/processToken';
 import { checkExpiredToken } from './../utils/dateChecker';
-import helperMethods from './../utils/helpers';
 const { User, Token, Profile } = model;
 
 //Returns token for logged/signup in Users
@@ -207,16 +206,7 @@ const AuthController = {
 	async me (req, res, next) {
 		try {
 			const user = req.userData;
-			const profile = await User.findOne({
-				where: { uuid: user.uuid },
-				attributes: {
-					exclude: [
-						'password'
-					]
-				}
-			});
-
-			return sendSuccessResponse(res, 200, profile);
+			return sendSuccessResponse(res, 200, user);
 		} catch (e) {
 			return next(e);
 		}
@@ -298,15 +288,16 @@ const AuthController = {
 		try {
 			let avatar, aboutDetails, profileDetails, profileData, userDetails;
 			const user = req.userData;
+
 			// trim the body
 			const userData = await magicTrimmer(req.body);
 			const { name, phone, address, club, gender, shortBio, favoriteQuote, language, website } = userData;
 
 			// does this user have a profile
-			const profile = await User.findOne({
+			const profile = await Profile.findOne({
 				where: { user_uuid: user.uuid }
 			});
-
+			// return console.log(user, profile);
 			// fetching user data
 			aboutDetails = {
 				name: name,
@@ -336,6 +327,7 @@ const AuthController = {
 					website: website
 				};
 			}
+			// return console.log(profileDetails, aboutDetails);
 
 			if (profile) {
 				profileData = await Profile.update(profileDetails, {

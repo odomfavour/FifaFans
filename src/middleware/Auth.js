@@ -2,7 +2,7 @@ import { verifyToken } from '../utils/processToken';
 import { sendErrorResponse } from '../utils/sendResponse';
 import model from '../models';
 
-const { User } = model;
+const { User, Profile } = model;
 
 // eslint-disable-next-line consistent-return
 export default async (req, res, next) => {
@@ -10,7 +10,20 @@ export default async (req, res, next) => {
 		if (!req.headers.authorization) return sendErrorResponse(res, 401, 'Authentication required');
 		const token = req.headers.authorization.split(' ')[1] || req.headers.authorization;
 		const { email } = verifyToken(token);
-		const user = await User.findOne({ where: { email } });
+		const user = await User.findOne({
+			where: { email },
+			attributes: {
+				exclude: [
+					'password'
+				]
+			},
+			include: [
+				{
+					model: Profile,
+					as: 'profiles'
+				}
+			]
+		});
 		if (!user) return sendErrorResponse(res, 401, 'User does not exist');
 		// req.userData = user;
 		req.token = token;

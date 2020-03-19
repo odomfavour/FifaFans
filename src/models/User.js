@@ -46,7 +46,7 @@ module.exports = (sequelize, DataTypes) => {
 				defaultValue: 'user'
 			},
 			status: {
-				type: DataTypes.ENUM('coach', 'player', 'fan'),
+				type: DataTypes.ENUM('inactive', 'coach', 'fan', 'player'),
 				defaultValue: 'inactive'
 			},
 			club: DataTypes.STRING
@@ -58,6 +58,12 @@ module.exports = (sequelize, DataTypes) => {
 		User.hasMany(models.Token, {
 			foreignKey: 'user_uuid',
 			as: 'tokens',
+			onDelete: 'CASADE'
+		});
+
+		User.hasMany(models.Profile, {
+			foreignKey: 'user_uuid',
+			as: 'profiles',
 			onDelete: 'CASADE'
 		});
 	};
