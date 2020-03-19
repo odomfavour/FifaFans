@@ -48,8 +48,8 @@ module.exports = (sequelize, DataTypes) => {
 			status: {
 				type: DataTypes.ENUM('coach', 'player', 'fan'),
 				defaultValue: 'inactive'
-            },
-            club: DataTypes.STRING,
+			},
+			club: DataTypes.STRING
 		},
 		{}
 	);

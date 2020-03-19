@@ -5,10 +5,10 @@ import { hashPassword, comparePassword } from './../utils/passwordHash';
 import uploadImage from './../services/imageuploader';
 import token from 'uuid';
 import { SendMail, sendForgotPasswordMail } from './../services/emailsender';
-import { createToken, verifyToken } from './../utils/processToken';
+import { createToken } from './../utils/processToken';
 import { checkExpiredToken } from './../utils/dateChecker';
 import helperMethods from './../utils/helpers';
-const { User, Token } = model;
+const { User, Token, Profile } = model;
 
 //Returns token for logged/signup in Users
 const userToken = (user) => {
@@ -32,16 +32,12 @@ const AuthController = {
 		try {
 			// get verify token
 			const verifyId = token();
-			// create user uuid
-			const user_id = token();
-			let referees;
+
 			// trims the req.body to remove trailling spaces
 			const userData = magicTrimmer(req.body);
 			// destructuring user details
-			const { name, username, email, password, phone, address, role } = userData;
-			const refererId = req.sponsorId;
+			const { name, username, email, password, phone, address, role, club, status } = userData;
 
-			// return console.log(refererId);
 			// validation of inputs
 			const schema = {
 				name: inValidName('Full name', name),
@@ -61,26 +57,16 @@ const AuthController = {
 
 			//hash passwords and save in database
 			const hashedPassword = hashPassword(password);
-			const user_ref = await User.findOne({
-				where: { referer_uuid: refererId }
-			});
-			if (user_ref) {
-				user_ref.referee.push(user_id);
-				referees = user_ref.referee;
-			}
+
 			const newUser = await User.create({
-				uuid: user_id,
 				username,
 				name,
 				email,
 				address,
 				password: hashedPassword,
 				phone,
-				referer_uuid:
-
-						refererId === undefined ? null :
-						refererId,
-				referee: referees || [],
+				club,
+				status,
 				role:
 
 						role === 'user' ? 'user' :
@@ -104,15 +90,15 @@ const AuthController = {
 		}
 	},
 
-	async getAllUserUsernameAndEmail (req, res, next) {
-		try {
-			const usernames = await helperMethods.getAllUsernameAndEmail(User);
+	// async getAllUserUsernameAndEmail (req, res, next) {
+	// 	try {
+	// 		const usernames = await helperMethods.getAllUsernameAndEmail(User);
 
-			return sendSuccessResponse(res, 200, usernames);
-		} catch (e) {
-			return next(e);
-		}
-	},
+	// 		return sendSuccessResponse(res, 200, usernames);
+	// 	} catch (e) {
+	// 		return next(e);
+	// 	}
+	// },
 
 	/**
 	 *Verification link confirmation from email link
@@ -154,8 +140,7 @@ const AuthController = {
 			//if it passess all the valication
 			await User.update(
 				{
-					verified: true,
-					status: 'active'
+					verified: true
 				},
 				{
 					where: {
@@ -311,36 +296,66 @@ const AuthController = {
 
 	async updateUser (req, res, next) {
 		try {
-			let avatar, profileDetails;
+			let avatar, aboutDetails, profileDetails, profileData, userDetails;
 			const user = req.userData;
 			// trim the body
 			const userData = await magicTrimmer(req.body);
-			const { name, phone, address } = userData;
+			const { name, phone, address, club, gender, shortBio, favoriteQuote, language, website } = userData;
+
+			// does this user have a profile
+			const profile = await User.findOne({
+				where: { user_uuid: user.uuid }
+			});
+
+			// fetching user data
+			aboutDetails = {
+				name: name,
+				phone: phone,
+				address: address,
+				club: club
+			};
 
 			// if there is a image
 			if (req.file !== undefined) {
 				avatar = await uploadImage(req.file);
 				profileDetails = {
 					profile_pic: avatar,
-					name: name || user.name,
-					phone: phone || user.phone,
-					address: address || user.address
+					gender: gender,
+					shortBio: shortBio,
+					favoriteQuote: favoriteQuote,
+					language: language,
+					website: website
 				};
 			}
 			else {
 				profileDetails = {
-					name: name || user.name,
-					phone: phone || user.phone,
-					address: address || user.address
+					gender: gender,
+					shortBio: shortBio,
+					favoriteQuote: favoriteQuote,
+					language: language,
+					website: website
 				};
 			}
 
-			const profile = await User.update(profileDetails, {
+			if (profile) {
+				profileData = await Profile.update(profileDetails, {
+					returning: true,
+					where: { user_uuid: user.uuid }
+				});
+			}
+			else {
+				profileData = await Profile.create({
+					...profileDetails,
+					user_uuid: user.uuid
+				});
+			}
+
+			userDetails = await User.update(aboutDetails, {
 				returning: true,
 				where: { uuid: user.uuid }
 			});
 
-			return sendSuccessResponse(res, 200, profile);
+			return sendSuccessResponse(res, 200, { userDetails, profileData });
 		} catch (e) {
 			return next(e);
 		}
