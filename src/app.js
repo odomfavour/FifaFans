@@ -4,8 +4,8 @@ import path from 'path';
 import cookieParser from 'cookie-parser';
 import logger from 'morgan';
 import exphbs from 'express-handlebars';
-import serverRouter from './src/routes';
-import viewRouter from './viewRoutes/index';
+import serverRouter from './routes';
+import viewRouter from '../viewRoutes/index';
 import multer from 'multer';
 
 const upload = multer();
@@ -45,7 +45,5 @@ app.use(function (err, req, res, next){
 	res.status(err.status || 500);
 	res.render('error');
 });
-
-
 
 module.exports = app;
