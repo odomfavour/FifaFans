@@ -58,5 +58,10 @@ router.get('/forgetpass_verification', function (req, res, next){
 	res.render('forgetpass_verification', { title: 'FIFA FANS' });
 });
 
+//this is readnews page
+router.get('/readnews', function (req, res, next){
+	res.render('readnews', { title: 'FIFA FANS' });
+});
+
 
 module.exports = router;
