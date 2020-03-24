@@ -68,10 +68,11 @@ router.get('/rooms', function (req, res, next){
 	res.render('rooms', { title: 'FIFA FANS' });
 });
 
-// for rooms page
+// for create room page
 router.get('/create_room', function (req, res, next){
 	res.render('create_room', { title: 'FIFA FANS' });
 });
+
 // for read news
 router.get('/readnews', function (req, res, next){
 	res.render('readnews', { title: 'FIFA FANS' });
