@@ -63,5 +63,24 @@ router.get('/readnews', function (req, res, next){
 	res.render('readnews', { title: 'FIFA FANS' });
 });
 
+//this is message page
+router.get('/message', function (req, res, next){
+	res.render('message', { title: 'FIFA FANS' });
+});
+
+//this is message page
+router.get('/room', function (req, res, next){
+	res.render('room', { title: 'FIFA FANS' });
+});
+
+//this is message page
+router.get('/roommessagebox', function (req, res, next){
+	res.render('roommessagebox', { title: 'FIFA FANS' });
+});
+
+//this is message page
+router.get('/news', function (req, res, next){
+	res.render('news', { title: 'FIFA FANS' });
+});
 
 module.exports = router;
