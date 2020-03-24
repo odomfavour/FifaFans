@@ -63,11 +63,6 @@ router.get('/notification', function (req, res, next){
 	res.render('notification', { title: 'FIFA FANS' });
 });
 
-// for room page
-router.get('/room', function (req, res, next){
-	res.render('room', { title: 'FIFA FANS' });
-});
-
 // for rooms page
 router.get('/rooms', function (req, res, next){
 	res.render('rooms', { title: 'FIFA FANS' });
@@ -77,7 +72,10 @@ router.get('/rooms', function (req, res, next){
 router.get('/create_room', function (req, res, next){
 	res.render('create_room', { title: 'FIFA FANS' });
 });
-
+// for read news
+router.get('/readnews', function (req, res, next){
+	res.render('readnews', { title: 'FIFA FANS' });
+});
 
 
 
