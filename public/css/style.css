@@ -653,7 +653,7 @@ h6 {
 
 .scrollable-text {
     overflow: auto;
-    height: 25rem;
+    height: 17rem;
 }
 
 .sidebar-about-ul {
@@ -738,4 +738,13 @@ p {
 #pass-message {
     color: #f00921;
     text-align: center;
+}
+
+.chat-boot {
+    background: #fff;
+    border: 1px solid #cccccc;
+    bottom: 0;
+    right: 120px;
+    position: fixed;
+    width: 20rem;
 }
