@@ -58,10 +58,21 @@ router.get('/forgetpass_verification', function (req, res, next){
 	res.render('forgetpass_verification', { title: 'FIFA FANS' });
 });
 
-//this is readnews page
-router.get('/readnews', function (req, res, next){
-	res.render('readnews', { title: 'FIFA FANS' });
+// for notification page
+router.get('/notification', function (req, res, next){
+	res.render('notification', { title: 'FIFA FANS' });
 });
+
+// for rooms page
+router.get('/rooms', function (req, res, next){
+	res.render('rooms', { title: 'FIFA FANS' });
+});
+
+// for create room page
+router.get('/create_room', function (req, res, next){
+	res.render('create_room', { title: 'FIFA FANS' });
+});
+
 
 
 module.exports = router;

@@ -296,9 +296,7 @@ display: flex;
     position: relative;
     bottom: 50px;
 }
-.profile-picture{
-	
-}
+
 .rel-pos{
 	position: relative;
 	bottom: 30px;
@@ -478,6 +476,60 @@ p{
 	color: #fff;
     background: #772121;
     border-radius: 50%;
+}
+
+
+/* notification */
+
+main >.card {
+	padding: 15px !important;
+}
+.page-title h5{
+	border-bottom: 2px solid #cccccc;
+    font-weight: 900 !important;
+    padding: 5px 0;
+}
+
+.notification-box {
+	padding: 5px 0;
+}
+.notification-box img {
+	width: 60px;
+    border: 1px solid;
+    border-radius: 50%;
+}
+
+.box {
+	margin: 5px 0;
+}
+
+.box img {
+	width: 100px;
+	height: 100px;
+	object-fit: contain;
+}
+
+/* rooms */
+
+ h5 .right-button {
+	text-align: left;
+}
+
+.notification-box p {
+	margin-bottom: 4px !important;
+}
+.notification-box p .bold {
+	font-weight: 700;
+}
+
+.join-btn {
+	padding: 5px 15px;
+	border: none;
+	border-radius: 10px;
+}
+
+main button.btn {
+	padding: 5px 10px;
     padding: 3px 5px;
     font-size: 10px;
     font-weight: 900;
