@@ -2,7 +2,10 @@
 const loginButton = document.getElementById('login-button');
 // const email = document.getElementById('email');
 // const password = document.getElementById('password');
-loginButton.addEventListener('click', submit);
+
+if (loginButton) {
+ loginButton.addEventListener('click', submit);
+}
 
 
 
@@ -45,4 +48,4 @@ function submit(e) {
              }
          })
     }
-}''
+}
