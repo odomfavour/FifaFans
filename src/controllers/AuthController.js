@@ -144,7 +144,6 @@ const AuthController = {
 					}
 				}
 			);
-
 			return sendSuccessResponse(res, 200, '<h2>Your Account has been Verified Successfully</h2>');
 		} catch (e) {
 			return next(e);
