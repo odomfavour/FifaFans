@@ -1,12 +1,3 @@
-// class UI {
-//     printMessage(message, className) {
-//         const messageDiv = document.createElement('error-message');
-//         messageDiv.classList.add('alert', 'infor', className);
-//         messageDiv.setAttribute('role', 'alert')
-//         messageDiv.appendChild(document.createTextNode(message));
-//         setTimeout(() => {
-//             d
-// }
 const errorMessage  = document.getElementById('error-message');
 const formList = document.getElementById('form-list');
 const fullName = document.getElementById('fullName');
@@ -17,7 +8,11 @@ const status = document.getElementById('status');
 const password = document.getElementById('password');
 const confirmPassword = document.getElementById('confirmPassword');
 const checkbox = document.getElementById('checkbox');
-formList.addEventListener('submit', onsubmit);
+
+if (formList){
+ formList.addEventListener('submit', onsubmit);
+}
+
 
 
 
