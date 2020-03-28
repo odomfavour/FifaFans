@@ -204,6 +204,7 @@ const AuthController = {
 			const user = req.userData;
 			return sendSuccessResponse(res, 200, user);
 		} catch (e) {
+			console.log(e);
 			return next(e);
 		}
 	},

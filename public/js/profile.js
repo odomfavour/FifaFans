@@ -7,11 +7,18 @@ const input_profile_email = document.getElementById('input_profile_email');
 const input_profile_gender = document.getElementById('input_profile_gender');
 const input_profile_status = document.getElementById('input_profile_status');
 const input_short_bio_profile = document.getElementById('input_short_bio_profile');
+const input_favorite_quote_profile = document.getElementById('input_favorite_quote_profile');
 const edit_profile_button = document.getElementById('edit_profile_button');
 const old_pass_change_pass = document.getElementById('old_pass_change_pass');
 const new_pass_change_pass = document.getElementById('new_pass_change_pass');
+const input_address_profile = document.getElementById('input_address_profile');
+const input_website_profile = document.getElementById('input_website_profile');
+const input_club_profile = document.getElementById('input_club_profile');
+const input_language_profile = document.getElementById('input_language_profile');
 const new_pass_change_pass_confirm = document.getElementById('new_pass_change_pass_confirm');
 const change_pass_btn = document.getElementById('change_pass_btn');
+const edit_contact_button = document.getElementById('edit_contact_button');
+const logout_user = document.getElementById('logout_user');
 
 if (edit_profile_button) {
   edit_profile_button.addEventListener('click', (e) => {
@@ -26,16 +33,29 @@ if (change_pass_btn) {
 }
 
 
+if (edit_contact_button) {
+    edit_contact_button.addEventListener('click', (e) => {
+      editProfile(e)
+    })
+}
 
+if (logout_user) {
+  logout_user.addEventListener('click', () => {
+    logoutUSer();
+  })
+}
 
-
+  
+function logoutUSer(){
+    localStorage.removeItem('token');
+    window.location.replace('/login');
+}
 
 
 
 // objects for different profile related page to populate fields
 
 const profileObject = (data) => {
-    username_profile.innerText = data.username,
     fullname_profile.innerText = data.name,
     status_profile.innerText = data.status
 }
@@ -44,13 +64,24 @@ const fillEditInputs = (data) => {
     input_profile_fullname.value = data.name;
     input_profile_email.value = data.email;
     input_profile_username.value = data.username;
-    input_short_bio_profile.value = data.profiles[0].shortBio;
     const el =input_profile_status.options;
     Array.from(el).forEach(element => {
         if (element.text == data.status) { element.selected = true }
     }); 
+};
+
+// fill in the details page
+const fillInDetails = (data) => {
+  input_short_bio_profile.value = data.profiles[0].shortBio;
+  input_favorite_quote_profile.value = data.profiles[0].favoriteQuote;
 }
 
+const fillContact = (data) => {
+  input_club_profile.value = data.club;
+  input_address_profile.value = data.address;
+  input_language_profile.value = data.profiles[0].language;
+  input_website_profile.value = data.profiles[0].website
+}
 
 function getProfile() {
     const theToken = localStorage.getItem('token');
@@ -66,11 +97,13 @@ function getProfile() {
             })
          .then(res => res.json())
          .then(x => {
+            console.log(x);
              if (x.status != 'error') {
-                 console.log(x.data);
-                 console.log(window.location);
-              if (window.location.pathname == '/profile') { profileObject(x.data); }
-              if (window.location.pathname == '/editprofile') { fillEditInputs(x.data)}
+              username_profile.innerText = x.data.username;
+              if (window.location.pathname == '/profile') { profileObject(x.data) };
+              if (window.location.pathname == '/editprofile') { fillEditInputs(x.data)};
+              if (window.location.pathname == '/aboutuser') { fillInDetails(x.data)};
+              if (window.location.pathname == '/usercontactinfo') { fillContact(x.data)};
              } 
          })
     };
@@ -78,7 +111,7 @@ function getProfile() {
     // Edit profile
 
     function editProfile(e) {
-        console.log(input_short_bio_profile.value);
+        console.log(input_address_profile.value);
         e.preventDefault();
         const theToken = localStorage.getItem('token');
         if (!theToken) {
@@ -87,10 +120,23 @@ function getProfile() {
         }
             // this where the post to server will occur
         const formData = new FormData();
-        formData.append('name', input_profile_fullname.value);
-        formData.append('username', input_profile_username.value);
-        formData.append('gender', input_profile_gender.value);
-        formData.append('shortBio', input_short_bio_profile.value);
+        if (window.location.pathname == '/editprofile') {
+            formData.append('name', input_profile_fullname.value);
+            formData.append('username', input_profile_username.value);
+            formData.append('gender', input_profile_gender.value);
+        }
+
+        if (window.location.pathname == '/aboutuser') {
+            formData.append('shortBio', input_short_bio_profile.value);
+            formData.append('favoriteQuote', input_favorite_quote_profile.value);
+        }
+
+        if (window.location.pathname == '/usercontactinfo') {
+            formData.append('club', input_club_profile.value);
+            formData.append('language', input_language_profile.value);
+            formData.append('website', input_website_profile.value);
+            formData.append('address', input_address_profile.value);
+        }
         fetch('/api/v1/auth/updateprofile', {
              method:"PATCH", 
              body: formData,
@@ -103,7 +149,8 @@ function getProfile() {
             console.log(x);
             if (x.status != 'error') {
             alert('update successfully')
-            }
+            window.location.reload();
+            } else { alert(x.error) };
         })
     };
 
@@ -144,4 +191,7 @@ function getProfile() {
     };
 
 
-    getProfile()
+    if (window.location.pathname !== '/login' && window.location.pathname !== '/signup'){
+        getProfile()
+    }
+    
