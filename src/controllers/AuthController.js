@@ -345,6 +345,7 @@ const AuthController = {
 
 			return sendSuccessResponse(res, 200, { userDetails, profileData });
 		} catch (e) {
+		console.log(e);
 			return next(e);
 		}
 	}
