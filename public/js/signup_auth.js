@@ -1,13 +1,4 @@
-// class UI {
-//     printMessage(message, className) {
-//         const messageDiv = document.createElement('error-message');
-//         messageDiv.classList.add('alert', 'infor', className);
-//         messageDiv.setAttribute('role', 'alert')
-//         messageDiv.appendChild(document.createTextNode(message));
-//         setTimeout(() => {
-//             d
-// }
-const errorMessage  = document.getElementById('error-message');
+const errorMessage = document.getElementById('error-message');
 const formList = document.getElementById('form-list');
 const fullName = document.getElementById('fullName');
 const userName = document.getElementById('username');
@@ -28,10 +19,10 @@ function onsubmit(e) {
     if (!fullName || !userName.value || !email.value || !club.value || status.value === "" || password.value === "" || confirmPassword.value === "") {
         errorMessage.innerHTML = 'Please enter all fields';
         if (errorMessage.style.display == 'none') {
-           errorMessage.style.display = 'block'
+            errorMessage.style.display = 'block'
         }
         setTimeout(function() {
-          errorMessage.style.display = 'none';
+            errorMessage.style.display = 'none';
         }, 10000);
 
     } else if (password.value !== confirmPassword.value) {
@@ -51,16 +42,16 @@ function onsubmit(e) {
         formData.append('club', club.value);
         formData.append('status', status.value);
         fetch('/api/v1/auth/signup', {
-            method:"POST", 
-            body: formData,
-         })
-         .then(res => res.json())
-         .then(x => {
-             console.log(x);
-             if (x.status != 'error') {
-              document.getElementById('success-message').innerHTML = x.data.message;
-              return window.location.href = '/verify-message';
-             }
-         })
+                method: "POST",
+                body: formData,
+            })
+            .then(res => res.json())
+            .then(x => {
+                console.log(x);
+                if (x.status != 'error') {
+                    document.getElementById('success-message').innerHTML = x.data.message;
+                    return window.location.href = '/verify-message';
+                }
+            })
     }
-}''
+}
