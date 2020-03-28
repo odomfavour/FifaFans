@@ -144,7 +144,6 @@ const AuthController = {
 					}
 				}
 			);
-
 			return sendSuccessResponse(res, 200, '<h2>Your Account has been Verified Successfully</h2>');
 		} catch (e) {
 			return next(e);
@@ -205,6 +204,7 @@ const AuthController = {
 			const user = req.userData;
 			return sendSuccessResponse(res, 200, user);
 		} catch (e) {
+			console.log(e);
 			return next(e);
 		}
 	},
@@ -263,10 +263,13 @@ const AuthController = {
 
 	async resetPassword (req, res, next) {
 		try {
-			const { email, newPassword } = req.body;
+			const { email } = req.userData;
+			const { newPassword, oldPassword } = req.body;
 			const hashedPassword = hashPassword(newPassword);
 			const user = await User.findOne({ where: { email } });
 			if (!user) return sendErrorResponse(res, 500, 'User Not Found!!');
+			const checkPassword = comparePassword(oldPassword, user.dataValues.password);
+			if (!checkPassword) return sendErrorResponse(res, 400, 'Incorrect Password');
 			await User.update(
 				{ password: hashedPassword },
 				{
@@ -346,6 +349,7 @@ const AuthController = {
 
 			return sendSuccessResponse(res, 200, { userDetails, profileData });
 		} catch (e) {
+		console.log(e);
 			return next(e);
 		}
 	}

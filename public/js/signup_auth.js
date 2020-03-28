@@ -8,7 +8,11 @@ const status = document.getElementById('status');
 const password = document.getElementById('password');
 const confirmPassword = document.getElementById('confirmPassword');
 const checkbox = document.getElementById('checkbox');
-formList.addEventListener('submit', onsubmit);
+
+if (formList) {
+    formList.addEventListener('submit', onsubmit);
+}
+
 
 
 
