@@ -1,4 +1,3 @@
-<< << << < HEAD
 const edit_profile = document.getElementById('edit_profile');
 const change_password = document.getElementById('change_pass');
 const details_about_you = document.getElementById('details_abt_you');

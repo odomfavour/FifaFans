@@ -20,7 +20,7 @@ if (formList) {
 function onsubmit(e) {
     e.preventDefault();
 
-    if (!fullName || !userName.value || !email.value || !club.value || status.value === "" || password.value === "" || confirmPassword.value === "") {
+    if (!fullName.value || !userName.value || !email.value || !club.value || status.value === "" || password.value === "" || confirmPassword.value === "") {
         errorMessage.innerHTML = 'Please enter all fields';
         if (errorMessage.style.display == 'none') {
             errorMessage.style.display = 'block'

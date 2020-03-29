@@ -133,7 +133,7 @@
         color: #d6d1d1;
     }
     
-    @media (max-width: 900px) {
+    @media (max-width: 1000px) {
         .bd-r {
             display: none!important;
         }
@@ -146,6 +146,12 @@
         }
         .profile-text h5 {
             margin-top: -40px !important;
+        }
+        .hidden-mobile {
+            display: none;
+        }
+        .col-md-8 {
+            max-width: 100%;
         }
     }
     
