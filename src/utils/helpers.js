@@ -182,11 +182,15 @@ const helperMethods = {
 	},
 
 	// find a user by uuid
-	async getAUserByUuid (User, uuid, exclude) {
-		const user = await User.findOne({
+	async getAUserByUuid (table, uuid) {
+		const user = await table.findOne({
 			where: { uuid },
 			attributes: {
-				exclude
+				exclude: [
+					'password',
+					'createdAt',
+					'updatedAt'
+				]
 			}
 		});
 		return user;
@@ -234,8 +238,8 @@ const helperMethods = {
 		return job;
 	},
 	// get a users socket id
-	async findSocketId (Token, user_uuid) {
-		const professionalToken = await Token.findOne({
+	async findSocketId (table, user_uuid) {
+		const user_socket_id = await table.findOne({
 			where: { user_uuid },
 			attributes: {
 				exclude: [
@@ -245,7 +249,7 @@ const helperMethods = {
 				]
 			}
 		});
-		return professionalToken;
+		return user_socket_id;
 	},
 	// delete a stock
 	async deleteStock (table, item_uuid, professional_uuid) {
@@ -344,7 +348,7 @@ const helperMethods = {
 		return article;
 	},
 
-	// search for a stock
+	// search for all data that looks like input
 	async searchForUser (table, input) {
 		const users = await table.findAll({
 			where: {
@@ -389,6 +393,34 @@ const helperMethods = {
 			]
 		});
 		return datas;
-	}
+	},
+
+	// find if a user have a friend
+	async checkForFriendship (table, user_uuid, friend_uuid) {
+		const friend = await table.findOne({
+			where: { user_uuid, friend_uuid },
+			attributes: {
+				exclude: [
+					'createdAt',
+					'updatedAt'
+				]
+			}
+		});
+		return friend;
+	},
+
+	// create friendship between users
+	async createFriendShip (table, user_uuid, friend_uuid, friend_name) {
+		const friend = await table.create({
+			user_uuid,
+			friend_uuid,
+			friend_name,
+			blocked: false,
+		});
+		return friend;
+	},
+
+	// find a friend table
+
 };
 export default helperMethods;

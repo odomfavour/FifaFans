@@ -2,10 +2,10 @@
 
 <div class="container mt-5">
     <div class="row mb-5">
-        <div class="col-md-4 mb-5">
+        <div class="col-md-4 hidden-mobile mb-5">
             <div> {{> sidenav}}</div>
         </div>
-        <div class="col-md-4 mb-5">
+        <div class="col-md-4 mobile-full-length b-5">
             <div class="card pb-5">
                 <div class="d-flex justify-content-between pd-15">
                     <h6>Message</h6>
@@ -14,7 +14,7 @@
                 <div class="line-bd"></div>
                 <div class="m-auto">
                     <form class="form-inline my-2">
-                        <input class="form-control max-cont b-r" type="search" placeholder="Search" aria-label="Search">
+                        <input class="form-control max-cont m-wd-26 b-r" type="search" placeholder="Search" aria-label="Search">
                         <button class="btn btn-outline-primary b-l my-2 my-sm-0" type="submit"><i class="fa fa-search"></i></button>
                     </form>
                 </div>
@@ -60,7 +60,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-4 mb-5">
+        <div class="col-md-4 m-mt mobile-full-length mb-5">
             {{> chatbox}}
         </div>
     </div>

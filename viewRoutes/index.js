@@ -22,6 +22,11 @@ router.get('/login', function(req, res, next) {
     res.render('login', { title: 'FIFA FANS' });
 });
 
+// //this is verify page
+router.get('/verify-message', function(req, res, next) {
+    res.render('verify', { message: 'Kindly Verify Account To Log In, Thanks!!' });
+});
+
 
 //this is login page
 router.get('/editprofile', function(req, res, next) {
@@ -66,6 +71,11 @@ router.get('/notification', function(req, res, next) {
 //this is message page
 router.get('/message', function(req, res, next) {
     res.render('message', { title: 'FIFA FANS' });
+});
+
+//this is readnews page
+router.get('/readnews', function(req, res, next) {
+    res.render('readnews', { title: 'FIFA FANS' });
 });
 
 //this is message page
