@@ -1,3 +1,27 @@
+const username_profile = document.getElementById('user-name-header');
+const fullname_profile = document.getElementById('user-full-name');
+const status_profile = document.getElementById('user-profile-status');
+const input_profile_fullname = document.getElementById('input_profile_fullname');
+const input_profile_username = document.getElementById('input_profile_username');
+const input_profile_email = document.getElementById('input_profile_email');
+const input_profile_gender = document.getElementById('input_profile_gender');
+const input_profile_status = document.getElementById('input_profile_status');
+const input_short_bio_profile = document.getElementById('input_short_bio_profile');
+const input_favorite_quote_profile = document.getElementById('input_favorite_quote_profile');
+const old_pass_change_pass = document.getElementById('old_pass_change_pass');
+const new_pass_change_pass = document.getElementById('new_pass_change_pass');
+const input_address_profile = document.getElementById('input_address_profile');
+const input_website_profile = document.getElementById('input_website_profile');
+const input_club_profile = document.getElementById('input_club_profile');
+const input_language_profile = document.getElementById('input_language_profile');
+const new_pass_change_pass_confirm = document.getElementById('new_pass_change_pass_confirm');
+const change_pass_btn = document.getElementById('change_pass_btn');
+const edit_contact_button = document.getElementById('edit_contact_button');
+const edit_profile_about_button = document.getElementById('edit_profile_about_button');
+const edit_profile_button = document.getElementById('edit_profile_button');
+const logout_user = document.getElementById('logout_user');
+
+
 const edit_profile = document.getElementById('edit_profile');
 const change_password = document.getElementById('change_pass');
 const details_about_you = document.getElementById('details_abt_you');
@@ -27,8 +51,10 @@ switch (argUrl) {
     default:
         break;
 }
+if (title) {
+    title.innerText = localStorage.getItem('title');
+}
 
-title.innerText = localStorage.getItem('title');
 
 function changeTitle(array_elements, element) {
     array_elements.forEach(x => {
@@ -38,33 +64,23 @@ function changeTitle(array_elements, element) {
     });
 }
 
+  try {
+    changeTitle([edit_profile, change_password, details_about_you, contact_info], title);  
+  } catch (error) {
+      console.log(error);
+  }
 
-changeTitle([edit_profile, change_password, details_about_you, contact_info], title);
-const username_profile = document.getElementById('user-name-header');
-const fullname_profile = document.getElementById('user-full-name');
-const status_profile = document.getElementById('user-profile-status');
-const input_profile_fullname = document.getElementById('input_profile_fullname');
-const input_profile_username = document.getElementById('input_profile_username');
-const input_profile_email = document.getElementById('input_profile_email');
-const input_profile_gender = document.getElementById('input_profile_gender');
-const input_profile_status = document.getElementById('input_profile_status');
-const input_short_bio_profile = document.getElementById('input_short_bio_profile');
-const input_favorite_quote_profile = document.getElementById('input_favorite_quote_profile');
-const edit_profile_button = document.getElementById('edit_profile_button');
-const old_pass_change_pass = document.getElementById('old_pass_change_pass');
-const new_pass_change_pass = document.getElementById('new_pass_change_pass');
-const input_address_profile = document.getElementById('input_address_profile');
-const input_website_profile = document.getElementById('input_website_profile');
-const input_club_profile = document.getElementById('input_club_profile');
-const input_language_profile = document.getElementById('input_language_profile');
-const new_pass_change_pass_confirm = document.getElementById('new_pass_change_pass_confirm');
-const change_pass_btn = document.getElementById('change_pass_btn');
-const edit_contact_button = document.getElementById('edit_contact_button');
-const logout_user = document.getElementById('logout_user');
+
 
 if (edit_profile_button) {
     edit_profile_button.addEventListener('click', (e) => {
         editProfile(e)
+    })
+}
+
+if (edit_profile_about_button) {
+    edit_profile_about_button.addEventListener('click', (e) => {
+     editProfile(e);
     })
 }
 
@@ -114,15 +130,15 @@ const fillEditInputs = (data) => {
 
 // fill in the details page
 const fillInDetails = (data) => {
-    input_short_bio_profile.value = data.profiles[0].shortBio;
-    input_favorite_quote_profile.value = data.profiles[0].favoriteQuote;
+    input_short_bio_profile.value = data.profiles[0].shortBio != undefined ? data.profiles[0].shortBio : 'No Bio yet';
+    input_favorite_quote_profile.value = data.profiles[0].favoriteQuote != undefined ? data.profiles[0].favoriteQuote : 'No quote yet';
 }
 
 const fillContact = (data) => {
     input_club_profile.value = data.club;
     input_address_profile.value = data.address;
-    input_language_profile.value = data.profiles[0].language;
-    input_website_profile.value = data.profiles[0].website
+    input_language_profile.value = data.profiles[0].language !== undefined ? data.profiles[0].language : '';
+    input_website_profile.value = data.profiles[0].website !== undefined ? data.profiles[0].website : '';
 }
 
 function getProfile() {
@@ -153,7 +169,6 @@ function getProfile() {
 // Edit profile
 
 function editProfile(e) {
-    console.log(input_address_profile.value);
     e.preventDefault();
     const theToken = localStorage.getItem('token');
     if (!theToken) {
