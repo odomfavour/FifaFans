@@ -137,6 +137,9 @@ a {
     .bd-r {
         display: none!important;
     }
+    .container {
+        max-width: 100%;
+    }
     .width-50 {
         width: 100% !important;
     }
@@ -150,10 +153,10 @@ a {
     .hidden-mobile {
         display: none;
     }
-    .col-md-8 {
-        max-width: 100%;
-        flex: auto;
-    }
+    /* .col-md-8 {
+    max-width: 100%;
+    flex: auto;
+} */
     .mobile-full-length {
         max-width: 100%;
         flex: auto;
@@ -164,10 +167,117 @@ a {
     .m-wd-26 {
         width: 26rem !important;
     }
+    input,
+    p,
+    h4,
+    span,
+    select,
+    label,
+    i,
+    a,
+    button,
+    h5 {
+        font-size: 2rem !important;
+    }
+    .clip-attach {
+        bottom: 40px !important;
+    }
+    .comments-content p {
+        font-size: 1.5em !important;
+    }
+    h2 {
+        font-size: 3.5em;
+    }
+    h4 {
+        font-size: 2.5rem !important;
+    }
+    .profile-picture {
+        margin: 0 auto;
+        width: 200px!important;
+        height: 200px !important;
+    }
+    .profile-section {
+        text-align: center;
+    }
+    .profile-text h5 {
+        font-size: 3rem !important;
+    }
+}
+
+.profile-text {
+    bottom: 62px;
+}
+
+.bt-2 {
+    border-top: 2px dotted #0f5794
+}
+
+.profile-picture {
+    height: 140px;
+    /* object-fit: cover; */
+    border: 3px solid #000000;
+    position: relative;
+    bottom: 50px;
+    left: 19px;
+    width: 140px;
+    border-radius: 50%;
+    background-image: url(../img/1.png);
+    background-size: 100%;
 }
 
 .profile-pix {
     display: flex;
+}
+
+
+/* .rel-pos img {
+    width: 140px;
+    border-radius: 50%;
+    height: 140px;
+    object-fit: cover;
+    border: 3px solid #000000;
+    position: relative;
+    bottom: 50px;
+    left: 19px;
+    background-image: url(../img/1.png);
+} */
+
+.edit-message {
+    position: relative;
+    bottom: 32px;
+    text-align: right;
+}
+
+.create-post-add {
+    font-size: 1.5rem;
+}
+
+.imgprofile {
+    margin-right: 1rem;
+    width: 6rem;
+}
+
+.fa,
+.comment-badge {
+    font-size: 16px !important;
+}
+
+.stories-img p {
+    font-size: 15px !important;
+    font-weight: normal !important;
+    text-align: center;
+}
+
+.stories-img img {
+    border-radius: 50%;
+    width: 100px !important;
+    height: 100px !important;
+}
+
+.imgprofile img {
+    border: 1px solid;
+    border-radius: 50%;
+    background-color: #005391;
 }
 
 .imgprofile {
