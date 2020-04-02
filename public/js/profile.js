@@ -1,6 +1,14 @@
 const username_profile = document.getElementById('user-name-header');
+
+// user profile landing page
 const fullname_profile = document.getElementById('user-full-name');
 const status_profile = document.getElementById('user-profile-status');
+const simple_quotes = document.getElementById('simple-quotes');
+const location_profile = document.getElementById('location-profile');
+
+
+
+// other user profile details
 const input_profile_fullname = document.getElementById('input_profile_fullname');
 const input_profile_username = document.getElementById('input_profile_username');
 const input_profile_email = document.getElementById('input_profile_email');
@@ -114,8 +122,10 @@ function logoutUSer() {
 // objects for different profile related page to populate fields
 
 const profileObject = (data) => {
-    fullname_profile.innerText = data.name,
-        status_profile.innerText = data.status
+    fullname_profile.innerText = data.name;
+    status_profile.innerText = data.status;
+    simple_quotes.innerText = data.profiles[0].favoriteQuote;
+    location_profile.innerText = data.address;
 }
 
 const fillEditInputs = (data) => {

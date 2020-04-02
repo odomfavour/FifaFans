@@ -7,6 +7,8 @@
 var app = require('./app');
 var debug = require('debug')('fifafans:server');
 var http = require('http');
+var socket = require('socket.io');
+var sockets = require('./socket');
 
 /**
  * Get port from environment and store in Express.
@@ -20,7 +22,8 @@ app.set('port', port);
  */
 
 var server = http.createServer(app);
-
+var io = socket(server);
+sockets(io);
 /**
  * Listen on provided port, on all network interfaces.
  */
