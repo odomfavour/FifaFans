@@ -250,3 +250,15 @@ function changePassword(e) {
 if (window.location.pathname !== '/login' && window.location.pathname !== '/signup') {
     getProfile()
 }
+
+//side nave section
+function openNav() {
+    document.getElementById("mySidepanel").classList.add("width-250");
+    document.getElementById("mySidepanel").classList.remove("width-0");
+
+}
+
+function closeNav() {
+    document.getElementById("mySidepanel").classList.add("width-0");
+    document.getElementById("mySidepanel").classList.remove("width-250");
+}
