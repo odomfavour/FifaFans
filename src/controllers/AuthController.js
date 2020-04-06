@@ -81,7 +81,7 @@ const AuthController = {
 			});
 			// res.render('verify', {message: 'Please verify your account'});
 		} catch (e) {
-			// console.log(e);
+			console.log(e);
 			return next(e);
 		}
 	},
