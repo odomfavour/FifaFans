@@ -1,5 +1,4 @@
-<!-- NAVBAR
-    ================================================== -->
+<!--======================================= NAVBAR ================================================== -->
   
   <div class="container">
     <nav class="navbar bg-white">
@@ -8,49 +7,47 @@
           <input class="form-control max-cont b-r" type="search" placeholder="Search" aria-label="Search">
           <button class="btn btn-outline-primary b-l my-2 my-sm-0" type="submit"><i class="fa fa-search"></i></button>
         </form>
-        <div class="logout-img"><img src="../img/21104.svg">logout</div>
+        <div class="logout-img"><a href="/login"><img src="../img/21104.svg">logout</a></div>
   </nav>
   </div>
   <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
   
   <div class="container">
-   
    <div class="top-header">
-     <a class="navbar-brand bold" href="#">About Orung</a>
-      <button class="navbar-toggler pull-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+     <a class="navbar-brand bold" id="user-name-header" href="/profile"></a>
+      <button class="navbar-toggler pull-right" onclick="openNav()" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
   </div>
- 
-
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+  <div id="mySidepanel" class="sidepanel">
+     <a href="javascript:void(0)" class="closebtn" onclick="closeNav()"><i class="fa fa-times-circle"></i></a>
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
-        <a class="nav-link" href="/">Friends <span class="sr-only">(current)</span></a>
+        <a class="nav-link" href="/friends"  >Friends </a>
       </li>
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           Rooms
         </a>
         <div class="dropdown-menu dropdown-menu-right  dropdown-menu{-sm|-md|-lg|-xl}-left" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="#">Search Rooms</a>
-          <a class="dropdown-item" href="#">Create Room</a>
+          <a class="dropdown-item" href="/rooms">Search Rooms</a>
+          <a class="dropdown-item" href="/create_room">Create Room</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="/about">News</a>
+        <a class="nav-link" href="/news">News</a>
       </li>
       <div class="border-left"></div>
       <li class="nav-item">
-        <a class="nav-link" href="/about"><i class="fa fa-home"></i></a>
+        <a class="nav-link" href="/"><i class="fa fa-home"></i></a>
       </li>
        <li class="nav-item">
-        <a class="nav-link" href="/about"><i class="fa fa-comments"></i></a>
+        <a class="nav-link" href="/message"><i class="fa fa-comments"></i></a>
       </li>
        <li class="nav-item">
-        <a class="nav-link" href="/about"><i class="fa fa-plus-square"></i></a>
+        <a class="nav-link" href="/createroom"><i class="fa fa-plus-square"></i></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="/about"><i class="fa fa-bell"></i></a>
+        <a class="nav-link" href="/notification"><i class="fa fa-bell"></i></a>
       </li>
       <div class="border-left"></div>
          <li class="nav-item dropdown">
@@ -58,8 +55,8 @@
           
         </a>
         <div class="dropdown-menu dropdown-menu-right  dropdown-menu{-sm|-md|-lg|-xl}-left"  data-display="static"  aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="#">Search Rooms</a>
-          <a class="dropdown-item" href="#">Create Room</a>
+          <a class="dropdown-item" href="/rooms">Search Rooms</a>
+          <a class="dropdown-item" href="/create_room">Create Room</a>
       </li>
     </ul>
     

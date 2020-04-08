@@ -7,21 +7,16 @@ require('../config/cloudinaryconfig');
 
 const duri = new Datauri();
 
-const uploadimage = async (file, public_id = {}) => {
-	upload.single('file');
-	const dataUri = duri.format(path.extname(file.originalname).toString(), file.buffer);
+const uploadimage = async (file, public_id = '') => {
+	upload.single('avatar');
+	const dataUri = duri.format(path.basename(file.originalname), file.buffer);
 	const { content } = dataUri;
-
-	const result = await cloudinary.v2.uploader.upload(content, {
-		public_id:
-
-				public_id == {} ? `join_task/${public_id}` :
-				`join_task/${uuid()}`
-	});
-
-	// return console.log(result);
+	const result = await cloudinary.v2.uploader.upload(content,
+	  {
+		public_id: public_id !== '' ? `media_mall/${public_id}` : `media_mall/${uuid()}`,
+	  });
 	return result.secure_url;
-};
+  };
 
 const uploadVideo = async (file, public_id = '') => {
 	upload.single('file');

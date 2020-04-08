@@ -36,7 +36,7 @@ const AuthController = {
 			// trims the req.body to remove trailling spaces
 			const userData = magicTrimmer(req.body);
 			// destructuring user details
-			const { name, username, email, password, phone, address, role, club, status } = userData;
+			const { name, username, email, password, role, club, status } = userData;
 
 			// validation of inputs
 			const schema = {
@@ -62,15 +62,10 @@ const AuthController = {
 				username,
 				name,
 				email,
-				address,
 				password: hashedPassword,
-				phone,
 				club,
 				status,
-				role:
-
-						role === 'user' ? 'user' :
-						'admin'
+				role: role === 'user' ? 'user' : 'admin'
 			});
 
 			//create a binary 64 string for user identity and save user
@@ -84,8 +79,9 @@ const AuthController = {
 			return sendSuccessResponse(res, 201, {
 				message: 'Kindly Verify Account To Log In, Thanks!!'
 			});
+			// res.render('verify', {message: 'Please verify your account'});
 		} catch (e) {
-			// console.log(e);
+			console.log(e);
 			return next(e);
 		}
 	},
@@ -148,7 +144,6 @@ const AuthController = {
 					}
 				}
 			);
-
 			return sendSuccessResponse(res, 200, '<h2>Your Account has been Verified Successfully</h2>');
 		} catch (e) {
 			return next(e);
@@ -209,6 +204,7 @@ const AuthController = {
 			const user = req.userData;
 			return sendSuccessResponse(res, 200, user);
 		} catch (e) {
+			console.log(e);
 			return next(e);
 		}
 	},
@@ -267,10 +263,13 @@ const AuthController = {
 
 	async resetPassword (req, res, next) {
 		try {
-			const { email, newPassword } = req.body;
+			const { email } = req.userData;
+			const { newPassword, oldPassword } = req.body;
 			const hashedPassword = hashPassword(newPassword);
 			const user = await User.findOne({ where: { email } });
 			if (!user) return sendErrorResponse(res, 500, 'User Not Found!!');
+			const checkPassword = comparePassword(oldPassword, user.dataValues.password);
+			if (!checkPassword) return sendErrorResponse(res, 400, 'Incorrect Password');
 			await User.update(
 				{ password: hashedPassword },
 				{
@@ -350,6 +349,7 @@ const AuthController = {
 
 			return sendSuccessResponse(res, 200, { userDetails, profileData });
 		} catch (e) {
+		console.log(e);
 			return next(e);
 		}
 	}
