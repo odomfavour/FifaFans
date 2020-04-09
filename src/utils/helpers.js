@@ -381,7 +381,6 @@ const helperMethods = {
 			attributes: {
 				exclude: [
 					'createdAt',
-					'password',
 					'updatedAt'
 				]
 			},
@@ -420,7 +419,19 @@ const helperMethods = {
 		return friend;
 	},
 
-	// find a friend table
+	// list user joined rooms
+	async getUserGroups(user, table){
+		try {
+		  // console.log('here it is')
+		return await table.findAll({
+		  where: {member_uuid: user},
+		  include: ['ChatRoom'],
+		});
+		} catch (e) {
+		  console.log(e);
+		}
+		
+	  },
 
 };
 export default helperMethods;

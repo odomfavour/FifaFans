@@ -121,6 +121,17 @@ const PostController = {
             console.log(error);
             return sendErrorResponse(res, 500, 'An error occurred while trying to list posts');
         }
+    },
+
+    //list platform post
+    async listPosts(req, res) {
+      try {
+        const datas = await helperMethods.listAllDataInTable(Post);
+        return sendSuccessResponse(res, 200, datas);
+      } catch (error) {
+        console.log(error);
+        return sendErrorResponse(res, 500, 'Aan error occured!!');
+      }
     }
 };
 
