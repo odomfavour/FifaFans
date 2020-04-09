@@ -108,6 +108,12 @@
         color: #005391;
     }
     
+    .user-send-post {
+        position: absolute;
+        right: 3rem;
+        bottom: 7.5rem;
+    }
+    
     .sidenav-abt a {
         color: #212529;
         font-weight: 900;
@@ -172,6 +178,12 @@
         }
         .hidden-mobile {
             display: none;
+        }
+        .post-input {
+            height: 4rem !important;
+        }
+        .user-send-post {
+            bottom: 9rem;
         }
         .fa {
             font-size: 2rem !important;
