@@ -261,6 +261,7 @@ if (window.location.pathname !== '/login' && window.location.pathname !== '/sign
     getProfile()
 }
 
+
 //side nave section
 function openNav() {
     document.getElementById("mySidepanel").classList.add("width-250");
