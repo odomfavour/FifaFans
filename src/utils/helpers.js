@@ -1,5 +1,8 @@
 /* eslint-disable max-len */
 import Sequelize, { Op, fn, col, and } from 'sequelize';
+import models from '../models'
+
+const { ChatRoomMember, RoomChat } = models;
 
 const helperMethods = {
 	async searchWithCategoryAndLocation (point, category_uuid, Service) {
@@ -432,6 +435,26 @@ const helperMethods = {
 		}
 		
 	  },
+	
+	async createGroupMember(data) {
+	 const { group_id, user } = data;
+	 const member =	await ChatRoomMember.create({
+			chatroom_uuid: group_id,
+			member_uuid: user.uuid,
+			is_banned: false,
+		})
+	 return member;
+	},
+
+	async saveGroupChat(group_uuid, sender_uuid, parent_uuid, message, sendername){
+		return await RoomChat.create({
+		  parent_uuid,
+		  group_uuid,
+		  sender_uuid,
+		  sendername,
+		  message,
+		});
+	  }
 
 };
 export default helperMethods;

@@ -55,7 +55,7 @@ export default (io) => {
       }
 
       emmiter.default(io);
-
+      
       // Disconnect event
       socket.on('disconnect', (reason) => {
         // Clean-up, set socket_id for the user to null
