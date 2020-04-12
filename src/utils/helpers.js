@@ -446,6 +446,19 @@ const helperMethods = {
 	 return member;
 	},
 
+	async checkRoomMember(user_uuid) {
+		const user = await ChatRoomMember.findOne({
+			where: { member_uuid, user_uuid },
+			attributes: {
+				exclude: [
+					'createdAt',
+					'updatedAt'
+				]
+			}
+		})
+		return user;
+	},
+
 	async saveGroupChat(group_uuid, sender_uuid, parent_uuid, message, sendername){
 		return await RoomChat.create({
 		  parent_uuid,
@@ -454,7 +467,44 @@ const helperMethods = {
 		  sendername,
 		  message,
 		});
-	  }
+	  },
+
+	  // list user joined rooms
+	async getGroupChats(group_uuid, table){
+		try {
+		  // console.log('here it is')
+		return await table.findAll({
+		  where: {group_uuid}
+		});
+		} catch (e) {
+		  console.log(e);
+		}
+		
+	  },
+
+	
+	async deleteEntry(table, table_uuid, user_uuid){
+		try {
+		 await table.destroy({
+		 where: { uuid: table_uuid, user_uuid }
+		});
+		} catch (error) {
+		 console.log(error);
+		}
+		
+	},
+
+	// exit a group
+	async exitGroup(table, group_uuid, user_uuid){
+		try {
+		 await table.destroy({
+		 where: {  group_uuid, user_uuid }
+		});
+		} catch (error) {
+		 console.log(error);
+		}
+		
+	},
 
 };
 export default helperMethods;

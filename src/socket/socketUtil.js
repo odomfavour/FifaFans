@@ -13,8 +13,8 @@ const sendPersonalSms = async (socket_id, user_uuid, message, io) => {
 
 const joinGroup = async (group_id, user, socket, io) => {
   await helperMethods.createGroupMember(group_id, user);
-  await socket.join(group_id, () => { console.log(client.rooms)});
-  await io.in(group_id).emit('message', generateMessage('Admin', `Welcome to the group ${user.name}`));
+  // await socket.join(group_id, () => { console.log(client.rooms)});
+  // await io.in(group_id).emit('message', generateMessage('Admin', `Welcome to the group ${user.name}`));
 };
 
 const sendMessageToGroup = async (group_id, message, user, io, parent_uuid ="") => {

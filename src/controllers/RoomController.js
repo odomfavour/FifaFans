@@ -2,7 +2,7 @@ import model from './../models';
 import { sendErrorResponse, sendSuccessResponse } from './../utils/sendResponse';
 import helperMethods from './../utils/helpers';
 import uploadImage from './../services/imageuploader';
-const { User, Profile, Post, Friend, ChatRoom, ChatRoomMember } = model;
+const { User, Profile, Post, Friend, ChatRoom, ChatRoomMember, RoomChat } = model;
 
 
 const RoomController = {
@@ -11,7 +11,8 @@ const RoomController = {
         const { uuid } = req.userData;
         if(!uuid) return res.status(403).send('Access denied');
         const { groupname, description } = req.body;
-        if (!groupname && !description) return sendErrorResponse(res, 409, 'Groupname and description cannot be empty!!!');
+        if (!groupname && !description) return sendErrorResponse(res, 
+          409, 'Groupname and description cannot be empty!!!');
         const group = await ChatRoom.create({
             name: groupname,
             description,
@@ -62,6 +63,39 @@ const RoomController = {
             }
             
        },
+
+         /**this method handles listing chats in a group
+         * @param req this is the incoming request
+         * @param res this is the response after the request have been implemented
+         */
+        async getGroupChats(req, res) {
+          try {
+            const { uuid } = req.userData;
+              const { group_uuid } = req.query;
+              const chats = await helperMethods.getGroupChats(group_uuid, RoomChat);     
+              return sendSuccessResponse(res, 200, { message:'Success', data: chats })
+            } catch (e) {
+              console.log(e);
+              return sendErrorResponse(res, 500, e);
+            }
+        },
+        /**this method handles listing chats in a group
+         * @param req this is the incoming request
+         * @param res this is the response after the request have been implemented
+         */
+
+        async exitGroup(req, res) {
+          try {
+            const { uuid } = req.userData;
+            const { group_uuid } = req.query;
+            const chats = await helperMethods.exitGroup(ChatRoomMember, group_uuid, uuid);     
+            return sendSuccessResponse(res, 200, 'You have successfully exited the room');
+          } catch (error) {
+            console.log(error);
+            return sendErrorResponse(res, 500, error);
+          }
+        },
+        
 };
 
 export default RoomController;
