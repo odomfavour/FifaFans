@@ -7,10 +7,13 @@
             <img src="/img/21104.svg" class="img-prof">
         </div>
         <div class=" flex-grow-1 pd-4 ">
-            <div class="form-group green-border-focus">
-                <input type="text" placeholder="Tell us how you feel..." id="postInput" value="" class="form-control post-input">
-            </div>
-            <div class="send-post-icon"><i class="fa fa-send" id="sendPost"></i></div>
+            
+            <form action="" onsubmit="createPost()">
+                <div class="form-group green-border-focus" onsubmit="createPost()">
+                    <input type="text" placeholder="Tell us how you feel..." id="postInput" value="" class="form-control post-input">
+                    </div>
+                     <button type="submit" id="sendPost" class="fa fa-send border-none  send-post-icon "></button>
+            </form>
         </div>
     </div>
     <div class="create-post-add">

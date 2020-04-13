@@ -11,8 +11,15 @@ function createPost(e) {
     const formData = new FormData();
     formData.append('post', post.value);
     sendPost.addEventListener('click', () => {
-        console.log(post.value)
+        fetch('/create-post', {
+            method: "POST",
+            body: formData,
+            headers: new Headers({
+                'Authorization': `Bearer ${theToken}`
+            }),
+        })
     });
+    
     then(x => {
         console.log(x);
         if (x.status != 'error') {
@@ -21,4 +28,4 @@ function createPost(e) {
         } else { alert(x.error) };
     })
 }
-createPost();
+
