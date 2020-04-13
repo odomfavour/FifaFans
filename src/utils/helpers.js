@@ -1,5 +1,8 @@
 /* eslint-disable max-len */
 import Sequelize, { Op, fn, col, and } from 'sequelize';
+import models from '../models'
+
+const { ChatRoomMember, RoomChat } = models;
 
 const helperMethods = {
 	async searchWithCategoryAndLocation (point, category_uuid, Service) {
@@ -381,7 +384,6 @@ const helperMethods = {
 			attributes: {
 				exclude: [
 					'createdAt',
-					'password',
 					'updatedAt'
 				]
 			},
@@ -420,7 +422,89 @@ const helperMethods = {
 		return friend;
 	},
 
-	// find a friend table
+	// list user joined rooms
+	async getUserGroups(user, table){
+		try {
+		  // console.log('here it is')
+		return await table.findAll({
+		  where: {member_uuid: user},
+		  include: ['ChatRoom'],
+		});
+		} catch (e) {
+		  console.log(e);
+		}
+		
+	  },
+	
+	async createGroupMember(data) {
+	 const { group_id, user } = data;
+	 const member =	await ChatRoomMember.create({
+			chatroom_uuid: group_id,
+			member_uuid: user.uuid,
+			is_banned: false,
+		})
+	 return member;
+	},
+
+	async checkRoomMember(user_uuid) {
+		const user = await ChatRoomMember.findOne({
+			where: { member_uuid, user_uuid },
+			attributes: {
+				exclude: [
+					'createdAt',
+					'updatedAt'
+				]
+			}
+		})
+		return user;
+	},
+
+	async saveGroupChat(group_uuid, sender_uuid, parent_uuid, message, sendername){
+		return await RoomChat.create({
+		  parent_uuid,
+		  group_uuid,
+		  sender_uuid,
+		  sendername,
+		  message,
+		});
+	  },
+
+	  // list user joined rooms
+	async getGroupChats(group_uuid, table){
+		try {
+		  // console.log('here it is')
+		return await table.findAll({
+		  where: {group_uuid}
+		});
+		} catch (e) {
+		  console.log(e);
+		}
+		
+	  },
+
+	
+	async deleteEntry(table, table_uuid, user_uuid){
+		try {
+		 await table.destroy({
+		 where: { uuid: table_uuid, user_uuid }
+		});
+		} catch (error) {
+		 console.log(error);
+		}
+		
+	},
+
+	// exit a group
+	async exitGroup(table, group_uuid, user_uuid){
+		try {
+		 await table.destroy({
+		 where: {  group_uuid, user_uuid }
+		});
+		} catch (error) {
+		 console.log(error);
+		}
+		
+	},
 
 };
 export default helperMethods;

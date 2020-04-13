@@ -11,7 +11,23 @@
   <body>
 
     {{{body}}}
-
+<script>
+  var base = 'api/v1/';
+  var theToken = localStorage.getItem('token');
+  if (!theToken) {
+       if (window.location.pathname != '/login' && window.location.pathname !== '/'){
+        alert('Please Login')
+        window.location.replace("/login");
+       }
+  }
+  var options = {
+        method: 'POST',
+        headers: new Headers({
+            'Authorization': `Bearer ${theToken}`
+        })
+    }
+</script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
   {{!-- <script src="/js/jquery.js"></script> --}}
   <script src="/js/bootstrap.min.js"></script>
