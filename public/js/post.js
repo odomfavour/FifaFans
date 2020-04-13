@@ -1,24 +1,26 @@
 const post = document.getElementById('postInput');
 const sendPost = document.getElementById('sendPost');
 
-function createPost(e) {
-    e.preventDefault();
-    const theToken = localStorage.getItem('token');
-    if (!theToken) {
-        alert('Please Login')
-        window.location.replace("/login");
-    }
+function createPost() {
+    options.method = 'POST'
     const formData = new FormData();
     formData.append('post', post.value);
-    sendPost.addEventListener('click', () => {
-        console.log(post.value)
-    });
-    then(x => {
-        console.log(x);
-        if (x.status != 'error') {
-            alert('update successfully')
-            window.location.reload();
-        } else { alert(x.error) };
-    })
+    options.body = formData;
+    fetch(`${base}/create-post`, options)
+        .then(res => res.json())
+        .then(x => {
+            console.log(x);
+            if (x.status != 'error') {
+                Swal.fire(x.data);
+                window.location.reload();
+            } else {
+                Swal.fire(x.error, '', 'error');
+            }
+        }).catch(e =>  alert(e));
 }
-createPost();
+
+sendPost.addEventListener('click', () => {
+    console.log(post.value);
+    createPost();
+});
+

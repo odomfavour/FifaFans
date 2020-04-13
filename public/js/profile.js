@@ -113,6 +113,7 @@ if (logout_user) {
 
 
 function logoutUSer() {
+    prompt('Are you sure? ......')
     localStorage.removeItem('token');
     window.location.replace('/login');
 }
@@ -152,17 +153,8 @@ const fillContact = (data) => {
 }
 
 function getProfile() {
-    const theToken = localStorage.getItem('token');
-    if (!theToken) {
-        alert('Please Login')
-        window.location.replace("/login");
-    }
-    fetch('/api/v1/auth/me', {
-            method: "GET",
-            headers: new Headers({
-                'Authorization': `Bearer ${theToken}`
-            }),
-        })
+    options.method = 'GET'
+    fetch(`${base}auth/me`, options)
         .then(res => res.json())
         .then(x => {
             console.log(x);
@@ -174,6 +166,7 @@ function getProfile() {
                 if (window.location.pathname == '/usercontactinfo') { fillContact(x.data) };
             }
         })
+        .catch((e) => {alert(e)})
 };
 
 // Edit profile
