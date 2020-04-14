@@ -47,7 +47,12 @@ function listAllPosts() {
          console.log(response);
             if (response.status != 'error') {
                 console.log(response.data)
-                const y = generalPost(response.data)
+                let array = [];
+                response.data.forEach((el) => {
+                    console.log(el)
+                })
+                console.log(array)
+                const y = generalPost(array)
                 layout.innerHTML = y;
          }
     })
@@ -67,9 +72,11 @@ function append(parent, el) {
 const generalPost = (data) => {
     let div =document.createElement('div');
     div.classList.add('card','mt-5', 'pd-');
+    let container = [];
+
     data.forEach((i) => {
         console.log(i);
-        return `<div class="card mt-5 pd-15" >
+        container[i] += `<div class="card mt-5 pd-15" >
                 </div>
                   `
     })
