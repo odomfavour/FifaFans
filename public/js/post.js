@@ -144,7 +144,6 @@ const generalPost = (data) => {
                       <h6 class="color-green">Player</h6>
                       <p>1hrs ago</p>
                       
-                  
                   </div>
                     
                     
@@ -154,7 +153,7 @@ const generalPost = (data) => {
                         <img src="img/bg-img.jpg" class="img-fluid img-responsive" alt="">
                   <div class="d-flex justify-content-between">
                       <div class="p-2 text-center"> 
-                          <p><b>144</b> <i class="fa fa-thumbs-up"></i></p> 
+                          <p><b>144</b><i class="fa fa-thumbs-up"></i></p> 
                       </div>
                       <div class="p-2 text-right">
                         <p><b>44</b><i class="fa fa-comments"></i> </p>
