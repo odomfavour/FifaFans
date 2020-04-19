@@ -1,6 +1,7 @@
     body {
         padding: 0;
         margin: 0;
+        box-sizing: border-box;
         background-color: #f8f9fa!important;
         font-family: 'Roboto', sans-serif;
         font-family: 'Nunito Sans', sans-serif;
@@ -675,8 +676,9 @@
     }
     
     .post-input {
-        height: 3rem;
         border-radius: 50px;
+        padding: 20px 5px 20px 10px;
+        overflow: scroll;
     }
     
     .color-blue {
