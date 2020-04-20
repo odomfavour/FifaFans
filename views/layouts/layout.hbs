@@ -11,7 +11,13 @@
   <body>
 
     {{{body}}}
+<script src="/socket.io/socket.io.js"></script>    
 <script>
+  {{!-- try {
+
+  } catch (e) {
+    console.log(e);
+  } --}}
   var base = 'api/v1/';
   var theToken = localStorage.getItem('token');
   if (!theToken) {
@@ -27,6 +33,7 @@
         })
     }
 </script>
+<script src="/js/socketConfig.js"></script>
   <!-- Popper JS -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
@@ -35,7 +42,7 @@
   <script src="/js/bootstrap.min.js"></script>
   <script src="/js/bootstrap.bundle.min.js"></script>
    <script src="/js/profile.js"></script>
-    <script src="/js/signup_auth.js"></script>
+    <script src="/js/signup_auth.js"></script>  
     <script src="/js/login_auth.js"></script>
     <script src="/js/post.js"></script>
     <script src="/js/user.js"></script>

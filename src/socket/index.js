@@ -1,6 +1,7 @@
 import { socketAuth } from '../middleware/socketAuth';
 import models from '../models';
 import roomConnect from '../socket/roomConnect';
+import postConnect from '../socket/postConnect';
 
 const emmiter = require('./EventHandler');
 
@@ -9,6 +10,7 @@ export default (io) => {
   // let onlineSockets = [];
   if (io) {
     io.on('connection', async (socket) => {
+      console.log('a user connected');
       let user = 'anonymous';
       const { handshake } = socket;
       socket.on('authenticate', async (data) => {
@@ -57,6 +59,7 @@ export default (io) => {
 
       emmiter.default(io);
       roomConnect(socket, io, user);
+      postConnect(socket, io, user);
       // Disconnect event
       socket.on('disconnect', (reason) => {
         // Clean-up, set socket_id for the user to null

@@ -60,7 +60,6 @@ function getUserDetails() {
         array.push(el);
       });
        searchResult.innerHTML = array;
-       return window.location.href = '/rooms';
   }).catch((error) => console.log(error))
 }
 

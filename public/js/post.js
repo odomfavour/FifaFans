@@ -30,7 +30,7 @@ function createPost() {
 }
 
 
-userPost.addEventListener('click', listUserPost)
+// userPost.addEventListener('click', listUserPost)
 
 function listUserPost() {
     options.method = 'GET'
@@ -68,34 +68,44 @@ async function listAllPosts() {
 // }
 
 
-function commentPost(post_uuid) {
-  alert(post_uuid)
-    options.method = 'PUT'
-    const formData = new FormData();
-  formData.append("comment", comment.value);
-  formData.append("post_uuid",post_uuid);
-    options.body = formData;
+// change this to use socket IO
 
-    // if (comment.value) {
-       fetch(`${base}/comment-post`, options)
-         .then((res) => res.json())
-         .then((response) => {
-             console.log(response);
-              if (response.status != "error") {
-                console.log(response.data);
-                const array = [];
-                response.data.forEach((x) => {
-                  const el = displayComments(x);
-                  array.push(el);
-                });
-                commentSection.innerHTML = array;
-              }
+// function commentPost(post_uuid) {
+//   alert(post_uuid)
+//     options.method = 'PUT'
+//     const formData = new FormData();
+//   formData.append("comment", comment.value);
+//   formData.append("post_uuid",post_uuid);
+//     options.body = formData;
+
+//     // if (comment.value) {
+//        fetch(`${base}/comment-post`, options)
+//          .then((res) => res.json())
+//          .then((response) => {
+//              console.log(response);
+//               if (response.status != "error") {
+//                 console.log(response.data);
+//                 const array = [];
+//                 response.data.forEach((x) => {
+//                   const el = displayComments(x);
+//                   array.push(el);
+//                 });
+//                 commentSection.innerHTML = array;
+//               }
              
-         });  
-    // }
+//          });  
+//     // }
    
-}
+// }
 
+// socket io for posting comments 
+function commentPost(post_uuid) {
+    console.log(post_uuid)
+    const post = document.getElementById(`${post_uuid}-comment-input`).value;
+    console.log(post)
+    socketClient.emit('post-comment', { post_uuid, post })
+  }
+  
 
 function createNode(element) {
   return document.createElement(element);
@@ -170,7 +180,7 @@ const generalPost = (data) => {
                         <i class="fa fa-share-alt"></i> Share
                       </p>
                     </div>
-                    <div class="d-flex justify-content-between mt-4 comment-section" id="">
+                    <div class="comment-section" id="comments${data.uuid}">
                        ${displayComments(data.comment)}
                     </div>
                     <div class="d-flex justify-content-between bd-top mt-4">
@@ -179,7 +189,7 @@ const generalPost = (data) => {
                       </div>
                       <div class=" flex-grow-1 pd-4 ">
                         <div class="form-group green-border-focus">
-                          <input type="text" placeholder="Write comments..." id="" class="form-control post-input comments">
+                          <input type="text" placeholder="Write comments..." id="${data.uuid}-comment-input" class="form-control post-input comments">
                           <p class="fa fa-send border-none clip-attach" onclick="commentPost('${data.uuid}')"></p>
                         </div>
                       </div>
@@ -209,8 +219,8 @@ const generalPost = (data) => {
                       </div>
                   </div> */}
 
-const loadPage = async () => {
+const loadPosts = async () => {
   await listAllPosts()
 }
 
-loadPage()
+loadPosts()

@@ -13,12 +13,12 @@ const socketAuth = async (token) => {
       attributes: {
         exclude: ['password'],
       },
-      include: ['token'],
+      // include: ['token'],
     });
     if (!user) return errorMsg('Account does not exist', { status: 404 });
     return user.dataValues;
   } catch (e) {
-    return sendErrorResponse(res, 500, 'Authentication Failed', e);
+    console.log(e);
   }
 };
 

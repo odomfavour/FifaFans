@@ -64,7 +64,7 @@ for (var i = 0; i < room.length; i++) {
 }
 
 // list rooms
-listOfRooms.addEventListener('click', listRooms)
+// listOfRooms.addEventListener('click', listRooms)
 async function listRooms() {
     options.method = 'GET'
     await fetch(`${base}/list-rooms`, options)
@@ -83,7 +83,7 @@ async function listRooms() {
 
 
 // list of user's rooms
-listOfUserRooms.addEventListener('click', userRooms)
+// listOfUserRooms.addEventListener('click', userRooms)
 async function userRooms() {
     options.method = 'GET'
   await fetch(`${base}/list-user-rooms`, options)
@@ -119,7 +119,7 @@ const myRoom = (data) => {
         </div>
     
         <div class="side-button text-right">
-            <button class="btn btn-default mb-2">Join room</button>
+            <button class="btn btn-default mb-2">Enter room</button>
         </div>
     </div> 
                 `
@@ -145,8 +145,12 @@ const allRooms = (data) => {
 }
 
 const loadPage = async () => {
-  await listRooms()
-  await userRooms()
+  try {
+    await userRooms()
+    await listRooms()
+  } catch (error) {
+    console.log(error);
+  }
 }
 
 loadPage()
