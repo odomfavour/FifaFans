@@ -102,7 +102,6 @@ async function listAllPosts() {
 function commentPost(post_uuid) {
     console.log(post_uuid)
     const post = document.getElementById(`${post_uuid}-comment-input`);
-    console.log(post)
     socketClient.emit('post-comment', { post_uuid, post: post.value })
     post.value = ''
   }
