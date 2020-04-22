@@ -70,10 +70,11 @@ const RoomController = {
          */
         async getGroupChats(req, res) {
           try {
-            const { uuid } = req.userData;
+            // const { uuid } = req.userData;
               const { group_uuid } = req.query;
-              const chats = await helperMethods.getGroupChats(group_uuid, RoomChat);     
-              return sendSuccessResponse(res, 200, { message:'Success', data: chats })
+              console.log(group_uuid)
+              const data = await helperMethods.getGroupChats(group_uuid, RoomChat, ChatRoom);     
+              return res.render('room', { data });
             } catch (e) {
               console.log(e);
               return sendErrorResponse(res, 500, e);

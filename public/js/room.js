@@ -119,7 +119,7 @@ const myRoom = (data) => {
         </div>
     
         <div class="side-button text-right">
-            <a class="btn btn-default mb-2" href="/room">Enter room</a>
+            <a class="btn btn-default mb-2" href="room?group_uuid=${data.ChatRoom.uuid}">Enter room</a>
         </div>
     </div> 
                 `

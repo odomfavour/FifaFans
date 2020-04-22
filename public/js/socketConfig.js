@@ -25,3 +25,18 @@ var socketClient = io('', {
      const post_comment = document.getElementById(`comments${post_uuid}`);
      post_comment.appendChild(xyz);
     })
+
+    const joinGroup = (group_uuid) => {
+      console.log(group_uuid);
+      socketClient.emit('join-room', { group_uuid,});
+    }
+
+    const sendGroupMessage = (group_id) => {
+      console.log(group_id);
+      const message = document.getElementById('group-chat').value;
+      socketClient.emit(`${group_id}-message`, { message, group_id })
+    }
+
+    socketClient.on('message', (data) => {
+      console.log(data);
+    })
