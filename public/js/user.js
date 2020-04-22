@@ -73,8 +73,8 @@ const result = (data) => {
                         </a>
                     </div>
                     <div class="side-content">
-                        <a href="#">
-                            <p>${ data.name } </p>
+                        <a href="#" >
+                            <p onclick="followUser('${data.uuid}')">${ data.name } </p>
                         </a>
                         <p class="status-color">Coach</p>
                 
@@ -90,3 +90,4 @@ const result = (data) => {
 const followUser = (uid) => {
   Swal.fire(uid);
 }
+
