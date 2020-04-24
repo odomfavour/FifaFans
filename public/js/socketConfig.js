@@ -56,8 +56,8 @@ socketClient.on('message', (data) => {
       
       `;
   ab.innerHTML = content;
-  console.log(ab)
+  // console.log(ab)
       const post_message = document.getElementById('post-panel')
   post_message.appendChild(ab);
-  console.log(post_message)
+  // console.log(post_message)
     })
