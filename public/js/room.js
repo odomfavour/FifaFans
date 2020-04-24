@@ -48,9 +48,9 @@ function createRoom(e) {
                .then((response) => {
                  console.log(response);
                  if (response.status != "error") {
-                     Swal.fire(response.data);
-                     
-                     window.location.reload();
+                    
+                     window.location.replace('/rooms')
+                   Swal.fire(response.data);
                  } else {
                    Swal.fire(x.error, "", "error");
                  }

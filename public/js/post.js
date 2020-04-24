@@ -140,6 +140,22 @@ const displayComments = (data) => {
    return array
 }
 
+const displayRoomChats = (data) => {
+  const array = [];
+  if (data) {
+    data.forEach(x => {
+      const element = `<div class="comment-bot pd-15">
+            <div class="sender-text">
+                <p>${user}</p>
+                <p> ${message} </p>
+            </div>
+        </div>`
+      array.push(element);
+    });
+  }
+  return array
+}
+
 const generalPost = (data) => {
     // let layout = document.getElementById('post-layout');
     // layout
