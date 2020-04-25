@@ -1,6 +1,6 @@
 {{> header}}
-
 <div class="container mt-5">
+    {{log  data}}
     <div class="row mb-5">
         <div class="col-md-4 hidden-mobile mb-5">
             <div> {{> sidenav}}</div>
@@ -12,8 +12,8 @@
                     <img src="img/bg-img.jpg" class="img-fluid">
                     </div>
                     <div class="pd-15 ">
-                        <h4>Manchester United </h4>
-                        <p>A place where Man U fans meet</p>
+                        <h4>{{data.room.name}}</h4>
+                        <p>{{data.room.description}}</p>
                         {{!-- <ul>
                             <li> <a><i class="fa fa-phone"></i> <span> 08064786137</span> </a></li>
                             <li><a><i class="fa fa-envelope"></i> <span>magnificentorung@gmail.com</span></a> </li>
@@ -26,10 +26,8 @@
                                 <span class="pl-3"> <b>2234</b> Views </span>
                             </div>
                             <div>
-                                <button class="btn btn-primary">Message</button>
-                                <button class="btn btn-primary"><i class="fa fa-like"></i>Follow</button>
+                                <button class="btn btn-primary" onclick="joinGroup('{{data.room.uuid}}')">Join</button>
                                 <button class="btn btn-primary"><i class="fa fa-share"></i>Share</button>
-                                 <button class="btn btn-primary"><i class="fa fa-like"></i>Like</button>
                             </div>
                         </div>
                     </div>
@@ -38,26 +36,26 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="card mt-2">
-                        <div class="pd-15 pb-0">
-                            <div class="d-flex justify-content-start ">
-                                <div class="comment-img">
-                                    <img src="/img/21104.svg" class="img-prof">
-                                </div>
-                                <div class="tap-cont-profile pd-3-12">
-                                    <h5 class="font-16">Ogochukwu Odom</h5>
-                                    <p class="font-14">Active: 1hrs ago</p>
-                                </div>
-                            </div>
-                        </div>
                         <div class="line-bd"></div>
-                        <div class="scrollable-text">
-                            <div class="comment-bot pd-15">
+                        <div class="scrollable-text" id="post-panel">
+                            {{#each data.chats}}
+                              <div class="mb-5">
+                              <div class="comment-bot pd-15">
+                                 <div class="sender-text">
+                                    <p>{{this.sendername}}</p>
+                                    <p>{{this.message}}</p>
+                                 </div>
+                            </div>
+                           </div> 
+                            {{/each}}
+                            {{!-- <div class="comment-bot pd-15">
                                 <div class="owner-text">
                                     <p> Hello </p>
                                 </div>
                             </div>
                             <div class="comment-bot pd-15">
                                 <div class="sender-text">
+                                    <p>{{data.chats}}</p><hr>
                                     <p> Hello </p>
                                 </div>
                             </div>
@@ -66,10 +64,10 @@
                                     <p> Did you watch the latest march Did you watch the latest march
                                         last wekendlast wekend </p>
                                 </div>
-                                <div class="owner-text">
+                                <div class="owner-text" id="message-image">
                                     <img src="img/bg-img.jpg" class="img-fluid">
                                 </div>
-                            </div>
+                            </div> --}}
                         </div>
                         <div class="line-bd"></div>
                         <div class="d-flex  pd-15 justify-content-start">
@@ -81,8 +79,8 @@
                             </div>
                             <form class="form-inline my-2"></form>
                             <div class=" green-border-focus width-100">
-                                <input type="search" placeholder="Type..." aria-label="Search" class="form-control post-input">
-                                <button type="submit" class="fa fa-diamond border-none"></button>
+                                <input type="search" placeholder="Type..." aria-label="Search" class="form-control post-input" id="group-chat">
+                                <p class="fa fa-diamond border-none" onclick="sendGroupMessage('{{data.room.uuid}}')"></p>
                             </div>
                             </form>
                     

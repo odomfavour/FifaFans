@@ -102,7 +102,6 @@ async function listAllPosts() {
 function commentPost(post_uuid) {
     console.log(post_uuid)
     const post = document.getElementById(`${post_uuid}-comment-input`);
-    console.log(post)
     socketClient.emit('post-comment', { post_uuid, post: post.value })
     post.value = ''
   }
@@ -139,6 +138,22 @@ const displayComments = (data) => {
     });
     }
    return array
+}
+
+const displayRoomChats = (data) => {
+  const array = [];
+  if (data) {
+    data.forEach(x => {
+      const element = `<div class="comment-bot pd-15">
+            <div class="sender-text">
+                <p>${user}</p>
+                <p> ${message} </p>
+            </div>
+        </div>`
+      array.push(element);
+    });
+  }
+  return array
 }
 
 const generalPost = (data) => {

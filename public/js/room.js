@@ -48,9 +48,9 @@ function createRoom(e) {
                .then((response) => {
                  console.log(response);
                  if (response.status != "error") {
-                     Swal.fire(response.data);
-                     
-                     window.location.reload();
+                    
+                     window.location.replace('/rooms')
+                   Swal.fire(response.data);
                  } else {
                    Swal.fire(x.error, "", "error");
                  }
@@ -119,7 +119,7 @@ const myRoom = (data) => {
         </div>
     
         <div class="side-button text-right">
-            <button class="btn btn-default mb-2">Enter room</button>
+            <a class="btn btn-default mb-2" href="room?group_uuid=${data.ChatRoom.uuid}">Enter room</a>
         </div>
     </div> 
                 `
@@ -137,7 +137,7 @@ const allRooms = (data) => {
               <p><span class="bold">8k</span> Post <span class="bold">500</span> Members</p>
           </div>
           <div class="">
-              <button class="join-btn btn-default">Join Room</button>
+              <a class="join-btn btn-default" href="/room">Join Room</a>
           </div> 
       </div>
   </div>

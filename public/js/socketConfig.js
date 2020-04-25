@@ -25,3 +25,39 @@ var socketClient = io('', {
      const post_comment = document.getElementById(`comments${post_uuid}`);
      post_comment.appendChild(xyz);
     })
+
+    const joinGroup = (group_uuid) => {
+      console.log(group_uuid);
+      socketClient.emit('join-room', { group_uuid,});
+    }
+
+    const sendGroupMessage = (group_id) => {
+      console.log(group_id);
+      const message = document.getElementById('group-chat').value;
+      socketClient.emit(`${group_id}-message`, { message, group_id })
+    }
+
+socketClient.on('message', (data) => {
+  console.log(data);
+  const { user, message } = data
+  console.log(user)
+  console.log(message)
+  // console.log(data)
+      
+  const ab = document.createElement('div');
+  ab.classList.add('mb-5');
+ 
+      const content = `<div class="comment-bot pd-15">
+            <div class="sender-text">
+                <p>${user}</p>
+                <p> ${message} </p>
+            </div>
+        </div>
+      
+      `;
+  ab.innerHTML = content;
+  // console.log(ab)
+      const post_message = document.getElementById('post-panel')
+  post_message.appendChild(ab);
+  // console.log(post_message)
+    })

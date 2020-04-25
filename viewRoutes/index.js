@@ -1,4 +1,5 @@
 var express = require('express');
+import RoomController from './../src/controllers/RoomController';
 var router = express.Router();
 
 /* register all pages */
@@ -79,9 +80,7 @@ router.get('/readnews', function(req, res, next) {
 });
 
 //this is message page
-router.get('/room', function(req, res, next) {
-    res.render('room', { title: 'FIFA FANS' });
-});
+router.get('/room', RoomController.getGroupChats);
 
 //this is message page
 router.get('/roommessagebox', function(req, res, next) {

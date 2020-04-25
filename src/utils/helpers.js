@@ -438,6 +438,7 @@ const helperMethods = {
 	
 	async createGroupMember(data) {
 	 const { group_id, user } = data;
+	 console.log(user)
 	 const member =	await ChatRoomMember.create({
 			chatroom_uuid: group_id,
 			member_uuid: user.uuid,
@@ -446,9 +447,9 @@ const helperMethods = {
 	 return member;
 	},
 
-	async checkRoomMember(user_uuid) {
+	async checkRoomMember(user_uuid, group_uuid) {
 		const user = await ChatRoomMember.findOne({
-			where: { member_uuid, user_uuid },
+			where: { member_uuid: user_uuid, chatroom_uuid: group_uuid },
 			attributes: {
 				exclude: [
 					'createdAt',
@@ -470,12 +471,21 @@ const helperMethods = {
 	  },
 
 	  // list user joined rooms
-	async getGroupChats(group_uuid, table){
+	async getGroupChats(group_uuid, roomChats, room){
 		try {
 		  // console.log('here it is')
-		return await table.findAll({
+		const dRoom = await  room.findOne({
+			where: { uuid: group_uuid },
+			attributes: {
+				exclude: [
+					'createdAt',
+				]
+			}
+		})
+		const chats = await roomChats.findAll({
 		  where: {group_uuid}
 		});
+		return { room: dRoom.dataValues, chats:chats.map(x => x.dataValues) }
 		} catch (e) {
 		  console.log(e);
 		}
@@ -505,6 +515,31 @@ const helperMethods = {
 		}
 		
 	},
+
+	// save post
+	async savePost(uuid, name, comment, post_uuid, Post){
+		const post = await Post.findOne({
+			where:{ uuid: post_uuid}
+		});
+		if (post.comment == null) {post.comment = [] }
+		await post.comment.push(
+			{
+		  user_uuid: uuid,
+		  user_name: name,
+		  date_sent: new Date(),
+		  comment,
+	   });
+	   const postUpdate = await Post.update(
+		   {
+			 
+			 comment: post.comment,
+		   },
+		   {
+			 returning: true,
+			 where: { uuid: post_uuid },
+		   },
+		 );
+	  },
 
 };
 export default helperMethods;
