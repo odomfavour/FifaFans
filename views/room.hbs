@@ -39,9 +39,14 @@
                         <div class="line-bd"></div>
                         <div class="scrollable-text" id="post-panel">
                             {{#each data.chats}}
-                            <div class="comment-bot pd-15">
-                                {{this}}
+                              <div class="mb-5">
+                              <div class="comment-bot pd-15">
+                                 <div class="sender-text">
+                                    <p>{{this.sendername}}</p>
+                                    <p>{{this.message}}</p>
+                                 </div>
                             </div>
+                           </div> 
                             {{/each}}
                             {{!-- <div class="comment-bot pd-15">
                                 <div class="owner-text">

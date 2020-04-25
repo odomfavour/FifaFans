@@ -485,7 +485,7 @@ const helperMethods = {
 		const chats = await roomChats.findAll({
 		  where: {group_uuid}
 		});
-		return { room: dRoom.dataValues, chats:chats.dataValues }
+		return { room: dRoom.dataValues, chats:chats.map(x => x.dataValues) }
 		} catch (e) {
 		  console.log(e);
 		}
@@ -515,6 +515,31 @@ const helperMethods = {
 		}
 		
 	},
+
+	// save post
+	async savePost(uuid, name, comment, post_uuid, Post){
+		const post = await Post.findOne({
+			where:{ uuid: post_uuid}
+		});
+		if (post.comment == null) {post.comment = [] }
+		await post.comment.push(
+			{
+		  user_uuid: uuid,
+		  user_name: name,
+		  date_sent: new Date(),
+		  comment,
+	   });
+	   const postUpdate = await Post.update(
+		   {
+			 
+			 comment: post.comment,
+		   },
+		   {
+			 returning: true,
+			 where: { uuid: post_uuid },
+		   },
+		 );
+	  },
 
 };
 export default helperMethods;
