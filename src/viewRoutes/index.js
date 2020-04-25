@@ -1,5 +1,5 @@
 var express = require('express');
-import RoomController from './../src/controllers/RoomController';
+const RoomController  = require('../controllers/RoomController');
 var router = express.Router();
 
 /* register all pages */
@@ -80,7 +80,7 @@ router.get('/readnews', function(req, res, next) {
 });
 
 //this is message page
-router.get('/room', RoomController.getGroupChats);
+router.get('/room', RoomController.default.getGroupChats);
 
 //this is message page
 router.get('/roommessagebox', function(req, res, next) {
