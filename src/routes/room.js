@@ -8,5 +8,6 @@ router.get('/list-rooms', Auth, RoomController.getListOfGroups);
 router.get('/list-user-rooms', Auth, RoomController.getMyGroups);
 router.get('/room', RoomController.getGroupChats);
 router.delete('/exit-room', Auth, RoomController.exitGroup);
+router.get('/check-membership', Auth, RoomController.checkMembership);
 
 export default router;
