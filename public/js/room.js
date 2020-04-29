@@ -70,17 +70,30 @@ async function listRooms() {
     await fetch(`${base}list-rooms`, options)
         .then(res => res.json())
         .then((response) => {
-          console.log(response.data.data)
           const array = [];
           response.data.data.forEach(x => {
             const el = allRooms(x);
-            console.log(el);
             array.push(el);
           });
-          
-          console.log(array);
           roomlayout.innerHTML = array;
     })
+}
+
+// suggested rooms 
+async function suggestRooms() {
+  options.method = 'GET'
+  await fetch(`${base}list-rooms`, options)
+      .then(res => res.json())
+      .then((response) => {
+        console.log(response.data.data)
+        const array = [];
+        response.data.data.forEach(x => {
+          const el = suggestedRooms(x);
+          array.push(el);
+        });
+        
+        document.getElementById("sug-rooms").innerHTML = array;
+  })
 }
 
 
@@ -161,17 +174,39 @@ const allRooms = (data) => {
               <p><span class="bold">8k</span> Post <span class="bold">500</span> Members</p>
           </div>
           <div class="">
-          <p class="btn btn-default mb-2" onclick="gotoRoom('${data.ChatRoom.uuid}')">Join Room</p>
+          <button class="btn btn-default mb-2" onclick="gotoRoom('${data.uuid}')">Join Room</button>
           </div> 
       </div>
   </div>
     `
 }
 
+const suggestedRooms = (data) => {
+  return `<div class="flex-container border-b mt-2">
+  <div>
+      <a href="">
+          <img src="${data.icon}">
+      </a>
+  </div>
+  <div class="side-content">
+      <a href="#">
+          <p>${data.name}</p>
+          <span class="color-black"><b>80k</b> post</span>
+          <span class="color-black"> <b>5k</b> members</span>
+      </a>
+  </div>
+
+  <div class="side-button text-right">
+      <button class="btn btn-default mb-2" onclick="gotoRoom('${data.uuid}')">Join room</button>
+  </div>
+</div>`;
+}
+
 const loadPage = async () => {
   try {
-    await userRooms()
-    await listRooms()
+    await suggestRooms();
+    await userRooms();
+    await listRooms();
   } catch (error) {
     console.log(error);
   }
