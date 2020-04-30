@@ -34,7 +34,7 @@ var socketClient = io('', {
     const sendGroupMessage = (group_id) => {
       console.log(group_id);
       const message = document.getElementById('group-chat').value;
-      socketClient.emit(`${group_id}-message`, { message, group_id })
+      socketClient.emit(`${group_id}-message`, { message, group_id });
     }
 
 socketClient.on('message', (data) => {

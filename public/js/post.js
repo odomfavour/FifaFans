@@ -10,7 +10,11 @@ let commentButton = document.getElementsByClassName("comment-send");
 
 const allPost = document.getElementById("getAllPosts")
 
-sendPost.addEventListener("click", createPost);
+try {
+  sendPost.addEventListener("click", createPost);
+} catch (error) {
+  console.log(error)
+}
 function createPost() {
     options.method = 'POST'
     const formData = new FormData();
@@ -51,7 +55,6 @@ async function listAllPosts() {
         .then((response) => {
          console.log(response);
             if (response.status != 'error') {
-                console.log(response.data)
                 const array = [];
                 response.data.forEach(x => {
                  const el = generalPost(x);
@@ -236,7 +239,11 @@ const generalPost = (data) => {
                   </div> */}
 
 const loadPosts = async () => {
-  await listAllPosts()
+  try {
+    await listAllPosts()
+  } catch (error) {
+    console.log(error);
+  }
 }
 
 loadPosts()
