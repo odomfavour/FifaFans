@@ -1,5 +1,6 @@
 var express = require('express');
 const RoomController  = require('../controllers/RoomController');
+const { NewsController } = require('../controllers/NewsController');
 var router = express.Router();
 
 /* register all pages */
@@ -79,8 +80,11 @@ router.get('/readnews', function(req, res, next) {
     res.render('readnews', { title: 'FIFA FANS' });
 });
 
-//this is message page
+//this is the room route
 router.get('/room', RoomController.default.getGroupChats);
+
+// this is the news route
+router.get('/news', NewsController.getNews);
 
 //this is message page
 router.get('/roommessagebox', function(req, res, next) {
