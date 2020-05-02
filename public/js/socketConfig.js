@@ -66,6 +66,9 @@ socketClient.on('message', (data) => {
   })
 
   socketClient.on('login_error', (data) => {
-    Swal.fire(data.message, '', 'error');
-    window.location.replace('/login');
+    
+    if (window.location.pathname = '/') {
+      Swal.fire(data.message, '', 'error');
+      window.location.replace('/login');
+    }
   })
