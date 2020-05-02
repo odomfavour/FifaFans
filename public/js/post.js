@@ -34,6 +34,27 @@ function createPost() {
 }
 
 
+function getMediaType(data) {
+  const type = data.media.split('.')[3];
+  if (type == 'mp4') {
+    return `<video width="526" class="materialboxed"  controls>
+    <source src="${data.media}" type="video/mp4">
+     Your browser does not support HTML video.
+     </video>`;
+  }
+
+  if (type == 'jpg' || type == 'png') {
+    console.log(type);
+    return `<img src="${data.media}" class="img-fluid" width="526" alt=""></img>`
+  }
+
+  if ( type == undefined) {
+    return ``;
+  }
+ 
+}
+
+
 // userPost.addEventListener('click', listUserPost)
 
 function listUserPost() {
@@ -49,6 +70,9 @@ function listUserPost() {
 // allPost.addEventListener('click', listAllPosts)
 
 async function listAllPosts() {
+  tata.info('Welcome', 'Welcome to FifaFans Meet your fellow fan, player and coach', {
+    duration: 5000
+  })
     options.method = 'GET'
    await fetch(`${base}/list-posts`, options)
         .then((res) => res.json())
@@ -104,6 +128,8 @@ async function listAllPosts() {
 // socket io for posting comments 
 function commentPost(post_uuid) {
     console.log(post_uuid)
+    // M.toast({html: 'Sending your comment....'})
+    tata.info('Status', 'Sending your comment....')
     const post = document.getElementById(`${post_uuid}-comment-input`);
     socketClient.emit('post-comment', { post_uuid, post: post.value })
     post.value = ''
@@ -179,7 +205,7 @@ const generalPost = (data) => {
                   </div>
                   <div class="tap-content-post">
                       <p>${data.post}</p>
-                        <img src="img/bg-img.jpg" class="img-fluid img-responsive" alt="">
+                      ${getMediaType(data)}
                   <div class="d-flex justify-content-between">
                       <div class="p-2 text-center"> 
                           <p><b>144</b><i class="fa fa-thumbs-up"></i></p> 
