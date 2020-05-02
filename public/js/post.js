@@ -192,7 +192,7 @@ const generalPost = (data) => {
                     <div class="tap-cont-profile pd-3-12">
                       <h5>${data.owner_name}</h5>
                       <h6 class="color-green">Player</h6>
-                      <p>1hrs ago</p>
+                      <p>${ GETDURATION(data.createdAt)}(s) ago</p>
                       
                   </div>
                     
@@ -239,6 +239,7 @@ const generalPost = (data) => {
         
     `;
 }
+
 
 
 {/* <div class="d-flex justify-content-between mt-4">
