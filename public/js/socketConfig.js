@@ -25,7 +25,8 @@ var socketClient = io('', {
      const post_comment = document.getElementById(`comments${post_uuid}`);
      post_comment.appendChild(xyz);
     //  M.toast({html: 'Post sent....'})
-    tata.success('Success', 'Post sent....')
+    // tata.success('Success', 'Post sent....')
+    TOAST.successToast('Post sent....')
     })
 
     const joinGroup = (group_uuid) => {
@@ -62,4 +63,9 @@ socketClient.on('message', (data) => {
       const post_message = document.getElementById('post-panel')
   post_message.appendChild(ab);
   // console.log(post_message)
-    })
+  })
+
+  socketClient.on('login_error', (data) => {
+    Swal.fire(data.message, '', 'error');
+    window.location.replace('/login');
+  })

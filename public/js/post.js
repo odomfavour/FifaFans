@@ -70,9 +70,7 @@ function listUserPost() {
 // allPost.addEventListener('click', listAllPosts)
 
 async function listAllPosts() {
-  tata.info('Welcome', 'Welcome to FifaFans Meet your fellow fan, player and coach', {
-    duration: 5000
-  })
+    TOAST.welcomeToast();
     options.method = 'GET'
    await fetch(`${base}/list-posts`, options)
         .then((res) => res.json())
@@ -129,7 +127,7 @@ async function listAllPosts() {
 function commentPost(post_uuid) {
     console.log(post_uuid)
     // M.toast({html: 'Sending your comment....'})
-    tata.info('Status', 'Sending your comment....')
+    TOAST.infoToast('Sending your comment....');
     const post = document.getElementById(`${post_uuid}-comment-input`);
     socketClient.emit('post-comment', { post_uuid, post: post.value })
     post.value = ''
@@ -266,7 +264,9 @@ const generalPost = (data) => {
 
 const loadPosts = async () => {
   try {
-    await listAllPosts()
+    if (window.location.pathname == '/') {
+      await listAllPosts()
+    } 
   } catch (error) {
     console.log(error);
   }

@@ -16,7 +16,7 @@ export default (io) => {
       socket.on('authenticate', async (data) => {
         try {
           const header = data.token;
-          user = await socketAuth(header);
+          user = await socketAuth(header, socket, io);
           const token = await Socket.findOne({ where: { user_uuid: user.uuid } });
           if (token) {
             await Socket.update({ socket_id: socket.id },
@@ -36,7 +36,7 @@ export default (io) => {
       if (handshake.headers.token) {
         const header = handshake.headers.token;
         if (header) {
-          user = await socketAuth(header);
+          user = await socketAuth(header, socket, io);
           // await saveSocketId(user.uuid, socket.id);
           try {
             const token = await Socket.findOne({ where: { user_uuid: user.uuid } });
