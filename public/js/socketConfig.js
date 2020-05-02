@@ -24,6 +24,8 @@ var socketClient = io('', {
      xyz.innerHTML = element
      const post_comment = document.getElementById(`comments${post_uuid}`);
      post_comment.appendChild(xyz);
+    //  M.toast({html: 'Post sent....'})
+    tata.success('Success', 'Post sent....')
     })
 
     const joinGroup = (group_uuid) => {

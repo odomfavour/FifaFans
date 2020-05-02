@@ -11,6 +11,9 @@ if (loginButton) {
 
 
 function submit(e) {
+    tata.info('Signing In', 'Please wait while we are login you in', {
+          duration: 3000
+        })
     e.preventDefault();
 
     if (!email.value || password.value === "") {
