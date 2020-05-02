@@ -10,17 +10,41 @@ let commentButton = document.getElementsByClassName("comment-send");
 
 const allPost = document.getElementById("getAllPosts")
 
+
+
+// function readURL(input) {
+//   if (input.files && input.files[0]) {
+//     var reader = new FileReader();
+//     reader.onload = function (e) {
+//     //  const file = e.target.result;
+//     };
+//     reader.readAsDataURL(input.files[0]);
+//   }
+// }
+
 sendPost.addEventListener("click", createPost);
 function createPost() {
+  let file = document.getElementById("image-upload").files[0];
+  // readAsDataURL(file)
+  console.log(file)
     options.method = 'POST'
     const formData = new FormData();
-    formData.append('post', post.value);
+
+  // imageUpload.change((e) => {
+  //   var clicked = e.target;
+  //   var file = clicked.files[0];
+  // })
+  formData.append('post', post.value);
+  formData.append('file', file);
     options.body = formData;
-    fetch(`${base}/create-post`, options)
+    fetch(`${base}create-post`, options)
         .then(res => res.json())
         .then(x => {
             console.log(x);
             if (x.status != 'error') {
+              // if (file) {
+                
+              // }
                 Swal.fire(x.data);
                 window.location.reload();
             } else {
@@ -163,7 +187,7 @@ const generalPost = (data) => {
     <div class="card mt-5 pd-15" >
                   <div class="d-flex justify-content-start">
                     <div>
-                      <img src="/img/21104.svg" class="img-prof">
+                      <img src="img/1.jpg"" class="img-prof">
                     </div>
                     <div class="tap-cont-profile pd-3-12">
                       <h5>${data.owner_name}</h5>
@@ -176,7 +200,7 @@ const generalPost = (data) => {
                   </div>
                   <div class="tap-content-post">
                       <p>${data.post}</p>
-                        <img src="img/bg-img.jpg" class="img-fluid img-responsive" alt="">
+                        <img src="${ data.media }" class="img-fluid" alt="">
                   <div class="d-flex justify-content-between">
                       <div class="p-2 text-center"> 
                           <p><b>144</b><i class="fa fa-thumbs-up"></i></p> 
