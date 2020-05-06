@@ -166,7 +166,7 @@ function getProfile() {
                 if (window.location.pathname == '/usercontactinfo') { fillContact(x.data) };
             }
         })
-        .catch((e) => {alert(e)})
+        .catch((e) => {(e)})
 };
 
 // Edit profile

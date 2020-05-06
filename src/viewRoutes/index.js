@@ -76,9 +76,9 @@ router.get('/message', function(req, res, next) {
 });
 
 //this is readnews page
-router.get('/readnews', function(req, res, next) {
-    res.render('readnews', { title: 'FIFA FANS' });
-});
+// router.get('/readnews', function(req, res, next) {
+//     res.render('readnews', { title: 'FIFA FANS' });
+// });
 
 //this is the room route
 router.get('/room', RoomController.default.getGroupChats);
@@ -91,10 +91,9 @@ router.get('/roommessagebox', function(req, res, next) {
     res.render('roommessagebox', { title: 'FIFA FANS' });
 });
 
-//this is message page
-router.get('/news', function(req, res, next) {
-    res.render('news', { title: 'FIFA FANS' });
-});
+router.get('/view-news', NewsController.viewNew);
+
+
 // for rooms page
 router.get('/rooms', function(req, res, next) {
     res.render('rooms', { title: 'FIFA FANS' });
