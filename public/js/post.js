@@ -196,7 +196,6 @@ const generalPost = (data) => {
                       
                   </div>
                     
-                    
                   </div>
                   <div class="tap-content-post">
                       <p>${data.post}</p>
