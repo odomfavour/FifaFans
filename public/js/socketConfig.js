@@ -24,6 +24,9 @@ var socketClient = io('', {
      xyz.innerHTML = element
      const post_comment = document.getElementById(`comments${post_uuid}`);
      post_comment.appendChild(xyz);
+    //  M.toast({html: 'Post sent....'})
+    // tata.success('Success', 'Post sent....')
+    TOAST.successToast('Post sent....')
     })
 
     const joinGroup = (group_uuid) => {
@@ -34,7 +37,7 @@ var socketClient = io('', {
     const sendGroupMessage = (group_id) => {
       console.log(group_id);
       const message = document.getElementById('group-chat').value;
-      socketClient.emit(`${group_id}-message`, { message, group_id })
+      socketClient.emit(`${group_id}-message`, { message, group_id });
     }
 
 socketClient.on('message', (data) => {
@@ -60,4 +63,14 @@ socketClient.on('message', (data) => {
       const post_message = document.getElementById('post-panel')
   post_message.appendChild(ab);
   // console.log(post_message)
-    })
+  })
+
+  socketClient.on('login_error', (data) => {
+    try {
+      Swal.fire(data.message, '', 'error');
+      // window.location.replace('/login');
+      document.getElementById('lgn-btn').textContent = 'Log-in';
+    } catch (error) {
+      console.log(error);
+    }
+  })

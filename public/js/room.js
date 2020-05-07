@@ -67,18 +67,33 @@ for (var i = 0; i < room.length; i++) {
 // listOfRooms.addEventListener('click', listRooms)
 async function listRooms() {
     options.method = 'GET'
-    await fetch(`${base}/list-rooms`, options)
+    await fetch(`${base}list-rooms`, options)
         .then(res => res.json())
         .then((response) => {
-          console.log(response.data.data)
           const array = [];
           response.data.data.forEach(x => {
             const el = allRooms(x);
             array.push(el);
           });
-          
           roomlayout.innerHTML = array;
     })
+}
+
+// suggested rooms 
+async function suggestRooms() {
+  options.method = 'GET'
+  await fetch(`${base}list-rooms`, options)
+      .then(res => res.json())
+      .then((response) => {
+        console.log(response.data.data)
+        const array = [];
+        response.data.data.forEach(x => {
+          const el = suggestedRooms(x);
+          array.push(el);
+        });
+        
+        document.getElementById("sug-rooms").innerHTML = array;
+  })
 }
 
 
@@ -89,8 +104,6 @@ async function userRooms() {
   await fetch(`${base}/list-user-rooms`, options)
       .then((res) => res.json())
       .then((response) => {
-        console.log(response);
-        console.log(response.data)
         const array = [];
         response.data.data.forEach(x => {
           const el = myRoom(x);
@@ -98,6 +111,30 @@ async function userRooms() {
         });
         myRoomLayout.innerHTML = array;
       });
+}
+
+function gotoRoom(group_uuid){
+  localStorage.setItem("group_uuid", group_uuid);
+  window.location.replace(`/room?group_uuid=${group_uuid}`)
+}
+
+function checkRoom() {
+  const group_uuid = localStorage.getItem("group_uuid");
+  console.log(group_uuid);
+  options.method = 'GET'
+  fetch(`${base}check-membership?group_uuid=${group_uuid}`, options)
+      .then((res) => res.json())
+      .then((response) => {
+        if (response.data !== 'not a member') {
+           document.getElementById('join-g-btn').style.display = 'none';
+           joinGroup (group_uuid)
+        }
+
+        if (response.data === 'not a member') {
+          Swal.fire('Please click the join group button to start be a part of the group!!!');
+        }
+      })
+      .catch(e => console.log(e));
 }
 
 const myRoom = (data) => {
@@ -119,7 +156,7 @@ const myRoom = (data) => {
         </div>
     
         <div class="side-button text-right">
-            <a class="btn btn-default mb-2" href="room?group_uuid=${data.ChatRoom.uuid}">Enter room</a>
+            <p class="btn btn-default mb-2" onclick="gotoRoom('${data.ChatRoom.uuid}')">Enter room</p>
         </div>
     </div> 
                 `
@@ -137,20 +174,46 @@ const allRooms = (data) => {
               <p><span class="bold">8k</span> Post <span class="bold">500</span> Members</p>
           </div>
           <div class="">
-              <a class="join-btn btn-default" href="/room">Join Room</a>
+          <button class="btn btn-default mb-2" onclick="gotoRoom('${data.uuid}')">Join Room</button>
           </div> 
       </div>
   </div>
     `
 }
 
+const suggestedRooms = (data) => {
+  return `<div class="flex-container border-b mt-2">
+  <div>
+      <a href="">
+          <img src="${data.icon}">
+      </a>
+  </div>
+  <div class="side-content">
+      <a href="#">
+          <p>${data.name}</p>
+          <span class="color-black"><b>80k</b> post</span>
+          <span class="color-black"> <b>5k</b> members</span>
+      </a>
+  </div>
+
+  <div class="side-button text-right">
+      <button class="btn btn-default mb-2" onclick="gotoRoom('${data.uuid}')">Join room</button>
+  </div>
+</div>`;
+}
+
 const loadPage = async () => {
   try {
-    await userRooms()
-    await listRooms()
+    await suggestRooms();
+    await userRooms();
+    await listRooms();
   } catch (error) {
     console.log(error);
   }
+}
+
+if (window.location.pathname == '/room') {
+  checkRoom();
 }
 
 loadPage()

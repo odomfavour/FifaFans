@@ -14,19 +14,13 @@
                     <div class="pd-15 ">
                         <h4>{{data.room.name}}</h4>
                         <p>{{data.room.description}}</p>
-                        {{!-- <ul>
-                            <li> <a><i class="fa fa-phone"></i> <span> 08064786137</span> </a></li>
-                            <li><a><i class="fa fa-envelope"></i> <span>magnificentorung@gmail.com</span></a> </li>
-                            <li><i class="fa fa-home"></i> <span>Town Street off Ann Road, USA</span> </li>
-                        
-                        </ul> --}}
                         <div class="d-flex justify-content-between">
                             <div>
                                 <span> <b>2234</b> Likes </span>
                                 <span class="pl-3"> <b>2234</b> Views </span>
                             </div>
                             <div>
-                                <button class="btn btn-primary" onclick="joinGroup('{{data.room.uuid}}')">Join</button>
+                                <button class="btn btn-primary" onclick="joinGroup('{{data.room.uuid}}')" id="join-g-btn">Join</button>
                                 <button class="btn btn-primary"><i class="fa fa-share"></i>Share</button>
                             </div>
                         </div>
@@ -48,26 +42,6 @@
                             </div>
                            </div> 
                             {{/each}}
-                            {{!-- <div class="comment-bot pd-15">
-                                <div class="owner-text">
-                                    <p> Hello </p>
-                                </div>
-                            </div>
-                            <div class="comment-bot pd-15">
-                                <div class="sender-text">
-                                    <p>{{data.chats}}</p><hr>
-                                    <p> Hello </p>
-                                </div>
-                            </div>
-                            <div class="comment-bot pd-15">
-                                <div class="owner-text">
-                                    <p> Did you watch the latest march Did you watch the latest march
-                                        last wekendlast wekend </p>
-                                </div>
-                                <div class="owner-text" id="message-image">
-                                    <img src="img/bg-img.jpg" class="img-fluid">
-                                </div>
-                            </div> --}}
                         </div>
                         <div class="line-bd"></div>
                         <div class="d-flex  pd-15 justify-content-start">

@@ -10,19 +10,11 @@ let commentButton = document.getElementsByClassName("comment-send");
 
 const allPost = document.getElementById("getAllPosts")
 
-
-
-// function readURL(input) {
-//   if (input.files && input.files[0]) {
-//     var reader = new FileReader();
-//     reader.onload = function (e) {
-//     //  const file = e.target.result;
-//     };
-//     reader.readAsDataURL(input.files[0]);
-//   }
-// }
-
-sendPost.addEventListener("click", createPost);
+try {
+  sendPost.addEventListener("click", createPost);
+} catch (error) {
+  console.log(error)
+}
 function createPost() {
   let file = document.getElementById("image-upload").files[0];
   // readAsDataURL(file)
@@ -54,6 +46,27 @@ function createPost() {
 }
 
 
+function getMediaType(data) {
+  const type = data.media.split('.')[3];
+  if (type == 'mp4') {
+    return `<video width="526" class="materialboxed"  controls>
+    <source src="${data.media}" type="video/mp4">
+     Your browser does not support HTML video.
+     </video>`;
+  }
+
+  if (type == 'jpg' || type == 'png') {
+    console.log(type);
+    return `<img src="${data.media}" class="img-fluid" width="526" alt=""></img>`
+  }
+
+  if ( type == undefined) {
+    return ``;
+  }
+ 
+}
+
+
 // userPost.addEventListener('click', listUserPost)
 
 function listUserPost() {
@@ -69,13 +82,13 @@ function listUserPost() {
 // allPost.addEventListener('click', listAllPosts)
 
 async function listAllPosts() {
+    TOAST.welcomeToast();
     options.method = 'GET'
    await fetch(`${base}/list-posts`, options)
         .then((res) => res.json())
         .then((response) => {
          console.log(response);
             if (response.status != 'error') {
-                console.log(response.data)
                 const array = [];
                 response.data.forEach(x => {
                  const el = generalPost(x);
@@ -125,6 +138,8 @@ async function listAllPosts() {
 // socket io for posting comments 
 function commentPost(post_uuid) {
     console.log(post_uuid)
+    // M.toast({html: 'Sending your comment....'})
+    TOAST.infoToast('Sending your comment....');
     const post = document.getElementById(`${post_uuid}-comment-input`);
     socketClient.emit('post-comment', { post_uuid, post: post.value })
     post.value = ''
@@ -198,7 +213,7 @@ const generalPost = (data) => {
                   </div>
                   <div class="tap-content-post">
                       <p>${data.post}</p>
-                        <img src="${ data.media }" class="img-fluid" alt="">
+                      ${getMediaType(data)}
                   <div class="d-flex justify-content-between">
                       <div class="p-2 text-center"> 
                           <p><b>144</b><i class="fa fa-thumbs-up"></i></p> 
@@ -259,7 +274,13 @@ const generalPost = (data) => {
                   </div> */}
 
 const loadPosts = async () => {
-  await listAllPosts()
+  try {
+    if (window.location.pathname == '/') {
+      await listAllPosts()
+    } 
+  } catch (error) {
+    console.log(error);
+  }
 }
 
 loadPosts()

@@ -4,7 +4,7 @@ import {sendErrorResponse, errorMsg} from "../utils/sendResponse";
 
 const { User } = model;
 
-const socketAuth = async (token) => {
+const socketAuth = async (token, socket, io) => {
   try {
     if (!token) return errorMsg('Access denied', { status: 401 });
     const { email } = verifyToken(token);
@@ -19,6 +19,7 @@ const socketAuth = async (token) => {
     return user.dataValues;
   } catch (e) {
     console.log(e);
+    io.to(socket.id).emit('login_error', {message:'Please login'});
   }
 };
 
