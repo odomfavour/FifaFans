@@ -193,7 +193,6 @@ const generalPost = (data) => {
                       <h5>${data.owner_name}</h5>
                       <h6 class="color-green">Player</h6>
                       <p>${ GETDURATION(data.createdAt)}(s) ago</p>
-                      
                   </div>
                     
                   </div>
