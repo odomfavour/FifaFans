@@ -194,7 +194,7 @@ const displayRoomChats = (data) => {
   }
   return array
 }
-
+//${ GETDURATION(data.createdAt)}
 const generalPost = (data) => {
     // let layout = document.getElementById('post-layout');
     // layout
@@ -206,7 +206,7 @@ const generalPost = (data) => {
                     <div class="tap-cont-profile pd-3-12">
                       <h5>${data.owner_name}</h5>
                       <h6 class="color-green">Player</h6>
-                      <p>${ GETDURATION(data.createdAt)}(s) ago</p>
+                      <p>10(s) ago</p>
                     </div>
                     
                   </div>
