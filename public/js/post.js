@@ -16,15 +16,27 @@ try {
   console.log(error)
 }
 function createPost() {
+  let file = document.getElementById("image-upload").files[0];
+  // readAsDataURL(file)
+  console.log(file)
     options.method = 'POST'
     const formData = new FormData();
-    formData.append('post', post.value);
+
+  // imageUpload.change((e) => {
+  //   var clicked = e.target;
+  //   var file = clicked.files[0];
+  // })
+  formData.append('post', post.value);
+  formData.append('file', file);
     options.body = formData;
-    fetch(`${base}/create-post`, options)
+    fetch(`${base}create-post`, options)
         .then(res => res.json())
         .then(x => {
             console.log(x);
             if (x.status != 'error') {
+              // if (file) {
+                
+              // }
                 Swal.fire(x.data);
                 window.location.reload();
             } else {
@@ -190,15 +202,13 @@ const generalPost = (data) => {
     <div class="card mt-5 pd-15" >
                   <div class="d-flex justify-content-start">
                     <div>
-                      <img src="/img/21104.svg" class="img-prof">
+                      <img src="img/1.jpg"" class="img-prof">
                     </div>
                     <div class="tap-cont-profile pd-3-12">
                       <h5>${data.owner_name}</h5>
                       <h6 class="color-green">Player</h6>
-                      <p>1hrs ago</p>
-                      
+                      <p>${ GETDURATION(data.createdAt)}(s) ago</p>
                   </div>
-                    
                     
                   </div>
                   <div class="tap-content-post">
@@ -242,6 +252,7 @@ const generalPost = (data) => {
         
     `;
 }
+
 
 
 {/* <div class="d-flex justify-content-between mt-4">

@@ -52,7 +52,7 @@ socketClient.on('message', (data) => {
  
       const content = `<div class="comment-bot pd-15">
             <div class="sender-text">
-                <p>${user}</p>
+                <p class="personal-name">${user}</p>
                 <p> ${message} </p>
             </div>
         </div>

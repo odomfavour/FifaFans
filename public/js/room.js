@@ -164,7 +164,7 @@ const myRoom = (data) => {
 
 const allRooms = (data) => {
   return `
-    <div class="col-lg-6 col-sm-12">
+    <div class="col-lg-12 col-sm-12">
       <div class="box pb-3 d-flex border-b justify-content-between  mt-2">
           <div class="">
               <img src="${ data.icon }" alt="" class="img-fluid">
