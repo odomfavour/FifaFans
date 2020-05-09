@@ -383,7 +383,6 @@ const helperMethods = {
 		const datas = await table.findAll({
 			attributes: {
 				exclude: [
-					'createdAt',
 					'updatedAt'
 				]
 			},

@@ -946,14 +946,21 @@ h6 {
 }
 
 .sender-text {
-  background: #005391;
+  background: linear-gradient(360deg, #ccc, #0000001a);
   width: fit-content;
-  color: #fff;
+  color: #000;
   float: right;
   padding: 3px 20px;
   border-radius: 11px 6px;
   margin: 10px 0px;
   max-width: 80%;
+}
+
+.personal-name {
+    color: #353030;
+    font-weight: 900;
+    font-size: 14px;
+    text-align: left !important;
 }
 
 .pd-pos {
@@ -1097,3 +1104,6 @@ p {
     height: 100px !important;
   }
 }
+
+
+/* styles for the add image input */
