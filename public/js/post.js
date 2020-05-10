@@ -7,7 +7,7 @@ let commentSection = document.getElementsByClassName("comment-section");
 let commentButton = document.getElementsByClassName("comment-send");
 
 
-
+console.log(layout)
 const allPost = document.getElementById("getAllPosts")
 
 try {
@@ -194,27 +194,26 @@ const displayRoomChats = (data) => {
   }
   return array
 }
-
+//${ GETDURATION(data.createdAt)}
 const generalPost = (data) => {
     // let layout = document.getElementById('post-layout');
     // layout
-    return `
-    <div class="card mt-5 pd-15" >
+    return `<div class="card mt-5 pd-15" >
                   <div class="d-flex justify-content-start">
                     <div>
-                      <img src="img/1.jpg"" class="img-prof">
+                      <img src="img/1.jpg" class="img-prof">
                     </div>
                     <div class="tap-cont-profile pd-3-12">
                       <h5>${data.owner_name}</h5>
                       <h6 class="color-green">Player</h6>
-                      <p>${ GETDURATION(data.createdAt)}(s) ago</p>
-                  </div>
+                      <p>10(s) ago</p>
+                    </div>
                     
                   </div>
                   <div class="tap-content-post">
                       <p>${data.post}</p>
                       ${getMediaType(data)}
-                  <div class="d-flex justify-content-between">
+                    <div class="d-flex justify-content-between">
                       <div class="p-2 text-center"> 
                           <p><b>144</b><i class="fa fa-thumbs-up"></i></p> 
                       </div>
@@ -248,9 +247,7 @@ const generalPost = (data) => {
                       </div>
                     </div>
                   </div>
-                </div>
-        
-    `;
+                </div>`;
 }
 
 
