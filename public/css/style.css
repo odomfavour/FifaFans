@@ -736,6 +736,14 @@ p {
   margin: 1rem 0;
 }
 
+.clip-attach {
+  margin: 0 !important;
+}
+
+.room-send {
+  margin: 10px;
+}
+
 .m-bd {
   border-top: 1px solid #b2abc7;
   border-bottom: 1px solid #b2abc7;
