@@ -2,7 +2,7 @@
 import Sequelize, { Op, fn, col, and } from 'sequelize';
 import models from '../models'
 
-const { ChatRoomMember, RoomChat } = models;
+const { ChatRoomMember, RoomChat, User } = models;
 
 const helperMethods = {
 	async searchWithCategoryAndLocation (point, category_uuid, Service) {
@@ -419,6 +419,45 @@ const helperMethods = {
 			blocked: false,
 		});
 		return friend;
+	},
+
+	// check for follower
+	async checkForFollower (table, user_uuid, follower_uuid) {
+		const follower = await table.findOne({
+			where: { user_uuid, follower_uuid },
+			attributes: {
+				exclude: [
+					'createdAt',
+					'updatedAt'
+				]
+			}
+		});
+		return follower;
+	},
+
+	// follow a user
+	async createFollower (table, user_uuid, follower_uuid) {
+		const follower = await table.create({
+			user_uuid,
+			friend_uuid,
+			blocked: false,
+		});
+		return follower;
+	},
+
+	// list all user's follower
+	async listAllFollowers (table, user_uuid) {
+		const followers = await table.findAll({
+			include: User,
+			where: { user_uuid, blocked: false },
+			attributes: {
+				exclude: [
+					'createdAt',
+					'updatedAt'
+				]
+			}
+		});
+		return followers;
 	},
 
 	// list user joined rooms
