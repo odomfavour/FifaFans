@@ -439,7 +439,7 @@ const helperMethods = {
 	async createFollower (table, user_uuid, follower_uuid) {
 		const follower = await table.create({
 			user_uuid,
-			friend_uuid,
+			follower_uuid,
 			blocked: false,
 		});
 		return follower;
@@ -448,7 +448,7 @@ const helperMethods = {
 	// list all user's follower
 	async listAllFollowers (table, user_uuid) {
 		const followers = await table.findAll({
-			include: User,
+			// include: User,
 			where: { user_uuid, blocked: false },
 			attributes: {
 				exclude: [

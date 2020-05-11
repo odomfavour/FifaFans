@@ -35,9 +35,9 @@ const searchResult = document.getElementById('search-result-layout')
 
 // get user details
 
-function getUserDetails() {
+function getUserDetails(user_uuid) {
     options.method = "GET";
-    fetch(`${base}/view-user-details?user_uuid=`, options)
+    fetch(`${base}/view-user-details?user_uuid=${user_uuid}`, options)
       .then((res) => res.json())
       .then((response) => {
         console.log(response);
@@ -87,7 +87,18 @@ const result = (data) => {
   `
 }
 
-const followUser = (uid) => {
-  Swal.fire(uid);
+const followUser = (uuid) => {
+      options.method = "POST";
+        fetch(`${base}follow-user?user_uuid=${uuid}`, options)
+          .then((res) => res.json())
+          .then((response) => {
+            console.log(response);
+            if (response.status != "error") {
+              Swal.fire(response.data);
+            } else {
+              Swal.fire(response.error, "", "error");
+            }
+          })
+          .catch((e) => console.log(e));
 }
 

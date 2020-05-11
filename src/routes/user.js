@@ -8,7 +8,7 @@ const router = express.Router();
 
 router.get('/search-user', UserController.searchUsers);
 router.get('/view-user-details', Auth, UserController.viewUserDetails);
-router.post('/follow-users', Auth, FollowerController.followUser);
+router.post('/follow-user', Auth, FollowerController.followUser);
 router.get('/list-followers', Auth, FollowerController.listUserFollowers);
 router.get('/check-if-follow', Auth, FollowerController.CheckFollowUser);
 
