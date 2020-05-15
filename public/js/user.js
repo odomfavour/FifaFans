@@ -81,7 +81,7 @@ const result = (data) => {
                     </div>
                 
                     <div class="side-button">
-                        <button class="btn btn-primary" onclick="followUser('${data.uuid}')">Follow</button
+                        <button class="btn btn-primary" onclick="getUserDetails('${data.uuid}')">View Details</button
                     </div>
                 </div>
   `

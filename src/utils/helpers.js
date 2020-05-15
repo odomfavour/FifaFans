@@ -2,7 +2,7 @@
 import Sequelize, { Op, fn, col, and } from 'sequelize';
 import models from '../models'
 
-const { ChatRoomMember, RoomChat, User } = models;
+const { ChatRoomMember, RoomChat, User, Post, SingleChat } = models;
 
 const helperMethods = {
 	async searchWithCategoryAndLocation (point, category_uuid, Service) {
@@ -188,6 +188,10 @@ const helperMethods = {
 	async getAUserByUuid (table, uuid) {
 		const user = await table.findOne({
 			where: { uuid },
+			include: [{
+			 model: Post,
+			 as: 'posts'
+			}],
 			attributes: {
 				exclude: [
 					'password',
@@ -528,6 +532,29 @@ const helperMethods = {
 		  console.log(e);
 		}
 		
+	  },
+
+	  async createPersonalChat(data){
+		const chat =await SingleChat.create(data);
+		return chat;
+	  },
+
+
+	  async getChats (user_uuid, secondP_uuid) {
+		 const chats = await SingleChat.findAll({
+			include: [{
+				model: User,
+			}], 
+			where: {
+				sender_uuid: {
+				  [Op.or]: [user_uuid, secondP_uuid]
+				},
+				recipient_uuid: {
+				  [Op.or]: [user_uuid, secondP_uuid]
+				}
+			  },
+		 }) 
+		 return chats;
 	  },
 
 	

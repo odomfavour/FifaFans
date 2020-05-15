@@ -67,10 +67,28 @@ module.exports = (sequelize, DataTypes) => {
 			onDelete: 'CASCADE'
 		});
 
+		User.hasMany(models.Post, {
+			foreignKey: 'user_uuid',
+			as: 'posts',
+			onDelete: 'CASCADE'
+		});
+
 		User.belongsTo(models.Follower, {
 			foreignKey: 'uuid',
 			target: 'follower_uuid',
 			as: 'profile',
+			onDelete: 'CASCADE'
+		})
+
+		User.belongsTo(models.SingleChat, {
+			foreignKey: 'uuid',
+			target: 'sender_uuid',
+			onDelete: 'CASCADE'
+		})
+
+		User.belongsTo(models.SingleChat, {
+			foreignKey: 'uuid',
+			target: 'recipient_uuid',
 			onDelete: 'CASCADE'
 		})
 	};
