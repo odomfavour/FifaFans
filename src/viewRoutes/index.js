@@ -59,6 +59,10 @@ router.get('/usercontactinfo', function(req, res, next) {
 router.get('/profile', function(req, res, next) {
     res.render('profile', { title: 'FIFA FANS' });
 });
+//this is profile page
+router.get('/friendprofile', function(req, res, next) {
+    res.render('friendprofile', { title: 'FIFA FANS' });
+});
 
 //this is profile page
 router.get('/forgetpass_verification', function(req, res, next) {
