@@ -35,14 +35,16 @@ const searchResult = document.getElementById('search-result-layout')
 
 // get user details
 
-function getUserDetails() {
-    options.method = "GET";
-    fetch(`${base}/view-user-details?user_uuid=`, options)
-      .then((res) => res.json())
-      .then((response) => {
-        console.log(response);
-      })
-      .catch((error) => console.log(error));
+function getUserDetails(user_uuid) {
+    // options.method = "GET";
+    // fetch(`${base}/view-user-details?user_uuid=${user_uuid}`, options)
+    //   .then((res) => res.json())
+    //   .then((response) => {
+    //     console.log(response);
+    //   })
+    //   .catch((error) => console.log(error));
+    // localStorage.setItem("group_uuid", group_uuid);
+    window.location.replace(`/friendprofile?user_uuid=${user_uuid}`)
 }
 
 
@@ -81,13 +83,24 @@ const result = (data) => {
                     </div>
                 
                     <div class="side-button">
-                        <button class="btn btn-primary" onclick="followUser('${data.uuid}')">Follow</button
+                        <button class="btn btn-primary" onclick="getUserDetails('${data.uuid}')">View Details</button
                     </div>
                 </div>
   `
 }
 
-const followUser = (uid) => {
-  Swal.fire(uid);
+const followUser = (uuid) => {
+      options.method = "POST";
+        fetch(`${base}follow-user?user_uuid=${uuid}`, options)
+          .then((res) => res.json())
+          .then((response) => {
+            console.log(response);
+            if (response.status != "error") {
+              Swal.fire(response.data);
+            } else {
+              Swal.fire(response.error, "", "error");
+            }
+          })
+          .catch((e) => console.log(e));
 }
 
