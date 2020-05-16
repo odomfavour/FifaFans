@@ -5,6 +5,8 @@ const layout = document.getElementById('post-layout');
 let comment = document.getElementsByClassName("comments");
 let commentSection = document.getElementsByClassName("comment-section");
 let commentButton = document.getElementsByClassName("comment-send");
+const userLayout = document.getElementById('media')
+const postLayout = document.getElementById('post')
 
 
 console.log(layout)
@@ -69,13 +71,69 @@ function getMediaType(data) {
 
 // userPost.addEventListener('click', listUserPost)
 
-function listUserPost() {
+function listUserPosts() {
     options.method = 'GET'
     fetch(`${base}/list-user-posts`, options)
         .then((res) => res.json())
         .then((response) => {
-         console.log(response);
+          console.log(response);
+          if (response.status != 'error') {
+            const array = [];
+            let mediapost = response.data.filter(checkPost).map((x) => {
+              return usersMedia(x)
+            });
+            userLayout.innerHTML = mediapost.join(' ')
+            console.log(mediapost)
+
+            response.data.forEach(x => {
+              const el = usersPost(x);
+              // el.join('')
+              array.push(el);
+              
+            });
+            
+
+            // console.log(array)
+            postLayout.innerHTML = array.join(" ");
+
+            function checkPost(post) {
+              return post.media !== '';
+            }
+          }
     })
+}
+
+
+const usersPost = (data) => {
+  // let layout = document.getElementById('post-layout');
+  // layout
+  return `<div class="d-flex justify-content-start">
+            <div>
+                <img src="/img/21104.svg" class="img-prof">
+            </div>
+            <div class="tap-cont-profile pd-3-12">
+              <h6>${data.owner_name} <span> 1hrs ago</span></h6>
+              <h6 class="color-red">Coach</h6>
+              <p class="my-3">${data.post}</p>
+                ${getMediaType(data)}
+            </div>
+            
+        </div>
+        <hr style=" border: 1px solid #ccc">`;
+}
+
+
+const usersMedia = (data) => {
+  // let layout = document.getElementById('post-layout');
+  // layout
+  return `<div class="d-flex justify-content-start">
+            
+            <div class="tap-cont-profile pd-3-12">
+                ${getMediaType(data)}
+            </div>
+            
+        </div>
+        <hr style=" border: 2px solid #ccc">`;
 }
 
 
@@ -94,7 +152,7 @@ async function listAllPosts() {
                  const el = generalPost(x);
                  array.push(el);
                 });
-                layout.innerHTML = array;
+              layout.innerHTML = array.join(" ");
          }
     })
 }
@@ -274,7 +332,11 @@ const loadPosts = async () => {
   try {
     if (window.location.pathname == '/') {
       await listAllPosts()
+      
     } 
+    if (window.location.pathname == '/profile') {
+      await listUserPosts()
+    }
   } catch (error) {
     console.log(error);
   }

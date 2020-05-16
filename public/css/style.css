@@ -490,7 +490,15 @@ a {
   font-weight: 900;
 }
 
-.side-button button {
+.side-button .btn {
+  padding: 2px 7px;
+  border: 0;
+  font-weight: 900;
+  margin: 0;
+  text-transform: none;
+}
+
+p .btn {
   padding: 2px 7px;
   border: 0;
   font-weight: 900;
@@ -1140,4 +1148,40 @@ p {
 
 .friend .nav-link {
   padding: 10px 70px;
+}
+
+#myTab .nav-link {
+  padding: 10px 70px;
+}
+
+.tap-cont-profile img {
+    height: 450px;
+    width: 100%;
+    object-fit: contain;
+}
+
+@media screen and (max-width: 580px) {
+  .create-post-add div {
+    font-size: 1.5rem !important;
+}
+  .send-post-icon {
+    position: absolute;
+    right: 3rem;
+    bottom: 15rem;
+}
+  .card {
+    border-radius: 10px;
+    margin: 30px;
+}
+  h6 {
+    font-size: 32px;
+  }
+  .friend .nav-link {
+   padding: 18px 120px; 
+}
+
+#myTab .nav-link {
+  padding: 18px 120px !important;
+}
+
 }
