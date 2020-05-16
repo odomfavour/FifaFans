@@ -36,13 +36,15 @@ const searchResult = document.getElementById('search-result-layout')
 // get user details
 
 function getUserDetails(user_uuid) {
-    options.method = "GET";
-    fetch(`${base}/view-user-details?user_uuid=${user_uuid}`, options)
-      .then((res) => res.json())
-      .then((response) => {
-        console.log(response);
-      })
-      .catch((error) => console.log(error));
+    // options.method = "GET";
+    // fetch(`${base}/view-user-details?user_uuid=${user_uuid}`, options)
+    //   .then((res) => res.json())
+    //   .then((response) => {
+    //     console.log(response);
+    //   })
+    //   .catch((error) => console.log(error));
+    // localStorage.setItem("group_uuid", group_uuid);
+    window.location.replace(`/friendprofile?user_uuid=${user_uuid}`)
 }
 
 

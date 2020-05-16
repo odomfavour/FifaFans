@@ -2,7 +2,7 @@
 import Sequelize, { Op, fn, col, and } from 'sequelize';
 import models from '../models'
 
-const { ChatRoomMember, RoomChat, User, Post, SingleChat } = models;
+const { ChatRoomMember, RoomChat, User, Post, SingleChat, Profile } = models;
 
 const helperMethods = {
 	async searchWithCategoryAndLocation (point, category_uuid, Service) {
@@ -191,6 +191,10 @@ const helperMethods = {
 			include: [{
 			 model: Post,
 			 as: 'posts'
+			},
+			{
+			 model: Profile, 
+			 as:'profiles'	
 			}],
 			attributes: {
 				exclude: [

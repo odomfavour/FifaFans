@@ -1,6 +1,7 @@
 var express = require('express');
 const RoomController  = require('../controllers/RoomController');
 const { NewsController } = require('../controllers/NewsController');
+const UserController = require('../controllers/UserController');
 var router = express.Router();
 
 /* register all pages */
@@ -60,9 +61,9 @@ router.get('/profile', function(req, res, next) {
     res.render('profile', { title: 'FIFA FANS' });
 });
 //this is profile page
-router.get('/friendprofile', function(req, res, next) {
-    res.render('friendprofile', { title: 'FIFA FANS' });
-});
+// router.get('/friendprofile', function(req, res, next) {
+//     res.render('friendprofile', { title: 'FIFA FANS' });
+// });
 
 //this is profile page
 router.get('/forgetpass_verification', function(req, res, next) {
@@ -86,6 +87,9 @@ router.get('/message', function(req, res, next) {
 
 //this is the room route
 router.get('/room', RoomController.default.getGroupChats);
+
+// this gets the user detail
+router.get('/friendprofile', UserController.default.viewUserDetails);
 
 // this is the news route
 router.get('/news', NewsController.getNews);
