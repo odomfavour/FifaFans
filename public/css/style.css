@@ -2,7 +2,7 @@ body {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
-  background-color: #f8f9fa !important;
+  background-color: #fff !important;
   font-family: "Roboto", sans-serif;
   font-family: "Nunito Sans", sans-serif;
 }
@@ -15,6 +15,7 @@ a {
   right: 3rem;
   bottom: 9rem;
 }
+
 .sign-up-container {
   padding: 15px;
   position: absolute;
@@ -24,7 +25,10 @@ a {
   -webkit-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
 }
-
+.central {
+  width: 90%;
+  margin: 0 auto;
+}
 .bg-primary {
   background-color: #005391 !important;
   padding: 3px 9px !important;
@@ -33,6 +37,7 @@ a {
 
 .top-header {
   width: 100%;
+  padding: 10px 20px;
 }
 
 .pull-right {
@@ -60,9 +65,13 @@ a {
   font-weight: 900;
 }
 
+.contain {
+  background: #00b7ff;
+}
+
 .btn-primary {
   background-color: #005391 !important;
-  padding: 3px 9px !important;
+  padding: 9px 9px !important;
   text-transform: none !important;
 }
 
@@ -672,9 +681,29 @@ p {
 }
 
 .img-prof {
-  width: 4rem;
+  width: 50px;
+  height: 50px;
   border-radius: 50%;
   border: 2px solid #772020;
+}
+
+.fan-name {
+  font-size: 18px;
+}
+
+.fan-time {
+  font-size: 13px;
+  font-weight: 300;
+}
+
+.fan-fn {
+  font-size: 13px;
+  font-weight: 400;
+  color: #00b7ff;
+}
+
+.comments-p {
+  margin-top: 8px;
 }
 
 .pd-0 {
@@ -1160,14 +1189,14 @@ p {
     object-fit: contain;
 }
 
-@media screen and (max-width: 580px) {
+@media screen and (max-width: 600px) {
   .create-post-add div {
     font-size: 1.5rem !important;
 }
   .send-post-icon {
     position: absolute;
     right: 3rem;
-    bottom: 15rem;
+    bottom: 12rem !important;
 }
   .card {
     border-radius: 10px;
