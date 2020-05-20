@@ -6,7 +6,7 @@ const { User } = model;
 
 const socketAuth = async (token, socket, io) => {
   try {
-    if (!token) return errorMsg('Access denied', { status: 401 });
+    if (!token) return io.to(socket.id).emit('login_error', {message:'Access denied please login'});
     const { email } = verifyToken(token);
     const user = await User.findOne({
       where: { email },
@@ -15,7 +15,7 @@ const socketAuth = async (token, socket, io) => {
       },
       // include: ['token'],
     });
-    if (!user) return errorMsg('Account does not exist', { status: 404 });
+    if (!user)  return io.to(socket.id).emit('login_error', {message:'Account details not found'});
     return user.dataValues;
   } catch (e) {
     console.log(e);
