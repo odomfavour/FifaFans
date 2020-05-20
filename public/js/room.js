@@ -75,7 +75,7 @@ async function listRooms() {
             const el = allRooms(x);
             array.push(el);
           });
-          roomlayout.innerHTML = array;
+          roomlayout.innerHTML = array.join(" ");
     })
 }
 
@@ -92,7 +92,7 @@ async function suggestRooms() {
           array.push(el);
         });
         
-        document.getElementById("sug-rooms").innerHTML = array;
+        document.getElementById("sug-rooms").innerHTML = array.join(" ");
   })
 }
 
@@ -109,7 +109,7 @@ async function userRooms() {
           const el = myRoom(x);
           array.push(el);
         });
-        myRoomLayout.innerHTML = array;
+        myRoomLayout.innerHTML = array.join(" ");
       });
 }
 
