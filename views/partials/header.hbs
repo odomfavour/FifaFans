@@ -1,61 +1,60 @@
-<!--======================================= NAVBAR ================================================== -->
-  
-  <div class="container">
-    <nav class="navbar bg-white">
-      <a class="navbar-brand" href="/"><b>FIFAFAN</b></a>
-        <form class="form-inline my-2 my-lg-0">
-          <input class="form-control max-cont b-r" type="search" placeholder="Search" aria-label="Search">
-          <button class="btn btn-outline-primary b-l my-2 my-sm-0" type="submit"><i class="fa fa-search"></i></button>
-        </form>
-        <div class="logout-img"><a href="/login" id="lgn-btn"><img src="../img/21104.svg">logout</a></div>
-  </nav>
-  </div>
-  <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-  
-  <div class="container">
-   <div class="top-header">
-     <a class="navbar-brand bold" id="user-name-header" href="/profile"></a>
-      <button class="navbar-toggler pull-right" onclick="openNav()" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+<!-- nav -->
+<nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+  <a href="#" class="navbar-brand">FifaFan</a>
+  <a href="#" class="mx-2 user" >Ogochukwu</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive">
     <span class="navbar-toggler-icon"></span>
   </button>
-  </div>
-  <div id="mySidepanel" class="sidepanel">
-     <a href="javascript:void(0)" class="closebtn d-lg-none" onclick="closeNav()"><i class="fa fa-times-circle"></i></a>
-    <ul class="navbar-nav mr-auto">
+
+  <div class="collapse navbar-collapse " id="navbarResponsive">
+    <ul class="navbar-nav ml-auto">
       <li class="nav-item active">
-        <a class="nav-link" href="/message"  >Friends </a>
+        <a class="nav-link" href="/message">Friends </a>
       </li>
       <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+          aria-haspopup="true" aria-expanded="false">
           Rooms
         </a>
-        <div class="dropdown-menu dropdown-menu-right  dropdown-menu{-sm|-md|-lg|-xl}-left" aria-labelledby="navbarDropdown">
+        <div class="dropdown-menu dropdown-menu-right dropdown-menu{-sm|-md|-lg|-xl}-left"
+          aria-labelledby="navbarDropdown">
           <a class="dropdown-item" href="/rooms">Search Rooms</a>
           <a class="dropdown-item" href="/create_room">Create Room</a>
+          <a class="dropdown-item" href="/rooms">My Rooms</a>
+          <a class="dropdown-item" href="/rooms">List Rooms</a>
+        </div>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="/news">News</a>
       </li>
       <div class="border-left"></div>
-       <li class="nav-item">
+      <li class="nav-item">
         <a class="nav-link" href="/message"><i class="fa fa-comments"></i></a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="/notification"><i class="fa fa-bell"></i></a>
       </li>
       <div class="border-left"></div>
-         <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown"   role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+          aria-haspopup="true" aria-expanded="false">
+
         </a>
-        <div class="dropdown-menu dropdown-menu-right  dropdown-menu{-sm|-md|-lg|-xl}-left"  data-display="static"  aria-labelledby="navbarDropdown">
+        <div class="dropdown-menu dropdown-menu-right  dropdown-menu{-sm|-md|-lg|-xl}-left" data-display="static"
+          aria-labelledby="navbarDropdown">
           <a class="dropdown-item" href="/rooms">Search Rooms</a>
           <a class="dropdown-item" href="/create_room">Create Room</a>
           <a href="/rooms" class="dropdown-item drop-down" id="list-rooms"> List Rooms </a>
           <a href="#" class="dropdown-item" id="user-rooms"> My Rooms </a></div>
       </li>
+      <li class="nav-item">
+        <a class="nav-link" href="login.html">login</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="signup.html">login</a>
+      </li>
     </ul>
-    
   </div>
-  </div>
+
 </nav>
+<!-- end of nav -->

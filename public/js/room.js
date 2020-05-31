@@ -139,67 +139,57 @@ function checkRoom() {
 
 const myRoom = (data) => {
   return `
-   
-    <div class="flex-container border-b mt-2">  
-
-        <div>
-            <a href="">
-                <img src="${ data.ChatRoom.icon}">
-            </a>
-        </div>
-        <div class="side-content">
-            <a href="#">
-                <p>${ data.ChatRoom.name}</p>
-                <span class="color-black"><b>80k</b> post</span>
-                <span class="color-black"> <b>5k</b> members</span>
-            </a>
-        </div>
-    
-        <div class="side-button text-right">
-            <p class="btn btn-default mb-2" onclick="gotoRoom('${data.ChatRoom.uuid}')">Enter room</p>
-        </div>
-    </div> 
+    <div class="room-box d-flex">
+      <div class="text-center">
+        <img src="${ data.ChatRoom.icon}" class="img-prof img-fluid">
+      </div>
+      <div class="room-detail">
+        <p><strong><span><a href="#">${ data.ChatRoom.name}</a></span></strong>
+          <span><button class="btn btn-info pull-right" onclick="gotoRoom('${data.ChatRoom.uuid}')">Enter room</button></span>
+        </p>
+        <span>50 Members</span>
+      </div>
+    </div>
                 `
 }
 
 const allRooms = (data) => {
   return `
-    <div class="col-lg-12 col-sm-12">
-      <div class="box pb-3 d-flex border-b justify-content-between  mt-2">
+  
+   
+      <div class="box pb-3 d-flex justify-content-between border-b mt-2">
           <div class="">
-              <img src="${ data.icon }" alt="" class="img-fluid">
+              <img src="${ data.icon}" alt="" class="img-fluid img-prof">
           </div>
-          <div class="limited-text mr-2">
-              <h5><a href="#">${ data.name }</a> </h5>
+          <div class="limited-text">
+              <h5><a href="#">${ data.name}</a> </h5>
               <p><span class="bold">8k</span> Post <span class="bold">500</span> Members</p>
           </div>
-          <div class="">
-          <button class="btn btn-default mb-2" onclick="gotoRoom('${data.uuid}')">Join Room</button>
+          <div class="w-100 pull-right">
+          <button class="btn btn-info mb-2" onclick="gotoRoom('${data.uuid}')">Join Room</button>
           </div> 
       </div>
-  </div>
+ 
+   
     `
 }
 
 const suggestedRooms = (data) => {
-  return `<div class="flex-container border-b mt-2">
-  <div>
-      <a href="">
-          <img src="${data.icon}">
-      </a>
-  </div>
-  <div class="side-content">
-      <a href="#">
-          <p>${data.name}</p>
-          <span class="color-black"><b>80k</b> post</span>
-          <span class="color-black"> <b>5k</b> members</span>
-      </a>
-  </div>
+  return `
 
-  <div class="side-button text-right">
-      <button class="btn btn-default mb-2" onclick="gotoRoom('${data.uuid}')">Join room</button>
-  </div>
-</div>`;
+<div class="room-box d-flex">
+      <div class="text-center">
+        <img src="${data.icon}" class="img-prof img-fluid">
+      </div>
+      <div class="ml-3 room-detail">
+        <p><strong><span><a href="#">${data.name}</a></span></strong>
+          <span><button class="btn btn-info pull-right" onclick="gotoRoom('${data.uuid}')">Join room</button></span>
+        </p>
+        <span>50 Members</span>
+      </div>
+    </div>
+`;
+  
 }
 
 const loadPage = async () => {

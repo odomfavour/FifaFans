@@ -44,7 +44,7 @@ function createPost() {
             } else {
                 Swal.fire(x.error, '', 'error');
             }
-        }).catch(e =>  alert(e));
+        }).catch(e =>  Swal.fire(e));
 }
 
 
@@ -59,7 +59,7 @@ function getMediaType(data) {
 
   if (type == 'jpg' || type == 'png') {
     console.log(type);
-    return `<img src="${data.media}" class="img-fluid" width="526" alt=""></img>`
+    return `<img src="${data.media}" class="img-fluid" width="300" alt=""></img>`
   }
 
   if ( type == undefined) {
@@ -111,7 +111,7 @@ const usersPost = (data) => {
             <div>
                 <img src="/img/21104.svg" class="img-prof">
             </div>
-            <div class="tap-cont-profile pd-3-12">
+            <div class="tab-profile-detail ml-2">
               <p class="fan-name">${data.owner_name} <span class="color-red fan-fn">Coach</span> <span class="fan-time"> 1hrs ago</span></p>
               
               <p class="my-3">${data.post}</p>
