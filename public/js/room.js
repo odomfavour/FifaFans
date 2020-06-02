@@ -155,22 +155,18 @@ const myRoom = (data) => {
 
 const allRooms = (data) => {
   return `
-  
-   
-      <div class="box pb-3 d-flex justify-content-between border-b mt-2">
-          <div class="">
-              <img src="${ data.icon}" alt="" class="img-fluid img-prof">
+      <div class="room-box d-flex">
+          <div class="text-center">
+              <img src="${ data.icon}" class="img-prof img-fluid">
           </div>
-          <div class="limited-text">
-              <h5><a href="#">${ data.name}</a> </h5>
-              <p><span class="bold">8k</span> Post <span class="bold">500</span> Members</p>
+          <div class="ml-3 room-detail">
+              <h4><strong><span><a href="#">${ data.name}</a></span></strong>
+                  <span><button class="btn btn-info d-flex pull-right" onclick="gotoRoom('${data.uuid}')">Join Room</button></span>
+              </h4>
+              <p><span>50 Members</span></p>
+
           </div>
-          <div class="w-100 pull-right">
-          <button class="btn btn-info mb-2" onclick="gotoRoom('${data.uuid}')">Join Room</button>
-          </div> 
       </div>
- 
-   
     `
 }
 

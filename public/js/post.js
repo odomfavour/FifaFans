@@ -124,13 +124,13 @@ const usersPost = (data) => {
 
 
 const usersMedia = (data) => {
+  console.log(data)
   // let layout = document.getElementById('post-layout');
   // layout
-  return `<div class="d-flex justify-content-start">
-            
-            <div class="tap-cont-profile pd-3-12">
-                ${getMediaType(data)}
-            </div>
+  return `<div class="col-12 col-sm-6 col-lg-3">
+    <img class="w-100" src="/image-1.jpg" data-target="#carouselExample" data-slide-to="${data.uuid}">
+    ${getMediaType(data)}
+  </div>
             
         </div>
         <hr style=" border: 2px solid #ccc">`;
@@ -227,7 +227,7 @@ const displayComments = (data) => {
                     <div>
                       <img src="img/4.jpg" class="img-prof">
                     </div>
-                    <div class="tap-cont-profile pd-3-12">
+                    <div class="ml-2">
                       <h4 class="fan-name">${x.user_name}<span class="fan-fn"> Player</span> <span class="fan-time">10(s) ago</span></h4>
                        <p class="comment-p">${x.comment}</p>
                     </div>
@@ -265,7 +265,7 @@ const generalPost = (data) => {
                     <div>
                       <img src="img/4.jpg" class="img-prof">
                     </div>
-                    <div class="tap-cont-profile pd-3-12">
+                    <div class="ml-2">
                       <h4 class="fan-name">${data.owner_name}<span class="fan-fn"> Player</span> <span class="fan-time">10(s) ago</span></h4>
                       <p class="comment-p">${data.post}</p>
                        ${getMediaType(data)}
@@ -294,7 +294,7 @@ const generalPost = (data) => {
                         <i class="fa fa-share-alt"></i> Share
                       </p>
                     </div>
-                    <div class="comment-section" id="comments${data.uuid}">
+                    <div class="comment-section scrollable-text" id="comments${data.uuid}">
                        ${displayComments(data.comment)}
                     </div>
                     <div class="d-flex justify-content-between mt-4">

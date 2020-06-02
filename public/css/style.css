@@ -8,6 +8,7 @@ body {
   overflow-x: hidden;
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
   color: #505962;
+  background: #efefef;
 }
 
 
@@ -117,6 +118,13 @@ a {
   flex-direction: column;
 }
 
+.scrollable-comments {
+   overflow: auto;
+    height: 250px;
+    display: flex;
+  flex-direction: column;
+}
+
 .sender-text {
     background: linear-gradient(360deg, #ccc, #0000001a);
     width: fit-content;
@@ -194,6 +202,18 @@ a {
     object-fit: cover;
 }
 
+#user-full-name {
+  color: #005391;
+  font-size: 30px;
+  font-weight: 900;
+
+}
+
+#user-profile-status {
+  font-size: 20px;
+  font-weight: 700;
+}
+
 /* profile */
 .profile-background {
   padding: 0 !important;
@@ -255,9 +275,10 @@ a {
 }
 
 .card {
-  background: #f5f5f5;
+  background: #fff;
   padding: 20px;
   margin-bottom: 20px;
+  box-shadow:-15px 0 35px rgba(0,0,0,0.1), 0 -15px 35px rgba(0,0,0,0.1);
 }
 
 .img-prof {
@@ -269,6 +290,11 @@ a {
 
 .flex-end {
   justify-content: flex-end;
+}
+
+.fan-name {
+  font-weight: 900;
+  font-size: 20px;
 }
 
 .pull-right {
@@ -301,6 +327,10 @@ a {
   .user {
     color: #fff;
     font-size: 16px;
+  }
+
+  .user:hover {
+    color: #fff
   }
 
   
@@ -337,7 +367,11 @@ a {
   }
 
   video {
-    width: 300px;
+    width: 250px;
+  }
+
+  #simple-quotes {
+    text-align: center;
   }
 
   .pd-mobile {
