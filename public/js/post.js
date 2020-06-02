@@ -16,11 +16,11 @@ function createPost() {
             } else {
                 Swal.fire(x.error, '', 'error');
             }
-        }).catch(e =>  alert(e));
+        }).catch(e => alert(e));
 }
 
 sendPost.addEventListener('click', () => {
-    console.log(post.value);
+    // console.log(post.value);
     createPost();
 });
-
+1
