@@ -48,7 +48,7 @@ socketClient.on('message', (data) => {
   // console.log(data)
       
   const ab = document.createElement('div');
-  ab.classList.add('mb-5');
+  ab.classList.add('mb-3');
  
       const content = `<div class="comment-bot pd-15">
             <div class="sender-text">

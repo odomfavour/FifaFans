@@ -120,9 +120,8 @@ a {
 
 .scrollable-comments {
    overflow: auto;
-    height: 250px;
-    display: flex;
-  flex-direction: column;
+    height: 200px;
+
 }
 
 .sender-text {
@@ -297,6 +296,15 @@ a {
   font-size: 20px;
 }
 
+.fan-fn {
+  color: #1ebba3;
+  font-size: 18px;
+}
+
+.fan-time {
+  font-size: 16px;
+}
+
 .pull-right {
   float: right;
 }
@@ -345,7 +353,25 @@ a {
 
 #myTab .nav-link {
   padding: 10px 69px;
+  
 }
+
+#myTab .nav-item .active {
+  background: #005391 !important;
+  color: #fff !important; 
+}
+
+#myTab .nav-item a {
+  font-size: 20px;
+  font-weight: 900;
+  letter-spacing: 2px;
+}
+
+.green-border-focus textarea {
+  border-radius: 28px;
+}
+
+
 /* media queries */
 
 @media (max-width: 767px){
@@ -369,6 +395,25 @@ a {
   video {
     width: 250px;
   }
+
+.fan-name {
+  font-size: 16px;
+}
+
+.fan-fn {
+  font-size: 14px;
+}
+
+.fan-time {
+  font-size: 14px;
+}
+
+#myTab .nav-item a {
+  font-size: 14px;
+  font-weight: 900;
+  letter-spacing: none;
+}
+
 
   #simple-quotes {
     text-align: center;
