@@ -5,7 +5,7 @@ const generateNotification = (user_uuid, message) => ({
   });
 
   const generateMessage = (user, message) => ({
-    user_uuid,
+    user,
     message,
     createdAt: new Date().getTime(),
   });

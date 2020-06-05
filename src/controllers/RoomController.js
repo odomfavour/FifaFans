@@ -70,10 +70,10 @@ const RoomController = {
          */
         async getGroupChats(req, res) {
           try {
-            const { uuid } = req.userData;
+            // const { uuid } = req.userData;
               const { group_uuid } = req.query;
-              const chats = await helperMethods.getGroupChats(group_uuid, RoomChat);     
-              return sendSuccessResponse(res, 200, { message:'Success', data: chats })
+              const data = await helperMethods.getGroupChats(group_uuid, RoomChat, ChatRoom);     
+              return res.render('room', { data });
             } catch (e) {
               console.log(e);
               return sendErrorResponse(res, 500, e);
@@ -92,6 +92,19 @@ const RoomController = {
             return sendSuccessResponse(res, 200, 'You have successfully exited the room');
           } catch (error) {
             console.log(error);
+            return sendErrorResponse(res, 500, error);
+          }
+        },
+
+        async checkMembership(req, res) {
+          try {
+            const { uuid } = req.userData;
+            const { group_uuid } = req.query;
+            console.log(group_uuid);
+            const room = await helperMethods.checkRoomMember(uuid, group_uuid);
+            if (!room) return sendErrorResponse(res, 200, 'not a member');
+            return sendSuccessResponse(res, 200, room.dataValues);
+          } catch (error) {
             return sendErrorResponse(res, 500, error);
           }
         },
