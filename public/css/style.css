@@ -292,6 +292,7 @@ a {
     height: 50px;
     border-radius: 50%;
     border: 2px solid #772020;
+    object-fit:cover;
 }
 
 .flex-end {
@@ -598,7 +599,7 @@ pd-3 {
 }
 /* progfile page */
 
-.profile-text h5, p, h6{
+.profile-text h5 > p > h6{
   margin:0;
   text-align:center;
  
@@ -607,7 +608,7 @@ pd-3 {
   margin-top:3.7rem;
 }
 
-* create post */
+/* * create post */ 
 .create-post-h5{
   background-color:#f6f5f5;
   padding: 3px 20px;
@@ -642,7 +643,7 @@ pd-3 {
 /* side nav */
 .side-like {
   font-weight: 900;
-  background: rgb(235, 234, 234);
+  background: rgb(255, 255, 255);
   border-radius: 10px;
   padding: 11px;
 }

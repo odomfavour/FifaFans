@@ -268,7 +268,7 @@ const generalPost = (data) => {
                       <img src="img/4.jpg" class="img-prof">
                     </div>
                     <div class="ml-2">
-                      <h4 class="fan-name">${data.owner_name}<span class="fan-fn"> Player</span> <span class="fan-time">10(s) ago</span></h4>
+                      <h4 class="fan-name">${data.owner_name}<span class="fan-fn"> <br>Player</span><br> <span class="fan-time">10(s) ago</span></h4>
                       <p class="comment-p">${data.post}</p>
                        ${getMediaType(data)}
                     </div>
