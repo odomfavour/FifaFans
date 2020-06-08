@@ -337,7 +337,7 @@ a {
   }
 
   .comment-section {
-    border-top: 3px solid #505962;
+    border-top: 1px solid #949495
   }
 
   .user {
@@ -684,4 +684,15 @@ pd-3 {
   color: green;
   font-weight: normal;
   margin-top: -7px !important;
+}
+.clip-attach{
+  position: absolute;
+  right: 38px;
+  bottom: 32px;
+}
+textarea { resize: none; }
+
+.max-350{
+  max-height: 350px;
+  overflow: scroll;
 }
