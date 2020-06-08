@@ -29,6 +29,7 @@
   "homepage": "https://github.com/Next-Inn/FifaFans#readme",
   "dependencies": {
     "@babel/cli": "^7.5.5",
+    "@babel/compat-data": "^7.9.0",
     "@babel/core": "^7.5.5",
     "@babel/node": "^7.5.5",
     "@babel/preset-env": "^7.5.5",
@@ -43,7 +44,7 @@
     "express": "~4.16.1",
     "express-handlebars": "^3.1.0",
     "google-auth-library": "*",
-    "hbs": "^4.1.0",
+    "hbs": "^4.1.1",
     "http-errors": "~1.6.3",
     "jsonwebtoken": "^8.5.1",
     "morgan": "~1.9.1",
@@ -64,6 +65,7 @@
     "uuid": "^3.3.3"
   },
   "devDependencies": {
+    "@babel/compat-data": "^7.9.0",
     "@babel/cli": "^7.5.5",
     "@babel/core": "^7.5.5",
     "@babel/node": "^7.5.5",
