@@ -14,9 +14,6 @@ if (formList) {
 }
 
 
-
-
-
 function onsubmit(e) {
     e.preventDefault();
 

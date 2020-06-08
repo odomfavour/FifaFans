@@ -55,37 +55,29 @@ function getUserDetails(user_uuid) {
    fetch(`${base}/search-user?input=${userSearchInput.value}`, options)
   .then((res) => res.json())
      .then((response) => {
-      
+      console.log(response)
       const array = [];
       response.data.forEach(x => {
         const el = result(x);
         array.push(el);
       });
-       searchResult.innerHTML = array;
+       searchResult.innerHTML = array.join("");
   }).catch((error) => console.log(error))
 }
 
 
 const result = (data) => {
   return `
-    <div class="flex-container border-b mt-2">
-                    <div>
-                        <a href="">
-                            <img src="">
-                        </a>
-                    </div>
-                    <div class="side-content">
-                        <a href="#" >
-                            <p onclick="followUser('${data.uuid}')">${ data.name } </p>
-                        </a>
-                        <p class="status-color">Coach</p>
-                
-                    </div>
-                
-                    <div class="side-button">
-                        <button class="btn btn-primary" onclick="getUserDetails('${data.uuid}')">View Details</button
-                    </div>
-                </div>
+  <div class="room-box d-flex">
+      <div class="text-center">
+        <img src="${ data.icon}" class="img-prof img-fluid">
+      </div>
+      <div class="room-detail">
+        <p onclick="followUser('${data.uuid}')"><strong><span><a href="#">${ data.name}</a></span></strong>
+        </p>
+      </div>
+      <span><button class="btn btn-primary" onclick="followUser('${data.uuid}')">Follow</button></span>
+    </div>
   `
 }
 
