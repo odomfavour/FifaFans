@@ -694,5 +694,9 @@ textarea { resize: none; }
 
 .max-350{
   max-height: 350px;
-  overflow: scroll;
+  overflow-y: scroll;
+}
+
+.bd-o {
+  border: none !important;
 }
