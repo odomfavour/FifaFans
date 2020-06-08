@@ -5,6 +5,8 @@ const layout = document.getElementById('post-layout');
 let comment = document.getElementsByClassName("comments");
 let commentSection = document.getElementsByClassName("comment-section");
 let commentButton = document.getElementsByClassName("comment-send");
+const userLayout = document.getElementById('media')
+const postLayout = document.getElementById('post')
 
 
 console.log(layout)
@@ -29,7 +31,7 @@ function createPost() {
   formData.append('post', post.value);
   formData.append('file', file);
     options.body = formData;
-    fetch(`${base}create-post`, options)
+    fetch(`${base}/create-post`, options)
         .then(res => res.json())
         .then(x => {
             console.log(x);
@@ -42,7 +44,7 @@ function createPost() {
             } else {
                 Swal.fire(x.error, '', 'error');
             }
-        }).catch(e =>  alert(e));
+        }).catch(e =>  Swal.fire(e));
 }
 
 
@@ -58,7 +60,7 @@ function getMediaType(data) {
 
   if (type == 'jpg' || type == 'png') {
     console.log(type);
-    return `<img src="${data.media}" class="img-fluid" width="526" alt=""></img>`
+    return `<img src="${data.media}" class="img-fluid" width="300" alt=""></img>`
   }
 
   if ( type == undefined) {
@@ -70,13 +72,69 @@ function getMediaType(data) {
 
 // userPost.addEventListener('click', listUserPost)
 
-function listUserPost() {
+function listUserPosts() {
     options.method = 'GET'
     fetch(`${base}/list-user-posts`, options)
         .then((res) => res.json())
         .then((response) => {
-         console.log(response);
+          console.log(response);
+          if (response.status != 'error') {
+            const array = [];
+            let mediapost = response.data.filter(checkPost).map((x) => {
+              return usersMedia(x)
+            });
+            userLayout.innerHTML = mediapost.join(' ')
+            console.log(mediapost)
+
+            response.data.forEach(x => {
+              const el = usersPost(x);
+              // el.join('')
+              array.push(el);
+              
+            });
+            
+
+            // console.log(array)
+            postLayout.innerHTML = array.join(" ");
+
+            function checkPost(post) {
+              return post.media !== '';
+            }
+          }
     })
+}
+
+
+const usersPost = (data) => {
+  // let layout = document.getElementById('post-layout');
+  // layout
+  return `<div class="d-flex justify-content-start">
+            <div>
+                <img src="/img/21104.svg" class="img-prof">
+            </div>
+            <div class="tab-profile-detail ml-2">
+              <p class="fan-name">${data.owner_name} <span class="color-red fan-fn">Coach</span> <span class="fan-time"> 1hrs ago</span></p>
+              
+              <p class="my-3">${data.post}</p>
+                ${getMediaType(data)}
+            </div>
+            
+        </div>
+        <hr style=" border: 1px solid #ccc">`;
+}
+
+
+const usersMedia = (data) => {
+  console.log(data)
+  // let layout = document.getElementById('post-layout');
+  // layout
+  return `<div class="col-12 col-sm-6 col-lg-3">
+    <img class="w-100" src="/image-1.jpg" data-target="#carouselExample" data-slide-to="${data.uuid}">
+    ${getMediaType(data)}
+  </div>
+            
+        </div>
+        <hr style=" border: 2px solid #ccc">`;
 }
 
 
@@ -95,7 +153,7 @@ async function listAllPosts() {
                  const el = generalPost(x);
                  array.push(el);
                 });
-                layout.innerHTML = array;
+              layout.innerHTML = array.join(" ");
          }
     })
 }
@@ -166,18 +224,24 @@ const displayComments = (data) => {
     const array = [];
     if (data) { 
         data.forEach(x => {
-         const element =  `<div class="p-2 comment-img text-center"> 
-         <img src="img/4.jpg" class="" alt="">
-         </div>
-         <div class="p-2 comments-content"> 
-         <h5>${x.user_name}</h5>
-          <p class="color-green">Player</p>
-         <p>${x.comment}</p>
-    </div>` 
+        const element =
+      ` <div class="d-flex justify-content-start mt-3">
+          <div>
+            <img src="img/4.jpg" class="img-prof ">
+          </div>
+          <div class="ml-2">
+            <h4 class="fan-name">${x.user_name}<span class="fan-fn"> Player</span> <span class="fan-time">10(s) ago</span>
+            </h4>
+              <p class="comment-p">${x.comment}</p>
+          </div>
+          
+        </div>
+        <hr>
+         ` 
     array.push(element);    
     });
     }
-   return array
+   return array.join(" ")
 }
 
 const displayRoomChats = (data) => {
@@ -202,24 +266,24 @@ const generalPost = (data) => {
     return `<div class="card mt-5 pd-15" >
                   <div class="d-flex justify-content-start">
                     <div>
-                      <img src="img/1.jpg" class="img-prof">
+                      <img src="img/4.jpg" class="img-prof">
                     </div>
-                    <div class="tap-cont-profile pd-3-12">
-                      <h5>${data.owner_name}</h5>
-                      <h6 class="color-green">Player</h6>
-                      <p>10(s) ago</p>
+                    <div class="ml-2">
+                      <h4 class="fan-name">${data.owner_name}<span class="fan-fn"> <br>Player</span><br> <span class="fan-time">10(s) ago</span></h4>
+                      <p class="comment-p">${data.post}</p>
+                       ${getMediaType(data)}
                     </div>
                     
                   </div>
                   <div class="tap-content-post">
-                      <p>${data.post}</p>
-                      ${getMediaType(data)}
+                      
+                     
                     <div class="d-flex justify-content-between">
                       <div class="p-2 text-center"> 
-                          <p><b>144</b><i class="fa fa-thumbs-up"></i></p> 
+                          <p><b>144</b> <i class="fa fa-thumbs-up"></i></p> 
                       </div>
                       <div class="p-2 text-right">
-                        <p><b>44</b><i class="fa fa-comments"></i> </p>
+                        <p><b>44</b> <i class="fa fa-comments"></i> </p>
                       </div>
                     </div>
                     <div class="d-flex justify-content-between m-bd">
@@ -233,19 +297,23 @@ const generalPost = (data) => {
                         <i class="fa fa-share-alt"></i> Share
                       </p>
                     </div>
-                    <div class="comment-section" id="comments${data.uuid}">
+                    <div class="comment-section scrollable-comments" id="comments${data.uuid}">
                        ${displayComments(data.comment)}
                     </div>
-                    <div class="d-flex justify-content-between bd-top mt-4">
+                    <div class="d-flex justify-content-between mt-4 bt-2">
+                    
                       <div class="text-center">
                         <img src="/img/21104.svg" class="img-prof">
                       </div>
-                      <div class=" flex-grow-1 pd-4 ">
+                      <div class=" flex-grow-1 pd-4 ml-2 ">
                         <div class="form-group green-border-focus">
-                          <input type="text" placeholder="Write comments..." id="${data.uuid}-comment-input" class="form-control post-input comments">
-                          <p class="fa fa-send border-none clip-attach" onclick="commentPost('${data.uuid}')"></p>
+                          <textarea name="" placeholder="Write comments..."id="${data.uuid}-comment-input" class="form-control">
+                          
+                          </textarea>
+                          </div>
+                          <p class="fa fa-send border-none clip-attach" onclick="commentPost('${data.uuid}')"</p>
                         </div>
-                      </div>
+                      
                     </div>
                   </div>
                 </div>`;
@@ -275,7 +343,11 @@ const loadPosts = async () => {
   try {
     if (window.location.pathname == '/') {
       await listAllPosts()
+      
     } 
+    if (window.location.pathname == '/profile') {
+      await listUserPosts()
+    }
   } catch (error) {
     console.log(error);
   }

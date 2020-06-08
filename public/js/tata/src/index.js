@@ -7,11 +7,11 @@ function $$(selector) {
 }
 
 function onClick() {
-  alert('clicked.')
+  // alert('clicked.')
 }
 
 function onClose() {
-  alert('closed.')
+  // alert('closed.')
 }
 
 
