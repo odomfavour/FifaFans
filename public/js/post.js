@@ -49,6 +49,7 @@ function createPost() {
 
 
 function getMediaType(data) {
+  console.log(data);
   const type = data.media.split('.')[3];
   if (type == 'mp4') {
     return `<video width="526" class="materialboxed"  controls>

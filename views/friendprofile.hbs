@@ -105,8 +105,20 @@
                             <div class="tab-pane fade" id="pages" role="tabpanel" aria-labelledby="pages-tab">...</div>
                             <div class="tab-pane fade" id="like" role="tabpanel" aria-labelledby="like-tab">...</div>
                         </div>
+                          {{/each}}
 
                     </div>
+<<<<<<< HEAD
+=======
+                    <div class="tab-pane fade" id="media" role="tabpanel" aria-labelledby="media-tab">
+                           {{#each user.posts}}
+                            <div>{{{this.media}}}</div>
+                              {{/each}}
+                    </div>
+                    {{!-- <div class="tab-pane fade" id="pages" role="tabpanel" aria-labelledby="pages-tab">...</div>
+                    <div class="tab-pane fade" id="like" role="tabpanel" aria-labelledby="like-tab">...</div> --}}
+                    </div>
+>>>>>>> 5c2160e0b22121cf845c0f40e0a7906ce946dbed
                 </div>
             </div>
         </div>
