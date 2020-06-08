@@ -385,6 +385,19 @@ a {
 
 @media (max-width: 767px){
 
+  .navbar .container {
+    padding: 0 20px;
+  }
+  .featured-newss {
+    flex-direction: column;
+  }
+  #right {
+    order: 1;
+  }
+
+  #right .d-flex {
+    margin-bottom: 10px;
+  }
   .signin {
     max-width: 330px !important;
   }
