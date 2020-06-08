@@ -159,7 +159,7 @@ const allRooms = (data) => {
           <div class="text-center">
               <img src="${ data.icon}" class="img-prof img-fluid">
           </div>
-          <div class="ml-3 room-detail">
+          <div class=" room-detail">
               <h4><strong><span><a href="#">${ data.name}</a></span></strong>
                   <span><button class="btn btn-info d-flex pull-right" onclick="gotoRoom('${data.uuid}')">Join Room</button></span>
               </h4>
@@ -177,7 +177,7 @@ const suggestedRooms = (data) => {
       <div class="text-center">
         <img src="${data.icon}" class="img-prof img-fluid">
       </div>
-      <div class="ml-3 room-detail">
+      <div class="room-detail">
         <p><strong><span><a href="#">${data.name}</a></span></strong>
           <span><button class="btn btn-info pull-right" onclick="gotoRoom('${data.uuid}')">Join room</button></span>
         </p>
