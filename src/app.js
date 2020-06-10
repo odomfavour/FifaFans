@@ -17,7 +17,22 @@ console.log(app.get('env'));
 
 // view engine setup
 // app.set('views', path.join(__dirname, 'views'));
-app.engine('.hbs', exphbs({ defaultLayout: 'layout', extname: '.hbs' }));
+app.engine('.hbs', exphbs({
+    defaultLayout: 'layout', extname: '.hbs',
+
+    helpers: {
+        each_upto: function (ary, max, options) {
+            if (!ary || ary.length == 0)
+                return options.inverse(this);
+
+            var result = [];
+            for (var i = 0; i < max && i < ary.length; ++i)
+                result.push(options.fn(ary[i]));
+            return result.join('');
+        }
+    }
+})
+);
 app.set('view engine', 'hbs');
 
 app.use(logger('dev'));

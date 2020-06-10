@@ -8,7 +8,7 @@ const showNewsDetails = (title) => {
   window.location.replace(`view-news?title=${title}`)
 }
 
-// {
+{
 //   {
 //   !-- < div class="container mt-5" >
 //     <div class="row mb-5">

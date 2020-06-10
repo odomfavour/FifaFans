@@ -380,6 +380,15 @@ a {
   border-radius: 28px;
 }
 
+#right .news-image {
+  width: 100px;
+  height: 100px;
+}
+
+#right .news-heading {
+  width: 200px;
+}
+
 
 /* media queries */
 
