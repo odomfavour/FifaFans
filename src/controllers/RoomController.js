@@ -39,7 +39,7 @@ const RoomController = {
             try {
             const { uuid } = req.userData;
               if(!uuid) return res.status(403).send('Access denied');
-              const groups = await  ChatRoom.findAll();      
+              const groups = await  ChatRoom.findAll();  
               return sendSuccessResponse(res, 200, { message:'Success', data: groups });
             } catch (error) {
               return res.status(500).send(error);

@@ -103,6 +103,9 @@ router.get('/roommessagebox', function(req, res, next) {
 // router.get('/news', function(req, res, next) {
 //     res.render('news', { title: 'FIFA FANS', style: 'style.css' });
 // });
+router.get('/view-news', NewsController.viewNew);
+
+
 // for rooms page
 router.get('/rooms', function(req, res, next) {
     res.render('rooms', { title: 'FIFA FANS', style: 'style.css' });
