@@ -82,7 +82,7 @@ router.get('/message', function(req, res, next) {
 
 //this is readnews page
 // router.get('/readnews', function(req, res, next) {
-//     res.render('readnews', { title: 'FIFA FANS' });
+//     res.render('readnews', { title: 'FIFA FANS', style: 'style.css' });
 // });
 
 //this is the room route
@@ -99,6 +99,10 @@ router.get('/roommessagebox', function(req, res, next) {
     res.render('roommessagebox', { title: 'FIFA FANS', style: 'style.css'});
 });
 
+//this is message page
+// router.get('/news', function(req, res, next) {
+//     res.render('news', { title: 'FIFA FANS', style: 'style.css' });
+// });
 router.get('/view-news', NewsController.viewNew);
 
 
@@ -111,6 +115,8 @@ router.get('/rooms', function(req, res, next) {
 router.get('/create_room', function(req, res, next) {
     res.render('create_room', { title: 'FIFA FANS', style: 'style.css' });
 });
+
+router.get('/view-news', NewsController.viewNew)
 
 
 

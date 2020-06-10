@@ -20,7 +20,7 @@
 
                         <div class="col-md-12 featured-news">
                             {{#each data.articles }}
-                                {{#if @last}}
+                            {{#if @last}}
                             <div class="d-flex featured-newss">
                                 <div class="news-image">
                                     <img src="{{this.urlToImage}}" alt="a player" class="img-fluid">
@@ -29,21 +29,28 @@
                                     <h4>{{ this.title }}
                                     </h4>
                                     <p>{{ this.description }}</p>
+                                    <p class="btn btn-primary" onclick="showNewsDetails(`{{this.title}}`)">Read</p>
                                 </div>
-                               
+                                {{!-- <div class="d-flex justify-content-between mt-3">
+                                   
+                                </div> --}}
+
                             </div>
-                                {{/if}}
+                            {{/if}}
                             {{/each}}
                         </div>
                         <div class="row">
                             <div class="col-md-7">
-                                {{#each_upto data.articles 4}}
+                                {{#each_upto data.articles 6 }}
                                 <div class="short-news">
                                     <div class="news-image">
                                         <img src="{{this.urlToImage}}" alt="a player" class="img-fluid">
                                     </div>
                                     <div class="news-heading">
-                                        <p><a href="/readnews">{{ this.title }}</a></p>
+                                        <p>{{ this.title }}</p>
+                                        <div class="d-flex justify-content-between mt-3">
+                                            <p class="btn btn-primary" onclick="showNewsDetails(`{{this.title}}`)">Read</p>
+                                        </div>
                                     </div>
                                 </div>
                                 {{/each_upto}}
@@ -64,7 +71,8 @@
                                     </div>
                                     <div class="news-heading ml-2">
                                         <p>{{ this.title }}</p>
-                                        <p class="" onclick="showNewsDetails({{this.title}})">{{ this.description }}</p>
+                                        <p class="" onclick="showNewsDetails('{{this.title}}')">{{ this.description }}
+                                        </p>
                                     </div>
                                 </div>
                                 {{/each }}
@@ -74,7 +82,8 @@
                                         <img src="img/bg-img.jpg" alt="a player" class="img-fluid">
                                     </div>
                                     <div class="news-heading ml-2">
-                                        <p>BLOW West Ham still waiting on Ngakia contract decision amid reports defender could leave.</p>
+                                        <p>BLOW West Ham still waiting on Ngakia contract decision amid reports defender
+                                            could leave.</p>
                                     </div>
                                 </div>
                                 <div class="d-flex">
@@ -82,25 +91,18 @@
                                         <img src="img/bg-img.jpg" alt="a player" class="img-fluid">
                                     </div>
                                     <div class="news-heading ml-2">
-                                        <p>BLOW West Ham still waiting on Ngakia contract decision amid reports defender could leave.</p>
+                                        <p>BLOW West Ham still waiting on Ngakia contract decision amid reports defender
+                                            could leave.</p>
                                     </div>
                                 </div>
-                                <div class="d-flex">
-                                    <div class="news-image">
-                                        <img src="img/bg-img.jpg" alt="a player" class="img-fluid">
-                                    </div>
-                                    <div class="news-heading ml-2">
-                                        <p>BLOW West Ham still waiting on Ngakia contract decision amid reports defender could leave.</p>
-                                    </div>
-                                </div>
-                             
+
                             </div>
                         </div>
                         <div class="col-md-4"></div>
-                      
-                        <section class="see-more">
+
+                        {{!-- <section class="see-more">
                             <a href="#" class="pull-right">See more</a>
-                        </section>
+                        </section> --}}
                     </div>
                 </div>
             </div>
@@ -108,6 +110,3 @@
 
     </section>
 </main>
-
-
-

@@ -18,35 +18,34 @@
 
                         <div class="col-md-12 featured-news">
                             <div class="news-heading">
-                                <h4>BLOW West Ham still waiting on Ngakia contract decision amid reports defender could leave.</h4>
+                                <h4>{{detail.title}}.</h4>
                             </div>
                             <div class="news-date">
-                                <p>By Ogochukwu Odom</p>
-                                <p>8th June 2020, 3:56 pm Updated: 8th June 2020, 3:56 pm</p>
+                                <p>{{detail.author}}</p>
+                                <p>{{detail.publishedAt}}</p>
                             </div>
 
                             <div class="news-content">
-                                <p class="bold">West Ham are sweating on the future of full-back Jeremy Ngakia, whose current contract expires at the end of June.</p>
+                                {{!-- <p class="bold">West Ham are sweating on the future of full-back Jeremy Ngakia, whose current contract expires at the end of June.</p>
                                 <p>Jeremy Ngakia has refused a short-term deal as he looks to leave the 
                                     London Stadium when his contract expires at the
-                                    end of the month Football</p>
+                                    end of the month Football</p> --}}
                                 
                                 <div class="news-image">
-                                    <img src="img/bg-img.jpg" alt="a player" class="img-fluid">
+                                    <img src="{{detail.urlToImage}}" alt="a player" class="img-fluid">
                                 </div>
                                 <div class="news-image-info">
-                                    <p>Ngakia had started the last three matches for West Ham and had impressed Moyes</p>
+                                    {{!-- <p>Ngakia had started the last three matches for West Ham and had impressed Moyes</p> --}}
                                 </div>
 
-                                <p>A product of West Ham’s academy, the 19-year-old impressed before coronavirus brought the league to a halt, forcing his
-                                way into David Moyes’ XI and started West Ham’s final three games before the suspension in March.
-                                
-                                With the Premier League season extended into July, clubs have until June 23 to agree short-term deals for
-                                out-of-contract stars.</p>
+                                <p>{{detail.content}}</p>
+                                <div>
+                                    <a target="_blank" href="{{detail.url}}" class="btn btn-primary">Read all</a>
+                                </div>
 
-                                <p>It is believed many players who are out of contract are reluctant to sign short-term deals as injuries could scupper
+                                {{!-- <p>It is believed many players who are out of contract are reluctant to sign short-term deals as injuries could scupper
                                     their chances of a transfer elsewhere.
-                                </p>
+                                </p> --}}
                             </div>
 
                             
