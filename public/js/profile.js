@@ -3,6 +3,7 @@ const username_profile = document.getElementById('user-name-header');
 // user profile landing page
 const fullname_profile = document.getElementById('user-full-name');
 const status_profile = document.getElementById('user-profile-status');
+const user_club = document.getElementById('user-profile-club');
 const simple_quotes = document.getElementById('simple-quotes');
 const location_profile = document.getElementById('location-profile');
 
@@ -127,6 +128,7 @@ const profileObject = (data) => {
     status_profile.innerText = data.status;
     simple_quotes.innerText = data.profiles[0].favoriteQuote;
     location_profile.innerText = data.address;
+    user_club.innerText = data.club;
 }
 
 const fillEditInputs = (data) => {

@@ -1,83 +1,64 @@
 {{> header}}
 
-<div class="container mt-5">
-    <div class="row mb-5">
-        <div class="col-md-4 hidden-mobile mb-5">
-            <div> {{> sidenav}}</div>
-        </div>
-        <div class="col-lg-8 col-12">
-            <div class="profile-section card mb-5">
-                <div class="profile-img">
-                    <div class="img-text ">
-                    <img src="{{detail.urlToImage}}" class="img-fluid" id="new_image">
-                    </div>
-                    <div class="pd-15 ">
-                        <h4 id="new_title">{{detail.title}}</h4>
-                        <div class="d-flex justify-content-between">
-                            {{!-- <div>
-                                <span> <b>2234</b> Likes </span>
-                                <span class="pl-3"> <b>2234</b> Views </span>
-                            </div> --}}
-                            <div>
-                                {{!-- <button class="btn btn-primary">Follow</button>
-                               <button class="btn btn-primary">Follow</button> --}}
-                                <a target="_blank" href="{{detail.url}}" class="btn btn-primary">Read all</a>
-                            </div>
-                        </div>
-                    </div>
+
+<main>
+    <section id="landing-page">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+
+                    {{> sidenav}}
+
                 </div>
-            </div>
-            <div class="card mt-5 pd-15">
-                <div class="tap-content-post">
-                    <p id="new_content">{{detail.content}}</p>
-                    {{!-- <div class="d-flex justify-content-between">
-                        <div class="p-2 text-center"> 
-                            <b>123</b> <i class="fa fa-thumbs-up"></i>
-                        </div>
-                        <div class="p-2 text-right"> 
-                            <b>44</b> <i class="fa fa-comments"></i>
-                        </div>
-                    </div>
-                    <div class="d-flex justify-content-between m-bd">
-                        <div class="p-2 text-center"> 
-                            <i class="fa fa-thumbs-up"></i> Like
-                        </div>
-                        <div class="p-2 text-right"> 
-                            <i class="fa fa-comments"></i> Comment
-                        </div>
-                        <div class="p-2 text-right"> 
-                            <i class="fa fa-share-alt"></i> Share
-                        </div>
-                    </div> --}}
-                    {{!-- <div class="d-flex justify-content-between mt-4">
-                        <div class="p-2 comment-img text-center"> 
-                            <img src="img/4.jpg" class="" alt="">
-                        </div>
-                        <div class="p-2 comments-content"> 
-                        <h5>Ayooluwa Lovisgod</h5>
-                            <p class="color-green">Player</p>
-                            <p>Asenal playes against Man-U and score 3:0. I have never seen Asenal becoming a world class 
-                            player. Man-U be strong ooo</p>
-                            <div class="d-flex justify-content-between">
-                            <div><i class="fa fa-thumbs-up"></i> Likes<span class="comment-badge">12</span></div>
-                            <div><i class="fa fa-comments"></i> Reply <span class="comment-badge">12</span></div>
+                <div class="col-md-8">
+                    <div class="card">
+                        <h5 class="section-title">News</h5>
+
+                        <hr>
+
+                        <div class="col-md-12 featured-news">
+                            <div class="news-heading">
+                                <h4>{{detail.title}}.</h4>
                             </div>
-                    </div>
-                    </div> --}}
-                   
-                    {{!-- <div class="d-flex justify-content-between bd-top mt-4">
-                        <div class="text-center">
-                            <img src="/img/21104.svg" class="img-prof">
-                        </div>
-                        <div class=" flex-grow-1 pd-4 ">
-                            <div class="form-group green-border-focus">
-                                <input type="text" placeholder="Write comments..." id="exampleForm2" class="form-control post-input">
-                                <i class="fa fa-paperclip clip-attach"></i>
+                            <div class="news-date">
+                                <p>{{detail.author}}</p>
+                                <p>{{detail.publishedAt}}</p>
                             </div>
+
+                            <div class="news-content">
+                                {{!-- <p class="bold">West Ham are sweating on the future of full-back Jeremy Ngakia, whose current contract expires at the end of June.</p>
+                                <p>Jeremy Ngakia has refused a short-term deal as he looks to leave the 
+                                    London Stadium when his contract expires at the
+                                    end of the month Football</p> --}}
+                                
+                                <div class="news-image">
+                                    <img src="{{detail.urlToImage}}" alt="a player" class="img-fluid">
+                                </div>
+                                <div class="news-image-info">
+                                    {{!-- <p>Ngakia had started the last three matches for West Ham and had impressed Moyes</p> --}}
+                                </div>
+
+                                <p>{{detail.content}}</p>
+                                <div>
+                                    <a target="_blank" href="{{detail.url}}" class="btn btn-primary">Read all</a>
+                                </div>
+
+                                {{!-- <p>It is believed many players who are out of contract are reluctant to sign short-term deals as injuries could scupper
+                                    their chances of a transfer elsewhere.
+                                </p> --}}
+                            </div>
+
+                            
+                               
+                                
+                            </div>
+
                         </div>
-                    </div> --}}
+                        
                 </div>
+                
             </div>
         </div>
-    </div>
-</div>
+
+    </section>
+</main>

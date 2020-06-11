@@ -7,3 +7,4 @@ const showNewsDetails = (title) => {
   // localStorage.setItem("new-title", title);
   window.location.replace(`view-news?title=${title}`)
 }
+
