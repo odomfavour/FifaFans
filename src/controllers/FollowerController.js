@@ -17,6 +17,20 @@ const FollowerController = {
           return sendErrorResponse(res, 500, 'An error occurred following user');
       };
   },
+
+  async unFollowUser(req, res) {
+    try {
+      const { uuid } = req.userData;  
+      const { user_uuid } = req.query;
+      const user = await helperMethods.checkForFollower(Follower, user_uuid, uuid);
+      if(!user)return sendErrorResponse(res, 403, 'You cannot unFollow whom you have not followed');
+      await helperMethods.unFollowUser(Follower, uuid, user_uuid);
+      return sendSuccessResponse(res, 200, 'unFollowed successfully');
+    } catch (e) {
+        console.log(e);
+        return sendErrorResponse(res, 500, 'An error occurred following user');
+    };
+},
   
   // view a user followers
   async listUserFollowers(req, res) {

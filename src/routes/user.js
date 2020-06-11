@@ -11,5 +11,6 @@ router.get('/view-user-details', Auth, UserController.viewUserDetails);
 router.post('/follow-user', Auth, FollowerController.followUser);
 router.get('/list-followers', Auth, FollowerController.listUserFollowers);
 router.get('/check-if-follow', Auth, FollowerController.CheckFollowUser);
+router.put('/un-follow-user', Auth, FollowerController.unFollowUser);
 
 export default router;
