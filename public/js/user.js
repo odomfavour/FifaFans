@@ -73,7 +73,7 @@ const result = (data) => {
         <img src="${ data.icon}" class="img-prof img-fluid">
       </div>
       <div class="room-detail">
-        <p onclick="followUser('${data.uuid}')"><strong><span><a href="#">${ data.name}</a></span></strong>
+        <p onclick="getUserDetails('${data.uuid}')"><strong><span><a href="#">${ data.name}</a></span></strong>
         </p>
       </div>
       <span><button class="btn btn-primary" onclick="followUser('${data.uuid}')">Follow</button></span>

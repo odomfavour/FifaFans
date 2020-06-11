@@ -628,7 +628,23 @@ pd-3 {
  
 }
 .profile-text{
+  text-align: center;
   margin-top:3.7rem;
+  line-height: 4px;
+}
+
+.img-resized {
+  height: 500 !important;
+}
+
+.img-boxz {
+  width: 300px
+}
+
+.img-boxz img {
+  width: calc(112%);
+  height: auto;
+  display: block;
 }
 
 /* * create post */ 
