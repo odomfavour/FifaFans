@@ -4,6 +4,7 @@ const friendName = document.getElementById('friend-name');
 const userSearchInput = document.getElementById('userSearchInput')
 
 const searchResult = document.getElementById('search-result-layout')
+const follow_box = document.getElementById('follow-box');
 
 // addFriend.addEventListener('click', followFriend)
 
@@ -44,7 +45,8 @@ function getUserDetails(user_uuid) {
     //   })
     //   .catch((error) => console.log(error));
     // localStorage.setItem("group_uuid", group_uuid);
-    window.location.replace(`/friendprofile?user_uuid=${user_uuid}`)
+    const my_uuid = localStorage.getItem('my_uuid');
+    window.location.replace(`/friendprofile?user_uuid=${user_uuid}&my_uuid=${my_uuid}`);
 }
 
 
@@ -82,17 +84,43 @@ const result = (data) => {
 }
 
 const followUser = (uuid) => {
-      options.method = "POST";
+      if(follow_box.innerText == 'unFollow') {
+        unFollowUser(uuid);
+      } else {
+        options.method = "POST";
         fetch(`${base}follow-user?user_uuid=${uuid}`, options)
           .then((res) => res.json())
           .then((response) => {
             console.log(response);
             if (response.status != "error") {
-              Swal.fire(response.data);
+              // Swal.fire(response.data);
+              follow_box.innerText = 'unFollow'
             } else {
               Swal.fire(response.error, "", "error");
             }
           })
           .catch((e) => console.log(e));
+      }
+}
+
+const unFollowUser = (uuid) => {
+  if (follow_box.innerText == 'Follow') {
+    followUser(uuid);
+  } else {
+    options.method = "PUT";
+    fetch(`${base}un-follow-user?user_uuid=${uuid}`, options)
+      .then((res) => res.json())
+      .then((response) => {
+        console.log(response);
+        if (response.status != "error") {
+          // Swal.fire(response.data);
+          follow_box.innerText = 'Follow'
+        } else {
+          Swal.fire(response.error, "", "error");
+        }
+      })
+      .catch((e) => console.log(e));
+  }
+
 }
 

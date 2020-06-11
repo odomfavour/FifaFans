@@ -114,7 +114,7 @@ if (logout_user) {
 
 
 function logoutUSer() {
-    prompt('Are you sure? ......')
+    prompt('Are you sure? ...... (Yes/No)')
     localStorage.removeItem('token');
     window.location.replace('/login');
 }
@@ -162,6 +162,8 @@ function getProfile() {
             console.log(x);
             if (x.status != 'error') {
                 username_profile.innerText = x.data.username;
+                localStorage.setItem('my_uuid', x.data.uuid);
+                console.log(localStorage.getItem('my_uuid'));
                 if (window.location.pathname == '/profile') { profileObject(x.data) };
                 if (window.location.pathname == '/editprofile') { fillEditInputs(x.data) };
                 if (window.location.pathname == '/aboutuser') { fillInDetails(x.data) };

@@ -29,6 +29,13 @@ app.engine('.hbs', exphbs({
             for (var i = 0; i < max && i < ary.length; ++i)
                 result.push(options.fn(ary[i]));
             return result.join('');
+        },
+        if_eq: function(a, b, opts) {
+            if (a == b) {
+                return opts.fn(this);
+            } else {
+                return opts.inverse(this);
+            }
         }
     }
 })
