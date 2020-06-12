@@ -52,7 +52,7 @@ function getMediaType(data) {
   console.log(data);
   const type = data.media.split('.')[3];
   if (type == 'mp4') {
-    return `<video width="526" class="materialboxed"  controls>
+    return `<video width="526" height="500" class="materialboxed"  controls>
     <source src="${data.media}" type="video/mp4">
      Your browser does not support HTML video.
      </video>`;
@@ -60,7 +60,7 @@ function getMediaType(data) {
 
   if (type == 'jpg' || type == 'png') {
     console.log(type);
-    return `<img src="${data.media}" class="img-fluid" width="300" alt=""></img>`
+    return `<img src="${data.media}" class="img-fluid img-resized" width="500" alt=""></img>`
   }
 
   if ( type == undefined) {
@@ -271,21 +271,14 @@ const generalPost = (data) => {
                     <div class="ml-2">
                       <h4 class="fan-name">${data.owner_name}<span class="fan-fn"> <br>Player</span><br> <p class="fan-fn">Arsenal</p> <span class="fan-time">10(s) ago</span></h4>
                       <p class="comment-p">${data.post}</p>
-                       ${getMediaType(data)}
+                      <div class="img-boxz">
+                         ${getMediaType(data)}
+                      </div>
+                      
                     </div>
                     
                   </div>
                   <div class="tap-content-post">
-                      
-                     
-                    <div class="d-flex justify-content-between">
-                      <div class="p-2 text-center"> 
-                          <p><b>144</b> <i class="fa fa-thumbs-up"></i></p> 
-                      </div>
-                      <div class="p-2 text-right">
-                        <p><b>44</b> <i class="fa fa-comments"></i> </p>
-                      </div>
-                    </div>
                     <div class="d-flex justify-content-between m-bd">
                       <p class="p-2 text-center">
                         <i class="fa fa-thumbs-up"></i> Like
