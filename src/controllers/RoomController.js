@@ -2,6 +2,7 @@ import model from './../models';
 import { sendErrorResponse, sendSuccessResponse } from './../utils/sendResponse';
 import helperMethods from './../utils/helpers';
 import uploadImage from './../services/imageuploader';
+import Canvas from '../utils/canvas';
 const { User, Profile, Post, Friend, ChatRoom, ChatRoomMember, RoomChat } = model;
 
 
@@ -13,10 +14,12 @@ const RoomController = {
         const { groupname, description } = req.body;
         if (!groupname && !description) return sendErrorResponse(res, 
           409, 'Groupname and description cannot be empty!!!');
+        const file = await Canvas.createBanner(groupname);
+        const url  = await uploadImage(file, groupname);
         const group = await ChatRoom.create({
             name: groupname,
             description,
-            icon:'https://res.cloudinary.com/psirius-eem/image/upload/v1569882118/phznouadimmqzj09zhg4.jpg',
+            icon:url,
             visibility: 'private',
         });
         if(!group) return sendErrorResponse(res, 500, 'Failed to create group please try again later');
@@ -27,6 +30,7 @@ const RoomController = {
         });
           return sendSuccessResponse(res, 200, 'Successfully created a group');
         } catch (error) {
+          console.log(error);
           return sendErrorResponse(res, 500, error);
         }
         },
