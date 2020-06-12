@@ -637,9 +637,9 @@ pd-3 {
   height: 500 !important;
 }
 
-.img-boxz {
+/* .img-boxz {
   width: 300px
-}
+} */
 
 .img-boxz img {
   width: calc(112%);
