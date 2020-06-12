@@ -69,6 +69,29 @@ function getMediaType(data) {
  
 }
 
+function createCanva(data) {
+
+  if (data.media && data.media !== '') {
+    console.log('got it');
+    return `<p class="comment-p">${data.post}</p>`;
+  } else {
+    if (data.post.length < 40) {
+      return `<div class="post-bg">
+      <div class="post-txt-small">
+        <p style="font-size:50px">${data.post}</p>
+      </div>
+    </div>`
+    } else if (data.post >= 40) {
+      return `<div class="post-bg">
+      <div class="post-txt">
+        <p style="font-size:50px">${data.post}</p>
+      </div>
+    </div>`
+    }
+  
+  }
+}
+
 
 // userPost.addEventListener('click', listUserPost)
 
@@ -159,41 +182,6 @@ async function listAllPosts() {
 }
 
 
-// for (var i = 0; i < commentButton.length; i++) {
-//   commentButton[i].addEventListener("click", commentPost, false);
-// }
-
-
-// change this to use socket IO
-
-// function commentPost(post_uuid) {
-//   alert(post_uuid)
-//     options.method = 'PUT'
-//     const formData = new FormData();
-//   formData.append("comment", comment.value);
-//   formData.append("post_uuid",post_uuid);
-//     options.body = formData;
-
-//     // if (comment.value) {
-//        fetch(`${base}/comment-post`, options)
-//          .then((res) => res.json())
-//          .then((response) => {
-//              console.log(response);
-//               if (response.status != "error") {
-//                 console.log(response.data);
-//                 const array = [];
-//                 response.data.forEach((x) => {
-//                   const el = displayComments(x);
-//                   array.push(el);
-//                 });
-//                 commentSection.innerHTML = array;
-//               }
-             
-//          });  
-//     // }
-   
-// }
-
 // socket io for posting comments 
 function commentPost(post_uuid) {
     console.log(post_uuid)
@@ -270,7 +258,9 @@ const generalPost = (data) => {
                     </div>
                     <div class="ml-2">
                       <h4 class="fan-name">${data.owner_name}<span class="fan-fn"> <br>Player</span><br> <p class="fan-fn">Arsenal</p> <span class="fan-time">10(s) ago</span></h4>
-                      <p class="comment-p">${data.post}</p>
+                      <div id="post-canva">
+                      ${createCanva(data)}
+                      </div>
                       <div class="img-boxz">
                          ${getMediaType(data)}
                       </div>
@@ -311,26 +301,6 @@ const generalPost = (data) => {
                   </div>
                 </div>`;
 }
-
-
-
-{/* <div class="d-flex justify-content-between mt-4">
-                      <div class="p-2 comment-img text-center"> 
-                          <img src="img/4.jpg" class="" alt="">
-                      </div>
-                      <div class="p-2 comments-content"> 
-                          <h5>${data.owner_name}</h5>
-                          <p class="color-green">Player</p>
-                            <p>${data.post}</p>
-                          <div class="d-flex justify-content-between">
-                            <p><i class="fa fa-thumbs-up"></i> Likes<span class="comment-badge">12</span></p>
-                            <p><i class="fa fa-comments"></i> Reply <span class="comment-badge">12</span></p>
-                          </div>
-                          <div class="d-flex justify-content-between mt-2">
-                             ${displayComments(data.comment)}
-                          </div>
-                      </div>
-                  </div> */}
 
 const loadPosts = async () => {
   try {
