@@ -3,6 +3,24 @@
   padding: 0;
   box-sizing: border-box;
 }
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #ffffff; 
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #005391; 
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #005391; 
+}
 
 body {
   font-family: "Nunito Sans", sans-serif;
@@ -338,6 +356,7 @@ a {
 .fan-fn {
   color: #1ebba3;
   font-size: 18px;
+  margin:0
 }
 
 .fan-time {
@@ -674,9 +693,9 @@ pd-3 {
   height: 500 !important;
 }
 
-.img-boxz {
+/* .img-boxz {
   width: 300px
-}
+} */
 
 .img-boxz img {
   width: calc(112%);
