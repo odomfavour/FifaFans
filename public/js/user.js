@@ -6,45 +6,9 @@ const userSearchInput = document.getElementById('userSearchInput')
 const searchResult = document.getElementById('search-result-layout')
 const follow_box = document.getElementById('follow-box');
 
-// addFriend.addEventListener('click', followFriend)
-
-// function followFriend() {
-//     options.method = "POST";
-
-//     if (!friendId || friendName) {
-//         errorMessage.innerHTML = 'Please put a valid input'
-//     } else {
-//         const formData = new FormData();
-//         formData.append("friend_uuid", friendId.value);
-//         formData.append("friend_name", friendName.value);
-//         options.body = formData;
-//         fetch(`${base}}/add-follow-users`, options)
-//           .then((res) => res.json())
-//           .then((response) => {
-//             console.log(response);
-//             if (response.status != "error") {
-//               Swal.fire(response.data);
-//               window.location.reload();
-//             } else {
-//               Swal.fire(response.error, "", "error");
-//             }
-//           })
-//           .catch((e) => console.log(e));
-//     }
-    
-// }
-
 // get user details
 
 function getUserDetails(user_uuid) {
-    // options.method = "GET";
-    // fetch(`${base}/view-user-details?user_uuid=${user_uuid}`, options)
-    //   .then((res) => res.json())
-    //   .then((response) => {
-    //     console.log(response);
-    //   })
-    //   .catch((error) => console.log(error));
-    // localStorage.setItem("group_uuid", group_uuid);
     const my_uuid = localStorage.getItem('my_uuid');
     window.location.replace(`/friendprofile?user_uuid=${user_uuid}&my_uuid=${my_uuid}`);
 }
@@ -93,7 +57,6 @@ const followUser = (uuid) => {
           .then((response) => {
             console.log(response);
             if (response.status != "error") {
-              // Swal.fire(response.data);
               follow_box.innerText = 'unFollow'
             } else {
               Swal.fire(response.error, "", "error");
@@ -113,7 +76,6 @@ const unFollowUser = (uuid) => {
       .then((response) => {
         console.log(response);
         if (response.status != "error") {
-          // Swal.fire(response.data);
           follow_box.innerText = 'Follow'
         } else {
           Swal.fire(response.error, "", "error");
