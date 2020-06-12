@@ -5,7 +5,7 @@ const layout = document.getElementById('post-layout');
 let comment = document.getElementsByClassName("comments");
 let commentSection = document.getElementsByClassName("comment-section");
 let commentButton = document.getElementsByClassName("comment-send");
-const userLayout = document.getElementById('media')
+const userLayout = document.getElementById('media-grid')
 const postLayout = document.getElementById('post')
 
 
@@ -128,15 +128,19 @@ const usersMedia = (data) => {
   console.log(data)
   // let layout = document.getElementById('post-layout');
   // layout
-  return `<div class="col-12 col-sm-6 col-lg-3">
-    <img class="w-100" src="/image-1.jpg" data-target="#carouselExample" data-slide-to="${data.uuid}">
-    ${getMediaType(data)}
-  </div>
-            
-        </div>
-        <hr style=" border: 2px solid #ccc">`;
+  return `
+    <div class="grid-image">${getMediaType(data)}</div>
+  `;
 }
 
+
+{/* <div class="col-12 col-sm-6 col-lg-3">
+  <img class="w-100" src="/image-1.jpg" data-target="#carouselExample" data-slide-to="${data.uuid}">
+    ${getMediaType(data)}
+  </div>
+
+</div>
+  <hr style=" border: 2px solid #ccc"> */}
 
 // allPost.addEventListener('click', listAllPosts)
 
@@ -311,7 +315,6 @@ const generalPost = (data) => {
                   </div>
                 </div>`;
 }
-
 
 
 {/* <div class="d-flex justify-content-between mt-4">

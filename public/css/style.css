@@ -390,9 +390,44 @@ a {
 }
 
 
+.button-box {
+  padding: 10px 60px 60px;
+}
+.button-box button {
+  padding:  8px 20px !important;
+}
+
+.grid {
+  display: flex;
+  flex-wrap: wrap;
+   padding: 0 4px;
+}
+
+.grid-image {
+  flex: 25%;
+  max-width: 25%;
+  padding: 0 4px;
+  margin-bottom: 20px;
+}
+
+textarea {
+  resize: none ;
+}
+
+
 /* media queries */
 
 @media (max-width: 767px){
+
+  .grid-image {
+     flex: 100%;
+    max-width: 100%;
+    margin-bottom: 20px;
+  }
+
+  .room-detail a {
+  font-size: 16px !important;
+}
 
   .navbar .container {
     padding: 0 20px;
@@ -630,7 +665,7 @@ pd-3 {
 .profile-text{
   text-align: center;
   margin-top:3.7rem;
-  line-height: 4px;
+  line-height: 16px;
 }
 
 .img-resized {
