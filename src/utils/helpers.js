@@ -431,6 +431,7 @@ const helperMethods = {
 
 	// check for follower
 	async checkForFollower (table, user_uuid, follower_uuid) {
+		console.log(follower_uuid);
 		const follower = await table.findOne({
 			where: { user_uuid, follower_uuid },
 			attributes: {
@@ -452,6 +453,18 @@ const helperMethods = {
 		});
 		return follower;
 	},
+
+	// un-follow user
+	async unFollowUser(table, user_uuid, follower_uuid){
+		try {
+		 await table.destroy({
+		  where: { user_uuid, follower_uuid },
+		});
+		} catch (error) {
+		 console.log(error);
+		}
+	},
+
 
 	// list all user's follower
 	async listAllFollowers (table, user_uuid) {

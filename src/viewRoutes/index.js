@@ -61,9 +61,9 @@ router.get('/profile', function(req, res, next) {
     res.render('profile', { title: 'FIFA FANS', style: 'style.css' });
 });
 //this is profile page
-router.get('/friendprofile', function(req, res, next) {
-    res.render('friendprofile', { title: 'FIFA FANS', style: 'style.css' });
-});
+// router.get('/friendprofile', function(req, res, next) {
+//     res.render('friendprofile', { title: 'FIFA FANS', style: 'style.css' });
+// });
 
 //this is profile page
 router.get('/forgetpass_verification', function(req, res, next) {
@@ -104,6 +104,9 @@ router.get('/roommessagebox', function(req, res, next) {
 //     res.render('news', { title: 'FIFA FANS', style: 'style.css' });
 // });
 router.get('/view-news', NewsController.viewNew);
+
+
+router.get('/view-user-details', NewsController.viewNew);
 
 
 // for rooms page

@@ -1,7 +1,7 @@
 import model from './../models';
 import { sendErrorResponse, sendSuccessResponse } from './../utils/sendResponse';
 import helperMethods from './../utils/helpers';
-const { User, Profile } = model;
+const { User, Profile, Follower } = model;
 
 
 // helper method for mediaType
@@ -43,17 +43,24 @@ const UserController = {
       try {
          let id;
          let uuid;
+         let follow;
          if (req.userData) {
           uuid = req.userData.uuid
          }
-         const { user_uuid } = req.query;
+         const { user_uuid, my_uuid } = req.query;
          if (!user_uuid) {
            id = uuid;
          } else {
+           follow = await helperMethods.checkForFollower(Follower, user_uuid, my_uuid);
            id = user_uuid
          }
          const user = await helperMethods.getAUserByUuid(User, id);
          if (!user) return sendErrorResponse(res, 404, 'User not found');
+         if (!follow) { 
+           user.following  = false
+          } else {
+            user.following = true
+          }
         //  return sendSuccessResponse(res, 200, user);
         const posts = await user.posts.map((x) => {
          x.media = getMediaType(x);
