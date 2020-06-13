@@ -36,7 +36,7 @@ const AuthController = {
 			// trims the req.body to remove trailling spaces
 			const userData = magicTrimmer(req.body);
 			// destructuring user details
-			const { name, username, email, password, role, club, status } = userData;
+			const { name, username, email, password, role, phone, status } = userData;
 
 			// validation of inputs
 			const schema = {
@@ -63,9 +63,12 @@ const AuthController = {
 				name,
 				email,
 				password: hashedPassword,
-				club,
+				phone,
 				status,
-				role: role === 'user' ? 'user' : 'admin'
+				role:
+
+						role === 'user' ? 'user' :
+						'admin'
 			});
 
 			//create a binary 64 string for user identity and save user
@@ -350,7 +353,7 @@ const AuthController = {
 
 			return sendSuccessResponse(res, 200, { userDetails, profileData });
 		} catch (e) {
-		console.log(e);
+			console.log(e);
 			return next(e);
 		}
 	}
