@@ -15,16 +15,16 @@
                     <div class="room-profile card mb-5">
                         <div class="room-section">
                             <div class="img-text ">
-                                <img src="img/bg-img.jpg" class="img-fluid">
+                                <img src="{{data.room.icon}}" class="img-fluid">
                             </div>
                             <div class="room-info">
                                 <h4 class="section-title">{{data.room.name}}</h4>
                                 <p>{{data.room.description}}</p>
                                 <div class="d-flex justify-content-between">
-                                    <div>
+                                    {{!-- <div>
                                         <span> <b>2234</b> Likes </span>
                                         <span class="pl-3"> <b>2234</b> Views </span>
-                                    </div>
+                                    </div> --}}
                                     <div>
                                         <button class="btn btn-primary" onclick="joinGroup('{{data.room.uuid}}')" id="join-g-btn"
                                             style="">Join</button>

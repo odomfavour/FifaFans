@@ -3,6 +3,24 @@
   padding: 0;
   box-sizing: border-box;
 }
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #ffffff; 
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #005391; 
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #005391; 
+}
 
 body {
   font-family: "Nunito Sans", sans-serif;
@@ -75,6 +93,36 @@ h4, h2, h5, h6 {
 .d-flex {
   display: flex;
     /* justify-content: center; */
+}
+
+
+.post-bg {
+    background-color: #bcdce9;
+    min-height: 400px;
+    min-width: 600px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+    max-width: 600px;
+    padding: 20px;
+}
+
+.post-txt {
+  text-align: center;
+  top: 50%;
+  left: 50%;
+  width: -webkit-fill-available;
+  color: white;
+}
+
+.post-txt-small {
+  text-align: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
 }
 
 a {
@@ -308,6 +356,7 @@ a {
 .fan-fn {
   color: #1ebba3;
   font-size: 18px;
+  margin:0
 }
 
 .fan-time {
@@ -411,13 +460,51 @@ a {
 }
 
 textarea {
-  resize: none ;
+   border: 0 none white;
+    overflow: hidden;
+    padding: 0;
+    outline: none;
+    background-color: #D0D0D0;
 }
 
 
 /* media queries */
 
 @media (max-width: 767px){
+  .post-bg {
+    background-color: #bcdce9;
+    min-height: 400px;
+    min-width: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+    padding: 20px;
+}
+
+.post-txt {
+  text-align: center;
+  top: 50%;
+  left: 50%;
+  width: -webkit-fill-available;
+  color: white;
+}
+
+.post-txt-small {
+  text-align: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+}
+
+  .img-text img {
+    width: 100%;
+    height: 15rem;
+    height: 16rem;
+    object-fit: fill;
+}
 
   .grid-image {
      flex: 100%;
@@ -672,9 +759,9 @@ pd-3 {
   height: 500 !important;
 }
 
-.img-boxz {
+/* .img-boxz {
   width: 300px
-}
+} */
 
 .img-boxz img {
   width: calc(112%);

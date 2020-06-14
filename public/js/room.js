@@ -87,12 +87,13 @@ async function suggestRooms() {
       .then((response) => {
         console.log(response.data.data)
         const array = [];
+        let shuffled = [];
         response.data.data.forEach(x => {
           const el = suggestedRooms(x);
           array.push(el);
         });
-        
-        document.getElementById("sug-rooms").innerHTML = array.join(" ");
+        shuffled =  array.sort(() => Math.random() - 0.5);
+        document.getElementById("sug-rooms").innerHTML = shuffled.join(" ");
   })
 }
 
