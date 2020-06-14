@@ -65,11 +65,7 @@ const submitForm = async (e) => {
 						return (window.location.href = '/verify-message');
 					}
 					else {
-						const errorValues =
-
-								x.error === 'Internal Server Error' ? { name: `${x.error}, Please Try Again Later` } :
-								x.error;
-						const errorArray = Object.values(errorValues);
+						const errorArray = Object.values(x);
 						errorArray.forEach((item) => printMessage(item, 'alert-danger'));
 					}
 				});
