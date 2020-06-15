@@ -9,10 +9,11 @@ const duri = new Datauri();
 
 const uploadimage = async (file, public_id = '') => {
 	upload.single('avatar');
-	const dataUri = duri.format(path.basename(file.originalname), file.buffer);
+	const dataUri = duri.format(path.basename(file.originalname || 'banner'), file.buffer);
 	const { content } = dataUri;
 	const result = await cloudinary.v2.uploader.upload(content,
 	  {
+		 width: 600, height: 400, crop: "scale" ,
 		public_id: public_id !== '' ? `media_mall/${public_id}` : `media_mall/${uuid()}`,
 	  });
 	return result.secure_url;
