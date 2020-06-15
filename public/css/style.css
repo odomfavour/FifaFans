@@ -34,6 +34,11 @@ h4, h2, h5, h6 {
   color: rgb(0, 83, 145) !important;
   font-weight: 900 !important;
 }
+
+.hidden {
+  display: none !important;
+}
+
 .wrapper {
     display: flex;
     align-items: center;
@@ -466,6 +471,7 @@ textarea {
     outline: none;
     background-color: #D0D0D0;
 }
+
 
 
 /* media queries */

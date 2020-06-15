@@ -160,7 +160,7 @@ const allRooms = (data) => {
           <div class="text-center">
               <img src="${ data.icon}" class="img-prof img-fluid">
           </div>
-          <div class=" room-detail">
+          <div class="room-detail">
               <h4><strong><span><a href="#">${ data.name}</a></span></strong>
                   <span><button class="btn btn-info d-flex pull-right" onclick="gotoRoom('${data.uuid}')">Join Room</button></span>
               </h4>
@@ -188,6 +188,36 @@ const suggestedRooms = (data) => {
 `;
   
 }
+
+const filteredRoomSearch = () => {
+  console.log('hey')
+          // Declare variables
+          let input, filter, roomsContainer, room, a, i, txtValue;
+          input = document.getElementById("roomSearchInput");
+          filter = input.value.toUpperCase();
+          roomsContainer = document.getElementById("all-rooms-layout" );
+          room = roomsContainer.getElementsByClassName("room-box");
+  console.log(room)
+          
+
+          // Loop through all list items, and hide those who don't match the search query
+          for (i = 0; i < room.length; i++) {
+            a = room[i].getElementsByTagName("a")[0];
+            txtValue = a.textContent || a.innerText;
+            if (
+              txtValue.toUpperCase().indexOf(filter) >
+              -1
+            ) {
+              room[i].classList.remove('hidden');
+            } else {
+              room[i].classList.add("hidden");
+            }
+             
+  }
+ console.log(room.length);
+}
+        
+filteredRoomSearch()
 
 const loadPage = async () => {
   try {
