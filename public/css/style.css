@@ -101,6 +101,12 @@ h4, h2, h5, h6 {
 }
 
 
+.side-room-box {
+    border-bottom: 1px solid #ccc;
+    padding: 15px 0;
+}
+
+
 .post-bg {
     background-color: #bcdce9;
     min-height: 400px;
@@ -109,7 +115,6 @@ h4, h2, h5, h6 {
     background-repeat: no-repeat;
     background-size: cover;
     position: relative;
-    max-width: 600px;
     padding: 20px;
 }
 
@@ -486,6 +491,11 @@ textarea {
     background-size: cover;
     position: relative;
     padding: 20px;
+}
+
+.navbar-brand {
+  text-transform: capitalize;
+  font-size: 28px;
 }
 
 .post-txt {

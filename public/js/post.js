@@ -216,20 +216,18 @@ const displayComments = (data) => {
     const array = [];
     if (data) { 
         data.forEach(x => {
-        const element =
-      ` <div class="d-flex justify-content-start mt-3">
+        const element = ` <div class="d-flex justify-content-start mt-3">
           <div>
             <img src="img/4.jpg" class="img-prof ">
           </div>
           <div class="ml-2">
-            <h4 class="fan-name">${x.user_name}<span class="fan-fn"> Player</span> <span class="fan-time">10(s) ago</span>
-            </h4>
+            <h4 class="fan-name">${x.user_name}<p class="fan-fn">Arsenal <span class="fan-fn">Player</span></p> <span class="fan-time">10(s) ago</span></h4>
               <p class="comment-p">${x.comment}</p>
           </div>
           
         </div>
         <hr>
-         ` 
+         `; 
     array.push(element);    
     });
     }
@@ -263,7 +261,7 @@ const generalPost = (data) => {
                     <div class="ml-2">
                       <h4 class="fan-name">${
                         data.owner_name
-                      }<span class="fan-fn"> <br>Player</span><br> <p class="fan-fn">Arsenal</p> <span class="fan-time">10(s) ago</span></h4>
+                      }<p class="fan-fn">Arsenal <span class="fan-fn">Player</span></p> <span class="fan-time">10(s) ago</span></h4>
                     
                     </div>
                     
@@ -303,7 +301,7 @@ const generalPost = (data) => {
                           }-comment-input" class="form-control">
                           
                           </textarea>
-                          <textarea rows="1" style="height:1em;" id="text"></textarea>
+                         
                           </div>
                           <p class="fa fa-send border-none clip-attach" onclick="commentPost('${
                             data.uuid
