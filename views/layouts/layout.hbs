@@ -21,6 +21,7 @@
 
     var base = 'api/v1/';
     var theToken = localStorage.getItem('token');
+    console.log(theToken)
     if (!theToken) {
       if (window.location.pathname != '/login' && window.location.pathname !== '/' && window.location.pathname !== '/signup') {
         alert('Please Login')
