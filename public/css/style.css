@@ -90,9 +90,15 @@ h4, h2, h5, h6 {
     text-align: center;
 }
 
-.d-flex {
+.d-flex-d {
   display: flex;
     /* justify-content: center; */
+}
+.search-box{
+  padding: 2px 7px;
+  margin-bottom: 9px;
+  border-radius: 50px;
+  border: 1px solid #005391;
 }
 
 a {
@@ -408,7 +414,9 @@ a {
   width: 200px;
 }
 
-
+.d-flex-b{
+  display: flex;
+}
 /* media queries */
 
 @media (max-width: 767px){
@@ -805,3 +813,19 @@ textarea { resize: none; }
 .bold {
   font-weight: 700;
 }
+
+.room-detail p{
+  margin: 0;
+}
+.bd-bottom{
+  border-bottom:1px solid;
+}
+.btn-info{
+  color: #fff;
+  background-color: #005391;
+  border-color: #005391;
+}
+.width-100{
+  width:100%;
+}
+
