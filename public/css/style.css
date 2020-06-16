@@ -34,6 +34,11 @@ h4, h2, h5, h6 {
   color: rgb(0, 83, 145) !important;
   font-weight: 900 !important;
 }
+
+.hidden {
+  display: none !important;
+}
+
 .wrapper {
     display: flex;
     align-items: center;
@@ -96,6 +101,12 @@ h4, h2, h5, h6 {
 }
 
 
+.side-room-box {
+    border-bottom: 1px solid #ccc;
+    padding: 15px 0;
+}
+
+
 .post-bg {
     background-color: #bcdce9;
     min-height: 400px;
@@ -104,7 +115,6 @@ h4, h2, h5, h6 {
     background-repeat: no-repeat;
     background-size: cover;
     position: relative;
-    max-width: 600px;
     padding: 20px;
 }
 
@@ -439,6 +449,36 @@ a {
 }
 
 
+.button-box {
+  padding: 10px 60px 60px;
+}
+.button-box button {
+  padding:  8px 20px !important;
+}
+
+.grid {
+  display: flex;
+  flex-wrap: wrap;
+   padding: 0 4px;
+}
+
+.grid-image {
+  flex: 25%;
+  max-width: 25%;
+  padding: 0 4px;
+  margin-bottom: 20px;
+}
+
+textarea {
+   border: 0 none white;
+    overflow: hidden;
+    padding: 0;
+    outline: none;
+    background-color: #D0D0D0;
+}
+
+
+
 /* media queries */
 
 @media (max-width: 767px){
@@ -451,6 +491,11 @@ a {
     background-size: cover;
     position: relative;
     padding: 20px;
+}
+
+.navbar-brand {
+  text-transform: capitalize;
+  font-size: 28px;
 }
 
 .post-txt {
@@ -475,6 +520,16 @@ a {
     height: 15rem;
     height: 16rem;
     object-fit: fill;
+}
+
+  .grid-image {
+     flex: 100%;
+    max-width: 100%;
+    margin-bottom: 20px;
+  }
+
+  .room-detail a {
+  font-size: 16px !important;
 }
 
   .navbar .container {
@@ -713,7 +768,7 @@ pd-3 {
 .profile-text{
   text-align: center;
   margin-top:3.7rem;
-  line-height: 4px;
+  line-height: 16px;
 }
 
 .img-resized {

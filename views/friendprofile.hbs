@@ -4,12 +4,12 @@
     <section id="landing-page">
         <div class="container mt-5">
             <div class="row mb-5">
-                <div class="col-md-4 hidden-mobile mb-5">
+                <div class="col-md-4 mb-5">
                     <div> {{> sidenav}}</div>
                 </div>
                 <div class="col-lg-8 col-12">
-                    <div class="profile-section mb-5">
-                        <div class="profile-img card">
+                    <div class="card profile-section p-0 mb-5">
+                        <div class="profile-img">
                             <div class="img-text ">
                                 <img src="img/bg-img.jpg" class="img-fluid">
                             </div>
@@ -95,9 +95,14 @@
                             </div>
                            
                             <div class="tab-pane fade" id="media" role="tabpanel" aria-labelledby="media-tab">
-                                {{#each user.posts}}
-                                <div>{{{this.media}}}</div>
-                                {{/each}}
+
+                                <div class="grid">
+                                    {{#each user.posts}}
+                                    <div class="grid-image">{{{this.media}}}</div>
+                                    {{/each}}
+                                    
+                                </div>
+                                
                             </div>
                            
                         </div>

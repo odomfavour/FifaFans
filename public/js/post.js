@@ -5,7 +5,7 @@ const layout = document.getElementById('post-layout');
 let comment = document.getElementsByClassName("comments");
 let commentSection = document.getElementsByClassName("comment-section");
 let commentButton = document.getElementsByClassName("comment-send");
-const userLayout = document.getElementById('media')
+const userLayout = document.getElementById('media-grid')
 const postLayout = document.getElementById('post')
 
 
@@ -151,15 +151,19 @@ const usersMedia = (data) => {
   console.log(data)
   // let layout = document.getElementById('post-layout');
   // layout
-  return `<div class="col-12 col-sm-6 col-lg-3">
-    <img class="w-100" src="/image-1.jpg" data-target="#carouselExample" data-slide-to="${data.uuid}">
-    ${getMediaType(data)}
-  </div>
-            
-        </div>
-        <hr style=" border: 2px solid #ccc">`;
+  return `
+    <div class="grid-image">${getMediaType(data)}</div>
+  `;
 }
 
+
+{/* <div class="col-12 col-sm-6 col-lg-3">
+  <img class="w-100" src="/image-1.jpg" data-target="#carouselExample" data-slide-to="${data.uuid}">
+    ${getMediaType(data)}
+  </div>
+
+</div>
+  <hr style=" border: 2px solid #ccc"> */}
 
 // allPost.addEventListener('click', listAllPosts)
 
@@ -212,20 +216,18 @@ const displayComments = (data) => {
     const array = [];
     if (data) { 
         data.forEach(x => {
-        const element =
-      ` <div class="d-flex justify-content-start mt-3">
+        const element = ` <div class="d-flex justify-content-start mt-3">
           <div>
             <img src="img/4.jpg" class="img-prof ">
           </div>
           <div class="ml-2">
-            <h4 class="fan-name">${x.user_name}<span class="fan-fn"> Player</span> <span class="fan-time">10(s) ago</span>
-            </h4>
+            <h4 class="fan-name">${x.user_name}<p class="fan-fn">Arsenal <span class="fan-fn">Player</span></p> <span class="fan-time">10(s) ago</span></h4>
               <p class="comment-p">${x.comment}</p>
           </div>
           
         </div>
         <hr>
-         ` 
+         `; 
     array.push(element);    
     });
     }
@@ -257,7 +259,9 @@ const generalPost = (data) => {
                       <img src="img/4.jpg" class="img-prof">
                     </div>
                     <div class="ml-2">
-                      <h4 class="fan-name">${data.owner_name}<span class="fan-fn"> <br>Player</span><br> <p class="fan-fn">Arsenal</p> <span class="fan-time">10(s) ago</span></h4>
+                      <h4 class="fan-name">${
+                        data.owner_name
+                      }<p class="fan-fn">Arsenal <span class="fan-fn">Player</span></p> <span class="fan-time">10(s) ago</span></h4>
                     
                     </div>
                     
@@ -280,7 +284,9 @@ const generalPost = (data) => {
                         <i class="fa fa-share-alt"></i> Share
                       </p>
                     </div>
-                    <div class="comment-section scrollable-comments" id="comments${data.uuid}">
+                    <div class="comment-section scrollable-comments" id="comments${
+                      data.uuid
+                    }">
                        ${displayComments(data.comment)}
                     </div>
                     <div class="d-flex justify-content-between mt-4 bt-2">
@@ -290,17 +296,37 @@ const generalPost = (data) => {
                       </div>
                       <div class=" flex-grow-1 pd-4 ml-2 ">
                         <div class="form-group green-border-focus">
-                          <textarea name="" placeholder="Write comments..."id="${data.uuid}-comment-input" class="form-control">
+                          <textarea name="" placeholder="Write comments..."id="${
+                            data.uuid
+                          }-comment-input" class="form-control">
                           
                           </textarea>
+                         
                           </div>
-                          <p class="fa fa-send border-none clip-attach" onclick="commentPost('${data.uuid}')"</p>
+                          <p class="fa fa-send border-none clip-attach" onclick="commentPost('${
+                            data.uuid
+                          }')"</p>
                         </div>
                       
                     </div>
                   </div>
                 </div>`;
 }
+
+// const tx = document.getElementsByTagName("textarea");
+// for (let i = 0; i < tx.length; i++) {
+//   tx[i].setAttribute(
+//     "style",
+//     "height:" + tx[i].scrollHeight + "px;overflow-y:hidden;"
+//   );
+//   tx[i].addEventListener("input", OnInput, false);
+// }
+
+// function OnInput() {
+//   this.style.height = "auto";
+//   this.style.height = this.scrollHeight + "px";
+// }
+
 
 const loadPosts = async () => {
   try {
