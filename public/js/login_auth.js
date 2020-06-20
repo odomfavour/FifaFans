@@ -1,23 +1,9 @@
-// const displayMessage = document.getElementById('message');
 const loginButton = document.getElementById('login-button');
 const loginLoader = document.querySelector('.lds-circle');
-// const email = document.getElementById('email');
-// const password = document.getElementById('password');
 
 if (loginButton) {
 	loginButton.addEventListener('click', submit);
 }
-
-// const printMessage = (message, className) => {
-// 	const messageDiv = document.createElement('div');
-// 	messageDiv.classList.add('alert', 'infor', 'text-center', className);
-// 	messageDiv.setAttribute('role', 'alert');
-// 	messageDiv.appendChild(document.createTextNode(message));
-// 	displayMessage.insertBefore(messageDiv, document.querySelector('#alert-message'));
-// 	setTimeout(() => {
-// 		document.querySelector('.alert').remove();
-// 	}, 5000);
-// };
 
 function submit (e){
 	e.preventDefault();
