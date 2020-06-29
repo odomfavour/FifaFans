@@ -30,13 +30,14 @@ socketClient.on("comments", (data) => {
 });
 
 const joinGroup = (group_uuid) => {
-  console.log(group_uuid);
+  console.log('here here here');
   socketClient.emit("join-room", { group_uuid });
 };
 
 const sendGroupMessage = (group_id) => {
   console.log(group_id);
   const message = document.getElementById("group-chat").value;
+  console.log(message)
   socketClient.emit(`${group_id}-message`, { message, group_id });
 };
 
@@ -70,7 +71,7 @@ socketClient.on("login_error", (data) => {
     Swal.fire(data.message, "", "error");
       console.log("nonsense");
         document.getElementById("lgn-btn").textContent = "Log-in";
-        // window.location.replace('/login');
+        window.location.replace('/login');
   } catch (error) {
     console.log(error);
   }

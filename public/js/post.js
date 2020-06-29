@@ -188,8 +188,6 @@ async function listAllPosts() {
 
 // socket io for posting comments 
 function commentPost(post_uuid) {
-    console.log(post_uuid)
-    // M.toast({html: 'Sending your comment....'})
     TOAST.infoToast('Sending your comment....');
     const post = document.getElementById(`${post_uuid}-comment-input`);
     socketClient.emit('post-comment', { post_uuid, post: post.value })

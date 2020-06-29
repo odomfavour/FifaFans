@@ -119,7 +119,8 @@ async function userRooms() {
 
 function gotoRoom(group_uuid){
   localStorage.setItem("group_uuid", group_uuid);
-  window.location.replace(`/room?group_uuid=${group_uuid}`)
+  joinGroup(group_uuid);
+  window.location.replace(`/room?group_uuid=${group_uuid}`);
 }
 
 function checkRoom() {
@@ -129,9 +130,11 @@ function checkRoom() {
   fetch(`${base}check-membership?group_uuid=${group_uuid}`, options)
       .then((res) => res.json())
       .then((response) => {
+        console.log(response.data)
         if (response.data !== 'not a member') {
+           console.log('here here here')
            document.getElementById('join-g-btn').style.display = 'none';
-           joinGroup (group_uuid)
+          //  joinGroup ( group_uuid )
         }
 
         if (response.data === 'not a member') {
