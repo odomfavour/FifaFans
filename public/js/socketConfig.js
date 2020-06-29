@@ -18,7 +18,7 @@ socketClient.on("comments", (data) => {
              </div>
              <div class="p-2 comments-content"> 
              <h5>${user.name}</h5>
-              <p class="color-green">${user.status}</p>
+              <p class="color-green">${user.club} ${user.status}</p>
              <p>${post}</p>
         </div>`;
   xyz.innerHTML = element;

@@ -404,6 +404,25 @@ const helperMethods = {
 		return datas;
 	},
 
+		// list all data in a post table
+		async listAllDataInPost (table) {
+			const datas = await table.findAll({
+				include: ['User'],
+				attributes: {
+					exclude: [
+						'updatedAt'
+					]
+				},
+				order: [
+					[
+						'createdAt',
+						'DESC'
+					]
+				]
+			});
+			return datas;
+		},
+
 	// find if a user have a friend
 	async checkForFriendship (table, user_uuid, friend_uuid) {
 		const friend = await table.findOne({
@@ -599,7 +618,7 @@ const helperMethods = {
 	},
 
 	// save post
-	async savePost(uuid, name, comment, post_uuid, Post){
+	async savePost(uuid, name, status, club, comment, post_uuid, Post){
 		const post = await Post.findOne({
 			where:{ uuid: post_uuid}
 		});
@@ -608,6 +627,8 @@ const helperMethods = {
 			{
 		  user_uuid: uuid,
 		  user_name: name,
+		  user_status: status,
+		  user_club: club,
 		  date_sent: new Date(),
 		  comment,
 	   });

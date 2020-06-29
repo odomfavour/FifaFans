@@ -193,6 +193,15 @@ function commentPost(post_uuid) {
     socketClient.emit('post-comment', { post_uuid, post: post.value })
     post.value = ''
   }
+
+
+function likePost(post_uuid, elem) {
+  elem.style.backgroundColor = "lightblue";
+  options.method = 'PUT'
+  fetch(`${base}/like-post?post_uuid=${post_uuid}&like=${true}`, options)
+  .then((res) => res.json())
+  .catch(e => TOAST.errorToast('Error occured'))
+}  
   
 
 function createNode(element) {
@@ -219,7 +228,7 @@ const displayComments = (data) => {
             <img src="img/4.jpg" class="img-prof ">
           </div>
           <div class="ml-2">
-            <h4 class="fan-name">${x.user_name}<p class="fan-fn">Arsenal <span class="fan-fn">Player</span></p> <span class="fan-time">10(s) ago</span></h4>
+            <h4 class="fan-name">${x.user_name}<p class="fan-fn">${x.user_club}<span class="fan-fn"> ${x.user_status}</span></p> <span class="fan-time">10(s) ago</span></h4>
               <p class="comment-p">${x.comment}</p>
           </div>
           
@@ -259,7 +268,11 @@ const generalPost = (data) => {
                     <div class="ml-2">
                       <h4 class="fan-name">${
                         data.owner_name
-                      }<p class="fan-fn">Arsenal <span class="fan-fn">Player</span></p> <span class="fan-time">10(s) ago</span></h4>
+                      }<p class="fan-fn">${
+                        data.User.club
+                      } <span class="fan-fn">${
+                        data.User.status
+                      }</span></p> <span class="fan-time">10(s) ago</span></h4>
                     
                     </div>
                     
@@ -272,7 +285,7 @@ const generalPost = (data) => {
                       </div>
                   <div class="tap-content-post">
                     <div class="d-flex justify-content-between m-bd">
-                      <p class="p-2 text-center">
+                      <p class="p-2 text-center" onclick="likePost('${data.uuid}', this)">
                         <i class="fa fa-thumbs-up"></i> Like
                       </p>
                       <p class="p-2 text-right">
