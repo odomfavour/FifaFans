@@ -36,11 +36,16 @@ const joinGroup = (group_uuid) => {
 
 const sendGroupMessage = (group_id) => {
   console.log(group_id);
-  const message = document.getElementById("group-chat").value;
-  socketClient.emit(`${group_id}-message`, { message, group_id });
+  let message = document.getElementById("group-chat");
+  
+  socketClient.emit(`${group_id}-message`, { message: message.value, group_id });
+  message.value = ""
+  // console.log(message)
 };
 
 socketClient.on("message", (data) => {
+  // let message = document.getElementById("group-chat").value;
+  // message = "";
   console.log(data);
   const { user, message } = data;
   console.log(user);
