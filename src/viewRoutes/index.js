@@ -124,6 +124,12 @@ router.get('/create_room', function(req, res, next) {
     res.render('create_room', { title: 'FIFA FANS', style: 'style.css' });
 });
 
+//for creating list of friends
+router.get('/friendslist', function(req, res, next) {
+    res.render('friendslist', { title: 'FIFA FANS', style: 'style.css' });
+});
+
+
 router.get('/view-news', NewsController.viewNew)
 
 
