@@ -99,6 +99,11 @@ router.get('/roommessagebox', function(req, res, next) {
     res.render('roommessagebox', { title: 'FIFA FANS', style: 'style.css'});
 });
 
+//this is contact page
+router.get('/contact', function(req, res, next) {
+    res.render('contact', { title: 'FIFA FANS', style: 'style.css'});
+});
+
 //this is message page
 // router.get('/news', function(req, res, next) {
 //     res.render('news', { title: 'FIFA FANS', style: 'style.css' });
