@@ -286,7 +286,7 @@ const generalPost = (data) => {
                   <div class="tap-content-post">
                     <div class="d-flex justify-content-between m-bd">
                       <p class="p-2 text-center" onclick="likePost('${data.uuid}', this)">
-                        <i class="fa fa-thumbs-up"></i> Like
+                        <i class="fa fa-thumbs-up"></i> Likes ${data.likes.length}
                       </p>
                       <p class="p-2 text-right">
                         <i class="fa fa-comments"></i> Comment

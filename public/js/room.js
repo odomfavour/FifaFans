@@ -145,14 +145,15 @@ function checkRoom() {
 }
 
 const myRoom = (data) => {
+  console.log(data['ChatRoom'])
   return `
     <div class="room-box d-flex">
       <div class="text-center">
-        <img src="${data.ChatRoom.icon}" class="img-prof img-fluid">
+        <img src="${data['ChatRoom'].icon}" class="img-prof img-fluid">
       </div>
       <div class="room-detail">
-        <p><strong><span><a href="#" class="room-name">${ data.ChatRoom.name}</a></span></strong>
-          <span><button class="btn btn-info pull-right" onclick="gotoRoom('${data.ChatRoom.uuid}')">Enter room</button></span>
+        <p><strong><span><a href="#" class="room-name">${ data['ChatRoom'].name}</a></span></strong>
+          <span><button class="btn btn-info pull-right" onclick="gotoRoom('${data['ChatRoom'].uuid}')">Enter room</button></span>
         </p>
         <span>50 Members</span>
       </div>
