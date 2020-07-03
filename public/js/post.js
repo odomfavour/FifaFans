@@ -313,6 +313,7 @@ const generalPost = (data) => {
                 </div>`;
 }
 
+
 // const tx = document.getElementsByTagName("textarea");
 // for (let i = 0; i < tx.length; i++) {
 //   tx[i].setAttribute(
@@ -337,6 +338,12 @@ const loadPosts = async () => {
     if (window.location.pathname == '/profile') {
       await listUserPosts()
     }
+
+    if (window.location.pathname == '/notification') {
+      let notificationCount = document.querySelector('.notification');
+      notificationCount.style.display = "none";
+    }
+
   } catch (error) {
     console.log(error);
   }
