@@ -15,7 +15,6 @@ export default async function (socket, io, user){
         await joinGroup(group_uuid, user, socket, io)
       }
       socket.join(group_uuid,  () => {
-        console.log(group_uuid)
         socket.on(`${group_uuid}-message`, async (data) => {
           console.log(data);
           const { message, group_id, parent_uuid } = data;

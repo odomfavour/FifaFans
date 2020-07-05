@@ -263,7 +263,7 @@ const generalPost = (data) => {
     return `<div class="card mt-5 pd-15" >
                   <div class="d-flex justify-content-start">
                     <div>
-                      <img src="img/4.jpg" class="img-prof">
+                      <img src="${data.profile.profile_pic || 'img/4.jpg'}" class="img-prof">
                     </div>
                     <div class="ml-2">
                       <h4 class="fan-name">${

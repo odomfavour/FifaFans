@@ -6,7 +6,7 @@ export default async function (socket, io, user){
   socket.on('post-comment', async (data) => {
     try {
       const { post_uuid, post } = data;
-      await helperMethods.savePost(user.uuid, user.name, user.status, user.club, post, post_uuid, Post);
+      await helperMethods.savePost(user.uuid, user.name,  user.status, user.club, post, post_uuid, Post);
       io.emit('comments', { post, post_uuid, user, date: Date() })
     } catch (error) {
         console.log(error);

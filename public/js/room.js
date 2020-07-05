@@ -134,7 +134,7 @@ function checkRoom() {
         if (response.data !== 'not a member') {
            console.log('here here here')
            document.getElementById('join-g-btn').style.display = 'none';
-          //  joinGroup ( group_uuid )
+           joinGroup ( group_uuid )
         }
 
         if (response.data === 'not a member') {
