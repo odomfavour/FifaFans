@@ -11,43 +11,33 @@ var socketClient = io("", {
 // this adds comment to a post.
 socketClient.on("comments", (data) => {
   const { post, post_uuid, user, date } = data;
-  console.log(data);
   const xyz = document.createElement("div");
   const element = `<div class="p-2 comment-img text-center"> 
              <img src="img/4.jpg" class="" alt="">
              </div>
              <div class="p-2 comments-content"> 
              <h5>${user.name}</h5>
-              <p class="color-green">${user.club} ${user.status}</p>
+              <p class="color-green">${user.status}</p>
              <p>${post}</p>
         </div>`;
   xyz.innerHTML = element;
   const post_comment = document.getElementById(`comments${post_uuid}`);
   post_comment.appendChild(xyz);
-  //  M.toast({html: 'Post sent....'})
-  // tata.success('Success', 'Post sent....')
   TOAST.successToast("Post sent....");
 });
 
 const joinGroup = (group_uuid) => {
-  console.log('here here here');
   socketClient.emit("join-room", { group_uuid });
 };
 
 const sendGroupMessage = (group_id) => {
-  console.log(group_id);
-  const message = document.getElementById("group-chat").value;
-  console.log(message)
-  socketClient.emit(`${group_id}-message`, { message, group_id });
+  let message = document.getElementById("group-chat");
+  socketClient.emit(`${group_id}-message`, { message: message.value, group_id });
+  message.value = "";
 };
 
 socketClient.on("message", (data) => {
-  console.log(data);
   const { user, message } = data;
-  console.log(user);
-  console.log(message);
-  // console.log(data)
-
   const ab = document.createElement("div");
   ab.classList.add("mb-3");
 
@@ -60,16 +50,13 @@ socketClient.on("message", (data) => {
       
       `;
   ab.innerHTML = content;
-  // console.log(ab)
   const post_message = document.getElementById("post-panel");
   post_message.appendChild(ab);
-  // console.log(post_message)
 });
 
 socketClient.on("login_error", (data) => {
   try {
     Swal.fire(data.message, "", "error");
-      console.log("nonsense");
         document.getElementById("lgn-btn").textContent = "Log-in";
         window.location.replace('/login');
   } catch (error) {

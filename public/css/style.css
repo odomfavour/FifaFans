@@ -486,6 +486,36 @@ textarea {
     background-color: #D0D0D0;
 }
 
+.socials ul {
+  display: flex;
+  list-style: none;
+  justify-content: space-evenly;
+  margin-top: 40px;
+}
+
+.socials ul li {
+  background: #005391;
+  color: #fff;
+  padding: 10px 15px;
+  border-radius: 50%;
+
+}
+
+.socials i {
+  color: #fff;
+}
+
+.section-title h3 {
+  font-weight: 900;
+}
+
+.centered-image {
+  background: linear-gradient(45deg, black, transparent),url('../img/verify.jpg') no-repeat;
+  background-position: bottom left;
+  background-size: cover;
+  color: #fff;
+}
+
 /* media queries */
 
 @media (max-width: 767px){
@@ -498,6 +528,10 @@ textarea {
     background-size: cover;
     position: relative;
     padding: 20px;
+}
+
+.contact-image {
+  display: none;
 }
 
 .navbar-brand {

@@ -244,7 +244,11 @@ const loadPage = async () => {
 }
 
 if (window.location.pathname == '/room') {
-  checkRoom();
+  window.onload = () => {
+    checkRoom();
+    console.log('I am here')
+  }
+
 }
 
 loadPage()
