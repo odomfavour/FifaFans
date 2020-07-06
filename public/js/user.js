@@ -88,17 +88,27 @@ const createFriend = (data) => {
   return `<div class="col-md-6">
   <div class="friend_list room-box  d-flex-d">
      <div class="text-center">
-       <img src="${data['Profile'].profile_pic || 'img/4.jpg'}" class="img-prof img-fluid">
+       <img src="${
+         data["Profile"].profile_pic || "img/4.jpg"
+       }" class="img-prof img-fluid">
      </div>
      <div class="room-detail all-list">
-         <p><strong><span><a href="#">${data['User'].name}</a></span></strong>
-         <span><button class="btn btn-info pull-right" onclick="">Message</button></span>
+         <p onclick="getUserDetails('${
+           data["User"].uuid
+         }')"><strong><span><a href="#">${data["User"].name}</a></span></strong>
+         <span><button class="btn btn-info pull-right" onclick="messagePage()">Message</button></span>
        </p>
-       <p><span class="fan-fn"> ${data['User'].club} </span><span class="fan-fn"> (${data['User'].status})</span></p>
+       <p><span class="fan-fn"> ${
+         data["User"].club
+       } </span><span class="fan-fn"> (${data["User"].status})</span></p>
        <p>50 Followers</p>
      </div>
   </div>
 </div>`;
+}
+
+function messagePage() {
+  window.location.href = '/message'
 }
 
 const listFollowers = () => {

@@ -8,8 +8,7 @@ let commentButton = document.getElementsByClassName("comment-send");
 const userLayout = document.getElementById('media-grid')
 const postLayout = document.getElementById('post')
 
-const removeBtn = document.getElementById('remove-btn');
-removeBtn.addEventListener('click', removeMessageBox)
+
 
 
 console.log(layout)

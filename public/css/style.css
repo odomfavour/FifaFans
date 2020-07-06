@@ -529,7 +529,7 @@ textarea {
   color: #fff !important;
 }
 
-.message-box {
+/* .message-box {
   position:fixed;
   bottom:0;
   width:368px;
@@ -547,7 +547,7 @@ textarea {
 
 .chat-layout {
   justify-content: space-between;
-}
+} */
 
 /* media queries */
 
