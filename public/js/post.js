@@ -9,6 +9,8 @@ const userLayout = document.getElementById('media-grid')
 const postLayout = document.getElementById('post')
 
 
+
+
 console.log(layout)
 const allPost = document.getElementById("getAllPosts")
 
@@ -322,6 +324,18 @@ const generalPost = (data) => {
                     </div>
                   </div>
                 </div>`;
+}
+
+function messageBox() {
+  return `
+
+  `
+}
+
+function removeMessageBox(e) {
+  if (e.target.classList.contains('remove-btn')) {
+    e.target.parentElement.parentElement.remove();
+  }
 }
 
 
