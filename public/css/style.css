@@ -529,6 +529,26 @@ textarea {
   color: #fff !important;
 }
 
+.message-box {
+  position:fixed;
+  bottom:0;
+  width:368px;
+  right:60px; 
+}
+
+.close-btn {
+  justify-content: flex-end;
+  padding: 10px 20px 0 0;
+}
+
+.close-btn a{
+  color: #000;
+}
+
+.chat-layout {
+  justify-content: space-between;
+}
+
 /* media queries */
 
 @media (max-width: 767px){

@@ -8,6 +8,9 @@ let commentButton = document.getElementsByClassName("comment-send");
 const userLayout = document.getElementById('media-grid')
 const postLayout = document.getElementById('post')
 
+const removeBtn = document.getElementById('remove-btn');
+removeBtn.addEventListener('click', removeMessageBox)
+
 
 console.log(layout)
 const allPost = document.getElementById("getAllPosts")
@@ -311,6 +314,18 @@ const generalPost = (data) => {
                     </div>
                   </div>
                 </div>`;
+}
+
+function messageBox() {
+  return `
+
+  `
+}
+
+function removeMessageBox(e) {
+  if (e.target.classList.contains('remove-btn')) {
+    e.target.parentElement.parentElement.remove();
+  }
 }
 
 
