@@ -84,3 +84,44 @@ const unFollowUser = (uuid) => {
 
 }
 
+const createFriend = (data) => {
+  return `<div class="col-md-6">
+  <div class="friend_list room-box  d-flex-d">
+     <div class="text-center">
+       <img src="${data['Profile'].profile_pic || 'img/4.jpg'}" class="img-prof img-fluid">
+     </div>
+     <div class="room-detail all-list">
+         <p><strong><span><a href="#">${data['User'].name}</a></span></strong>
+         <span><button class="btn btn-info pull-right" onclick="">Message</button></span>
+       </p>
+       <p><span class="fan-fn"> ${data['User'].club} </span><span class="fan-fn"> (${data['User'].status})</span></p>
+       <p>50 Followers</p>
+     </div>
+  </div>
+</div>`;
+}
+
+const listFollowers = () => {
+  options.methos = 'GET';
+  fetch(`${base}list-followers`, options)
+   .then((res) => res.json())
+   .then((response) => {
+     if (response.status != 'error' && response.data.length !== 0) {
+      console.log('this is response',response);
+      let array = []; 
+       response.data.forEach(element => {
+        const el = createFriend(element)
+        array.push(el);
+       });
+       document.getElementById('all_friends').innerHTML = array.join(" ");
+     }
+   })
+   .catch(e => console.log(e)); 
+}
+
+
+try {
+  listFollowers()
+} catch (error) {
+  console.log(error);
+}
