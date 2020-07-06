@@ -85,8 +85,8 @@ const unFollowUser = (uuid) => {
 }
 
 const createFriend = (data) => {
-  return `<div class="col-md-6">
-  <div class="friend_list room-box  d-flex-d">
+  return `<div class="col-md-6 friend_list">
+  <div class=" room-box  d-flex-d">
      <div class="text-center">
        <img src="${data['Profile'].profile_pic || 'img/4.jpg'}" class="img-prof img-fluid">
      </div>
