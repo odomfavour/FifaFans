@@ -507,8 +507,8 @@ const helperMethods = {
 	// list all user's follower
 	async listAllFollowers (table, user_uuid) {
 		const followers = await table.findAll({
-			// include: User,
 			where: { user_uuid, blocked: false },
+			include: ['User', 'Profile'],
 			attributes: {
 				exclude: [
 					'createdAt',

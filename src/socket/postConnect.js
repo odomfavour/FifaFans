@@ -2,6 +2,7 @@ import models from '../models';
 import helperMethods from '../utils/helpers';
 const { ChatRoom, ChatRoomMember, RoomChat, Socket, User, Post } = models;
 export default async function (socket, io, user){
+  console.log(user);
   // a user joins a room onces
   socket.on('post-comment', async (data) => {
     try {
