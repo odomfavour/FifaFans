@@ -136,6 +136,7 @@ const profileObject = (data) => {
 }
 
 const fillEditInputs = (data) => {
+    console.log('this is data',data);
     input_profile_fullname.value = data.name;
     input_profile_email.value = data.email;
     input_profile_username.value = data.username;
@@ -156,7 +157,7 @@ const fillInDetails = (data) => {
 
 const fillContact = (data) => {
     input_club_profile.value = data.club;
-    input_address_profile.value = data.address;
+    // input_address_profile.value = data.address;
     input_language_profile.value = data.profiles[0].language !== undefined ? data.profiles[0].language : '';
     input_website_profile.value = data.profiles[0].website !== undefined ? data.profiles[0].website : '';
 }
@@ -167,16 +168,16 @@ function getProfile() {
         .then(res => res.json())
         .then(x => {
             console.log(x);
-            if (x.status != 'error') {
+            if (x.status !== 'error') {
                 username_profile.innerText = x.data.username;
                 localStorage.setItem('my_uuid', x.data.uuid);
                 localStorage.setItem('profile_pics', x.data.profiles[0].profile_pic);
-                post_profile_image.src = x.data.profiles[0].profile_pic;
                 console.log(localStorage.getItem('my_uuid'));
                 if (window.location.pathname == '/profile') { profileObject(x.data) };
                 if (window.location.pathname == '/editprofile') { fillEditInputs(x.data) };
                 if (window.location.pathname == '/aboutuser') { fillInDetails(x.data) };
                 if (window.location.pathname == '/usercontactinfo') { fillContact(x.data) };
+                 post_profile_image.src = x.data.profiles[0].profile_pic;
             }
         })
         .catch((e) => {console.log(e)})
@@ -265,7 +266,12 @@ function changePassword(e) {
 
 
 if (window.location.pathname !== '/login' && window.location.pathname !== '/signup') {
-    getProfile()
+    try {
+        getProfile()
+    } catch (error) {
+        console.log(error);
+    }
+    
 }
 
 //side nave section

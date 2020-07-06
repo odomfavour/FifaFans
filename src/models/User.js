@@ -76,7 +76,7 @@ module.exports = (sequelize, DataTypes) => {
 		User.belongsTo(models.Follower, {
 			foreignKey: 'uuid',
 			target: 'follower_uuid',
-			as: 'profile',
+			as: 'follower',
 			onDelete: 'CASCADE'
 		})
 
