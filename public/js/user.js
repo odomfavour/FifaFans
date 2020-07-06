@@ -15,8 +15,6 @@ function getUserDetails(user_uuid) {
 
 
  function searchUser() {
-   
-   console.log('it is getting a string')
   options.method = "GET"
    fetch(`${base}/search-user?input=${userSearchInput.value}`, options)
   .then((res) => res.json())

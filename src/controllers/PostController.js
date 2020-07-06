@@ -88,6 +88,7 @@ const PostController = {
              where:{ uuid: post_uuid}
          });
          if (!post) return sendErrorResponse(res, 404, 'post not found');
+         if (post.likes == null) {post.likes = [] }
          await post.likes.push(
              {
            user_uuid: uuid,
@@ -129,7 +130,7 @@ const PostController = {
     //list platform post
     async listPosts(req, res) {
       try {
-        const datas = await helperMethods.listAllDataInTable(Post);
+        const datas = await helperMethods.listAllDataInPost(Post);
         return sendSuccessResponse(res, 200, datas);
       } catch (error) {
         console.log(error);

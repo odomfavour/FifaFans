@@ -209,7 +209,7 @@ a {
 
 .imgprofile img {
     border: 1px solid;
-    border-radius: 50%;
+    border-radius: 30%;
     background-color: #005391;
     height: 100px;
 }
@@ -361,7 +361,7 @@ a {
     height: 50px;
     border-radius: 50%;
     border: 2px solid #772020;
-    object-fit:cover;
+    object-fit:fill;
 }
 
 .flex-end {
@@ -450,7 +450,7 @@ a {
 }
 
 #right .news-image {
-  width: 100px;
+  width: 200px;
   height: 100px;
 }
 
@@ -518,6 +518,19 @@ textarea {
   background-position: bottom left;
   background-size: cover;
   color: #fff;
+}
+
+.notification {
+    background: red;
+    padding: 2px;
+    border-radius: 50%;
+    position: absolute;
+    top: 14px;
+    font-size: 10px;
+}
+
+.notification:hover {
+  color: #fff !important;
 }
 
 /* media queries */

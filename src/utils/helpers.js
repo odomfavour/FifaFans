@@ -404,6 +404,44 @@ const helperMethods = {
 		return datas;
 	},
 
+		// list all data in a post table
+		async listAllDataInPost (table) {
+			let datas = await table.findAll({
+				include: ['User'],
+				attributes: {
+					exclude: [
+						'updatedAt'
+					]
+				},
+				order: [
+					[
+						'createdAt',
+						'DESC'
+					]
+				]
+			});
+			if (datas) {
+				const xxx =   Promise.all(datas.map(  async (x) => {
+					const profile =  await Profile.findOne({
+						where: { user_uuid: x.dataValues.user_uuid },
+						attributes: {
+							exclude: [
+								'createdAt',
+								'updatedAt'
+							]
+						}
+					});
+					if(profile){ x.dataValues.profile = profile.dataValues };
+					return x;
+				}))
+				console.log(await xxx)
+				datas = await xxx;
+				console.log('this is data',datas)
+				return datas;
+			}
+			
+		},
+
 	// find if a user have a friend
 	async checkForFriendship (table, user_uuid, friend_uuid) {
 		const friend = await table.findOne({
@@ -599,7 +637,7 @@ const helperMethods = {
 	},
 
 	// save post
-	async savePost(uuid, name, comment, post_uuid, Post){
+	async savePost(uuid, name, profile_pic, status, club, comment, post_uuid, Post){
 		const post = await Post.findOne({
 			where:{ uuid: post_uuid}
 		});
@@ -607,7 +645,10 @@ const helperMethods = {
 		await post.comment.push(
 			{
 		  user_uuid: uuid,
+		  user_image: profile_pic,
 		  user_name: name,
+		  user_status: status,
+		  user_club: club,
 		  date_sent: new Date(),
 		  comment,
 	   });
