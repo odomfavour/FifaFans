@@ -13,6 +13,10 @@ const location_profile = document.getElementById('location-profile');
 const input_profile_fullname = document.getElementById('input_profile_fullname');
 const input_profile_username = document.getElementById('input_profile_username');
 const input_profile_email = document.getElementById('input_profile_email');
+const profile_image_upload = document.getElementById('profile_image_upload');
+const profile_pics = document.getElementById('profile_pics');
+const post_profile_image = document.getElementById('post_profile_image');
+const profile_page_name = document.getElementById('profile_page_name');
 const input_profile_gender = document.getElementById('input_profile_gender');
 const input_profile_status = document.getElementById('input_profile_status');
 const input_short_bio_profile = document.getElementById('input_short_bio_profile');
@@ -135,8 +139,11 @@ const fillEditInputs = (data) => {
     input_profile_fullname.value = data.name;
     input_profile_email.value = data.email;
     input_profile_username.value = data.username;
+    profile_page_name.innerText = data.name;
+    profile_pics.src = data.profiles[0].profile_pic;
     const el = input_profile_status.options;
     Array.from(el).forEach(element => {
+        console.log(element);
         if (element.text == data.status) { element.selected = true }
     });
 };
@@ -163,6 +170,8 @@ function getProfile() {
             if (x.status != 'error') {
                 username_profile.innerText = x.data.username;
                 localStorage.setItem('my_uuid', x.data.uuid);
+                localStorage.setItem('profile_pics', x.data.profiles[0].profile_pic);
+                post_profile_image.src = x.data.profiles[0].profile_pic;
                 console.log(localStorage.getItem('my_uuid'));
                 if (window.location.pathname == '/profile') { profileObject(x.data) };
                 if (window.location.pathname == '/editprofile') { fillEditInputs(x.data) };
@@ -188,6 +197,7 @@ function editProfile(e) {
         formData.append('name', input_profile_fullname.value);
         formData.append('username', input_profile_username.value);
         formData.append('gender', input_profile_gender.value);
+        formData.append('file', profile_image_upload.files[0]);
     }
 
     if (window.location.pathname == '/aboutuser') {

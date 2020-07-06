@@ -1,3 +1,4 @@
+
 const TOAST = {
     welcomeToast() {
         tata.info('Welcome', 'Welcome to FifaFans Meet your fellow fan, player and coach', {
@@ -11,5 +12,9 @@ const TOAST = {
 
     infoToast(message) {
         tata.info('Status', message)
+    },
+
+    errorToast(message) {
+        tata.error('Status', message);
     }
 }

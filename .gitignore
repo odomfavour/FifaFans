@@ -98,3 +98,5 @@ typings/
 
 tests/report/
 
+.vscode/
+

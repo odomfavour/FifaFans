@@ -205,7 +205,7 @@ a {
 
 .imgprofile img {
     border: 1px solid;
-    border-radius: 50%;
+    border-radius: 30%;
     background-color: #005391;
     height: 100px;
 }
@@ -357,7 +357,7 @@ a {
     height: 50px;
     border-radius: 50%;
     border: 2px solid #772020;
-    object-fit:cover;
+    object-fit:fill;
 }
 
 .flex-end {
