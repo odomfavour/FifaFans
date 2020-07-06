@@ -289,7 +289,7 @@ const generalPost = (data) => {
                         <i class="fa fa-thumbs-up"></i> Likes ${data.likes.length}
                       </p>
                       <p class="p-2 text-right">
-                        <i class="fa fa-comments"></i> Comment
+                        <i class="fa fa-comments"></i> Comment <span class="comment-number">33</span>
                       </p>
                       <p class="p-2 text-right">
                         <i class="fa fa-share-alt"></i> Share

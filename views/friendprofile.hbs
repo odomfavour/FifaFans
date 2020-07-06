@@ -15,13 +15,13 @@
                             </div>
                             <div class="profile-picture ">
                                 <a href="#">
-                                    <i class="fa fa-edit"></i>
+                                    {{!-- <i class="fa fa-edit"></i> --}}
                                 </a>
                             </div>
                             
                             <div class="profile-text mb-3">
                                 <h5 id="user-full-name" class="">{{user.name}}</h5>
-                                <h6><span id="user-profile-status">{{user.status}}</span> ( <span id="user-profile-club">{{ user.club }}</span> )</h6>
+                                <h6><span id="user-profile-status"><span id="user-profile-club">{{ user.club }}</span></span> ( {{user.status}} )</h6>
                             
                             </div>
                             <div class="profile-text m-0">
