@@ -38,15 +38,11 @@ const sendMessageToGroup = async (group_id, message, user, io, parent_uuid ="") 
  * @param {text} message message body from the sender
  * @param {token} client socket id of the sender which will be used to emit error messages back to sender.
  */
-const sendPrivateMessage = async (data, io, group_id) => {
+const sendPrivateMessage = async (data, io, chat_uuid, user) => {
   try {
-    const sender = await helperMethods.getAUserByUuid(User, sender_uuid);
-    if (!sender) {
-      console.log('User not found')
-      return;
-    };
+    data.sender_uuid = user.uuid
      const chat = await helperMethods.createPersonalChat(data);
-    await io.to(group_id).emit('personalMessage', generateMessage(sender.name, chat.uuid, data.message));
+    await io.to(chat_uuid).emit('personalMessage', generateMessage(user.name, chat.uuid, data.message));
   } catch (error) {
     console.log(error);
   }

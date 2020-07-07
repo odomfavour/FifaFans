@@ -1,3 +1,4 @@
+const myUuid = localStorage.getItem('my_uuid');
 
 const inflateMessage = (chats) => {
     if ( chats.length !== 0) {
@@ -40,7 +41,7 @@ const createChatBox = (data) => {
           </div>
       </div>
       <div class="line-bd"></div>
-      <div class="scrollable-text">
+      <div class="scrollable-text" id="chat_list">
          ${inflateMessage(data.chats)}
       </div>
       <div class="line-bd"></div>
@@ -53,8 +54,8 @@ const createChatBox = (data) => {
           </div>
               <form class="form-inline my-2"></form>
               <div class=" green-border-focus width-100">
-                  <input type="search" placeholder="Type..." aria-label="Search" class="form-control post-input">
-                  <button type="submit" class="fa fa-send border-none clip-attach"></button>
+                  <input type="search" placeholder="Type..." aria-label="Search" class="form-control post-input" id="personal-text">
+                  <button type="submit" class="fa fa-send border-none clip-attach" onclick="(sendPersonalMessage('${myUuid}&${data["user"].uuid}'))"></button>
               </div>
           </form>
           
@@ -73,6 +74,7 @@ const getFriendMessageData  = (uuid) => {
         console.log('this is response',response);
          createChatBox(response.data);
          };
+         joinTheChat(uuid);
        
      })
      .catch(e => console.log(e)); 
@@ -80,6 +82,10 @@ const getFriendMessageData  = (uuid) => {
 
   if ( window.location.pathname === '/message') {
 
-    const data = localStorage.getItem('friend_data');
-     getFriendMessageData(data);
+    const friend_uuid = localStorage.getItem('friend_data');
+     getFriendMessageData(friend_uuid);
+ }
+
+ const joinTheChat = (friend_uuid) => {
+    joinChat(`${myUuid}&${friend_uuid}`);
  }

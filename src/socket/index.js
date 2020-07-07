@@ -2,6 +2,7 @@ import { socketAuth } from '../middleware/socketAuth';
 import models from '../models';
 import roomConnect from '../socket/roomConnect';
 import postConnect from '../socket/postConnect';
+import personalConnect from './personalConnect';
 
 const emmiter = require('./EventHandler');
 
@@ -60,6 +61,7 @@ export default (io) => {
       emmiter.default(io);
       roomConnect(socket, io, user);
       postConnect(socket, io, user);
+      personalConnect(socket, io, user);
       // Disconnect event
       socket.on('disconnect', (reason) => {
         // Clean-up, set socket_id for the user to null
