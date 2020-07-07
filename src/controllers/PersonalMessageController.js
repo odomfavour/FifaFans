@@ -13,9 +13,8 @@ const PersonalMessageController = {
         async getChats(req, res) {
           try {
               const { uuid } = req.userData;
-              const { secondP_uuid } = req.query;
-              const data = await helperMethods.getChats(uuid, secondP_uuid);
-              console.log(data);     
+              const { follower_uuid } = req.query;
+              const data = await helperMethods.getChats(uuid, follower_uuid); 
               return sendSuccessResponse(res, 200, data);
             } catch (e) {
               console.log(e);

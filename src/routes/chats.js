@@ -3,6 +3,6 @@ import Auth from './../middleware/Auth';
 import PersonalMessageController from './../controllers/PersonalMessageController';
 
 const router = express.Router();
-router.get('/personal-chats', Auth, PersonalMessageController.getChats);
+router.get('/list-friend-message', Auth, PersonalMessageController.getChats);
 
 export default router;

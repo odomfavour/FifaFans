@@ -612,7 +612,13 @@ const helperMethods = {
 				}
 			  },
 		 }) 
-		 return chats;
+		 const profile = await Profile.findOne({
+			 where: { user_uuid: secondP_uuid }
+		 })
+		 const user = await User.findOne({
+			 where: { uuid: secondP_uuid}
+		 })
+		 return { chats, profile, user };
 	  },
 
 	
