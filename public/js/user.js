@@ -93,9 +93,9 @@ const createFriend = (data) => {
        }" class="img-prof img-fluid">
      </div>
      <div class="room-detail all-list">
-         <p onclick="getUserDetails('${
-           data["User"].uuid
-         }')"><strong><span><a href="#">${data["User"].name}</a></span></strong>
+         <p><strong><span onclick="getUserDetails('${
+          data["User"].uuid
+        }')"><a href="#">${data["User"].name}</a></span></strong>
          <span><button class="btn btn-info pull-right" onclick="messagePage()">Message</button></span>
        </p>
        <p><span class="fan-fn"> ${

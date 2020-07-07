@@ -11,13 +11,9 @@
                     <div class="card profile-section p-0 mb-5">
                         <div class="profile-img">
                             <div class="img-text ">
-                                <img src="img/bg-img.jpg" class="img-fluid">
+                                <img src="{{user.profiles.0.profile_pic}}" class="img-fluid">
                             </div>
-                            <div class="profile-picture ">
-                                <a href="#">
-                                    {{!-- <i class="fa fa-edit"></i> --}}
-                                </a>
-                            </div>
+                            <img class="profile-picture " src="{{user.profiles.0.profile_pic}}">
                             
                             <div class="profile-text mb-3">
                                 <h5 id="user-full-name" class="">{{user.name}}</h5>
@@ -26,12 +22,12 @@
                             </div>
                             <div class="profile-text m-0">
                                 <div class="">
-                                    <p id="simple-quotes">{{ user.profiles.favoriteQuote}}</p>
+                                    <p id="simple-quotes">{{ user.profiles.0.favoriteQuote}}</p>
                                     <p><span> <i class="fa fa-map-marker" id="location-profile"></i> {{user.address}}</span>
-                                        <span> <i class="fa fa-calendar ml-11" id="date-joined"></i> Joined August 2019</span></p>
+                                        <span> <i class="fa fa-calendar ml-11" id="date-joined"></i> Joined {{user.createdAt}}</span></p>
                                 </div>
                                 <div>
-                                    <p><span><b>99</b> Followers</span>
+                                    <p><span><b>{{user.followers.length}}</b> Followers</span>
                                         <span class="ml-11 "><b>50</b> Following</span></p>
                                 </div>
                             </div>
