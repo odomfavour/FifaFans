@@ -36,7 +36,7 @@ app.engine('.hbs', exphbs({
             } else {
                 return opts.inverse(this);
             }
-        }
+        },
     }
 })
 );

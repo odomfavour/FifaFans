@@ -222,6 +222,7 @@ function deletePost() {
 
 
 const displayComments = (data) => {
+  console.log('my comment',data);
     const array = [];
     if (data) { 
         data.forEach(x => {
@@ -230,7 +231,7 @@ const displayComments = (data) => {
             <img src="img/4.jpg" class="img-prof ">
           </div>
           <div class="ml-2">
-            <h4 class="fan-name">${x.user_name}<p class="fan-fn">${x.user_club}<span class="fan-fn"> ${x.user_status}</span></p> <span class="fan-time">10(s) ago</span></h4>
+            <h4 class="fan-name">${x.user_name}<p class="fan-fn">${x.user_club}<span class="fan-fn"> ${x.user_status}</span></p> <span class="fan-time">${GETDURATION(x.date_sent)}(s) ago</span></h4>
               <p class="comment-p">${x.comment}</p>
           </div>
           
@@ -274,7 +275,7 @@ const generalPost = (data) => {
                         data.User.club
                       } <span class="fan-fn">${
                         data.User.status
-                      }</span></p> <span class="fan-time">10(s) ago</span></h4>
+                      }</span></p> <span class="fan-time">${GETDURATION(data.createdAt)}(s) ago</span></h4>
                     
                     </div>
                     
@@ -288,10 +289,10 @@ const generalPost = (data) => {
                   <div class="tap-content-post">
                     <div class="d-flex justify-content-between m-bd">
                       <p class="p-2 text-center" onclick="likePost('${data.uuid}', this)">
-                        <i class="fa fa-thumbs-up"></i> Likes ${data.likes.length}
+                        <i class="fa fa-thumbs-up"></i> Likes <span class="comment-number">${data.likes.length} </span>
                       </p>
                       <p class="p-2 text-right">
-                        <i class="fa fa-comments"></i> Comment <span class="comment-number">33</span>
+                        <i class="fa fa-comments"></i> Comment <span class="comment-number">${data.comment.length}</span>
                       </p>
                       <p class="p-2 text-right">
                         <i class="fa fa-share-alt"></i> Share

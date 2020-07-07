@@ -1,6 +1,7 @@
 /* eslint-disable max-len */
 import Sequelize, { Op, fn, col, and } from 'sequelize';
 import models from '../models'
+import Follower from '../models/Follower';
 
 const { ChatRoomMember, RoomChat, User, Post, SingleChat, Profile } = models;
 
@@ -195,11 +196,13 @@ const helperMethods = {
 			{
 			 model: Profile, 
 			 as:'profiles'	
-			}],
+			},
+			'followers',
+			'following'	
+			],
 			attributes: {
 				exclude: [
 					'password',
-					'createdAt',
 					'updatedAt'
 				]
 			}

@@ -73,6 +73,18 @@ module.exports = (sequelize, DataTypes) => {
 			onDelete: 'CASCADE'
 		});
 
+		User.hasMany(models.Follower, {
+			foreignKey: 'follower_uuid',
+			as: 'following',
+			onDelete: 'CASCADE'
+		})
+
+		User.hasMany(models.Follower, {
+			foreignKey: 'user_uuid',
+			as: 'followers',
+			onDelete: 'CASCADE'
+		})
+
 		User.belongsTo(models.Follower, {
 			foreignKey: 'uuid',
 			target: 'follower_uuid',
