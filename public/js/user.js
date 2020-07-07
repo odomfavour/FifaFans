@@ -93,9 +93,9 @@ const createFriend = (data) => {
        }" class="img-prof img-fluid">
      </div>
      <div class="room-detail all-list">
-         <p onclick="getUserDetails('${
+         <p><strong><span onclick="getUserDetails('${
            data["User"].uuid
-         }')"><strong><span><a href="#">${data["User"].name}</a></span></strong>
+         }')"><a href="#">${data["User"].name}</a></span></strong>
          <span><button class="btn btn-info pull-right" onclick="messagePage()">Message</button></span>
        </p>
        <p><span class="fan-fn"> ${
@@ -107,12 +107,69 @@ const createFriend = (data) => {
 </div>`;
 }
 
-function messagePage() {
+function messagePage(data) {
   window.location.href = '/message'
+  const messageLayout = document.getElementById('#message-layout');
+  let html = `
+    <div class="card message-box p-0" id="message-layout">
+    <div class="pd-15 pb-0">
+        <div class="d-flex justify-content-start ">
+            <div class="comment-img">
+                <img src="${
+                  data["Profile"].profile_pic || "img/4.jpg"
+                }" class="img-prof">
+            </div>
+            <div class="tap-cont-profile pd-3-12 ">
+                <h5 class="font-16 d-flex chat-layout">${data["User"].name}</h5>
+                <p class="font-14">Active: 1hrs ago</p>
+            </div>
+        </div>
+    </div>
+    <div class="line-bd"></div>
+    <div class="scrollable-text">
+        <div class="comment-bot pd-15">
+            <div class="owner-text">
+                <p> Hello </p>
+            </div>
+        </div>
+        <div class="comment-bot pd-15">
+            <div class="sender-text">
+                <p> Hello </p>
+            </div>
+        </div>
+        <div class="comment-bot pd-15">
+            <div class="owner-text">
+                <p> Did you watch the latest  march Did you watch the latest  march 
+                last wekendlast wekend </p>
+            </div>
+        </div>
+    </div>
+    <div class="line-bd"></div>
+    <div class="d-flex  pd-15 justify-content-start">
+        <div class="pd-pos">
+            <a href="#"><i class="fa fa-image"></i></a>
+        </div>
+        <div class="pd-pos">
+            <a href="#"><i class="fa fa-paperclip"></i></a>
+        </div>
+            <form class="form-inline my-2"></form>
+            <div class=" green-border-focus width-100">
+                <input type="search" placeholder="Type..." aria-label="Search" class="form-control post-input">
+                <button type="submit" class="fa fa-send border-none clip-attach"></button>
+            </div>
+        </form>
+        
+    </div>
+    
+</div>
+  
+  `;
+
+  messageLayout.appendChild(html);
 }
 
 const listFollowers = () => {
-  options.methos = 'GET';
+  options.method = 'GET';
   fetch(`${base}list-followers`, options)
    .then((res) => res.json())
    .then((response) => {
