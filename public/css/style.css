@@ -346,7 +346,7 @@ a {
 
 /* landing-page */
 #landing-page {
-  margin-top: 100px;
+  margin-top: 120px;
 }
 
 .card {
@@ -539,6 +539,11 @@ textarea {
 
 .notification:hover {
   color: #fff !important;
+}
+.sidenavbarscroll{
+  position: fixed;
+  max-height: 80%;
+  overflow-y: scroll;
 }
 
 /* .message-box {
