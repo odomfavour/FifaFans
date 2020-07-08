@@ -13,6 +13,12 @@ function getUserDetails(user_uuid) {
     window.location.replace(`/friendprofile?user_uuid=${user_uuid}&my_uuid=${my_uuid}`);
 }
 
+function getFriendDetails(user_uuid) {
+  const my_uuid = localStorage.getItem("my_uuid");
+  console.log(my_uuid)
+  window.location.replace(`/message`);
+}
+
 
  function searchUser() {
   options.method = "GET"
@@ -96,7 +102,9 @@ const createFriend = (data) => {
          <p><strong><span onclick="getUserDetails('${
            data["User"].uuid
          }')"><a href="#">${data["User"].name}</a></span></strong>
-         <span><button class="btn btn-info pull-right" onclick="messagePage()">Message</button></span>
+         <span><button class="btn btn-info pull-right" onclick="getFriendDetails('${
+           data["User"].uuid
+         }')">Message</button></span>
        </p>
        <p><span class="fan-fn"> ${
          data["User"].club
@@ -108,10 +116,13 @@ const createFriend = (data) => {
 }
 
 function messagePage(data) {
+  console.log("What");
   window.location.href = '/message'
-  const messageLayout = document.getElementById('#message-layout');
+  console.log('What')
+  const messageLayout = document.getElementById('message-layout');
+  console.log(messageLayout)
   let html = `
-    <div class="card message-box p-0" id="message-layout">
+    
     <div class="pd-15 pb-0">
         <div class="d-flex justify-content-start ">
             <div class="comment-img">
@@ -161,11 +172,12 @@ function messagePage(data) {
         
     </div>
     
-</div>
+
   
   `;
 
   messageLayout.appendChild(html);
+  console.log(messageLayout)
 }
 
 const listFollowers = () => {
