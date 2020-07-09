@@ -1,13 +1,14 @@
 <!-- nav -->
-<nav class="navbar navbar-expand-md navbar-dark bg-dark">
+<nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
  <div class="container">
-    <a href="/" class="navbar-brand">Fifafans</a>
+    <a href="/" class="navbar-brand navbar-padding">Fifafans</a>
       <a href="/profile" class="mx-2 user" id="user-name-header"></a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive">
-        <span class="navbar-toggler-icon"></span>
+      <button class="navbar-toggler navbar-padding" type="button" data-toggle="collapse" data-target="#navbarResponsive"  onclick="document.querySelector('.closeNavbar').style.display='block'">
+        <span class="navbar-toggler-icon "></span>
       </button>
 
-      <div class="collapse navbar-collapse " id="navbarResponsive">
+      <div class="collapse navbar-collapse closeNavbar " id="navbarResponsive">
+        <div class="toggle-close" onclick="document.querySelector('.closeNavbar').style.display='none'"><span class="fa fa-times"></span></div>
         <ul class="navbar-nav ml-auto">
           <li class="nav-item active">
             <a class="nav-link" href="/friendslist">Friends </a>
