@@ -2,6 +2,7 @@ const myUuid = localStorage.getItem('my_uuid');
 
 const inflateMessage = (chats) => {
     if ( chats.length !== 0) {
+        let x = []
         let el;
         chats.forEach(chat => {
           if ( chat.sender_uuid === localStorage.getItem('friend_data')) {
@@ -10,15 +11,17 @@ const inflateMessage = (chats) => {
                             <p> ${chat.message} </p>
                         </div>
                     </div>`
+                    x.push(el)
             } else {
                 el = ` <div class="comment-bot pd-15">
-                            <div class="sender-text">
+                            <div class="owner-text">
                                 <p> ${chat.message} </p>
                             </div>
                         </div>`
+                        x.push(el)
              }
         });
-        return el;
+        return x;
     } else {
         return `<div></div>`
     }
@@ -80,10 +83,25 @@ const getFriendMessageData  = (uuid) => {
      .catch(e => console.log(e)); 
   }
 
+  const getFriendsMessages  = () => {
+    options.method = 'GET';
+    fetch(`${base}list-my-messages`, options)
+     .then((res) => res.json())
+     .then((response) => {
+       if (response.status != 'error') {
+        console.log('this is response',response);
+        
+         };
+       
+     })
+     .catch(e => console.log(e)); 
+  }
+
   if ( window.location.pathname === '/message') {
 
     const friend_uuid = localStorage.getItem('friend_data');
      getFriendMessageData(friend_uuid);
+     getFriendsMessages();
  }
 
  const joinTheChat = (friend_uuid) => {

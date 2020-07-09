@@ -1,9 +1,8 @@
 /* eslint-disable max-len */
 import Sequelize, { Op, fn, col, and } from 'sequelize';
 import models from '../models'
-import Follower from '../models/Follower';
 
-const { ChatRoomMember, RoomChat, User, Post, SingleChat, Profile } = models;
+const { ChatRoomMember, RoomChat, User, Post, SingleChat, Profile, Follower } = models;
 
 const helperMethods = {
 	async searchWithCategoryAndLocation (point, category_uuid, Service) {
@@ -437,9 +436,7 @@ const helperMethods = {
 					if(profile){ x.dataValues.profile = profile.dataValues };
 					return x;
 				}))
-				console.log(await xxx)
 				datas = await xxx;
-				console.log('this is data',datas)
 				return datas;
 			}
 			
@@ -510,7 +507,12 @@ const helperMethods = {
 	// list all user's follower
 	async listAllFollowers (table, user_uuid) {
 		const followers = await table.findAll({
-			where: { user_uuid, blocked: false },
+			where: { 
+				[Op.or]: [
+				{ user_uuid: user_uuid },
+				{ follower_uuid: user_uuid },
+			  ], blocked: false 
+			},
 			include: ['User', 'Profile'],
 			attributes: {
 				exclude: [
@@ -521,6 +523,29 @@ const helperMethods = {
 		});
 		return followers;
 	},
+
+	// list all friends messages 
+	async listAllFollowersMessages (table, user_uuid) {
+		const followers = await table.findAll({
+			where: { 
+				[Op.or]: [
+				{ user_uuid: user_uuid },
+				{ follower_uuid: user_uuid },
+			  ], blocked: false,
+			  messaged: true
+			},
+			include: ['User', 'Profile'],
+			attributes: {
+				exclude: [
+					'createdAt',
+					'updatedAt'
+				]
+			}
+		});
+		console.log(followers);
+		return followers;
+	},
+
 
 	// list user joined rooms
 	async getUserGroups(user, table){
@@ -594,6 +619,21 @@ const helperMethods = {
 
 	  async createPersonalChat(data){
 		const chat =await SingleChat.create(data);
+		await Follower.update(
+			{
+			  messaged: true,
+			},
+			{
+				where: {
+					user_uuid: {
+					  [Op.or]: [data.sender_uuid, data.recipient_uuid]
+					},
+					follower_uuid: {
+					  [Op.or]: [data.sender_uuid, data.recipient_uuid]
+					}
+				  },
+			},
+		  );
 		return chat;
 	  },
 
@@ -675,3 +715,29 @@ const helperMethods = {
 
 };
 export default helperMethods;
+
+
+
+
+// followers: {
+// 	[ {
+// 		name:
+// 		title:
+// 		messages: [
+// 			{
+// 				message:
+// 				time:
+// 			}
+// 		]
+// 	},
+// 	{
+// 		name:
+// 		title:
+// 		messages: [
+// 			{
+// 				message:
+// 				time:
+// 			}
+// 		]
+// 	}]
+// }

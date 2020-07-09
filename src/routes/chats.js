@@ -4,5 +4,6 @@ import PersonalMessageController from './../controllers/PersonalMessageControlle
 
 const router = express.Router();
 router.get('/list-friend-message', Auth, PersonalMessageController.getChats);
+router.get('/list-my-messages', Auth, PersonalMessageController.getFriendsMessages);
 
 export default router;
