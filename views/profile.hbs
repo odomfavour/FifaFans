@@ -13,9 +13,7 @@
                             <img src="img/bg-img.jpg" class="img-fluid">
                             </div>
                             <div class="profile-picture ">
-                                <a href="#">
-                                <i class="fa fa-edit"></i>
-                                </a> 
+                                
                             </div>
                             <div class="profile-text mb-3">
                                 <h5 id="user-full-name" class=""></h5>
@@ -41,7 +39,58 @@
                         </div>
                         </div>
 
-                    {{> userpost}}
+                    <div class="card p-0">
+                        <div class="create-post-h5">
+                          <h4 class="color-blue">Create post</h4>
+                        </div>
+                        <div class="d-flex p-20">
+                          <div class="text-center">
+                            <img src="/img/21104.svg" class="img-prof" id="post_profile_image">
+                          </div>
+                          <div class="post-box ml-3">
+                            <!-- Button trigger modal -->
+                            <button type="button" class="btn btn-default text-left btn-block" data-toggle="modal"
+                              data-target="#staticBackdrop">
+                              Whats on your mind?
+                            </button>
+                        
+                            <!-- Modal -->
+                            <div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1"
+                              role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                              <div class="modal-dialog">
+                                <div class="modal-content">
+                                  <div class="modal-header">
+                                    <h5 class="modal-title text-center" id="staticBackdropLabel ">Create
+                                      Post</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                      <span aria-hidden="true">&times;</span>
+                                    </button>
+                                  </div>
+                                  <div class="modal-body">
+                                    <form action="POST" enctype="multipart/form-data">
+            
+                                      <div class="form-group green-border-focus">
+                                        <textarea type="text" placeholder="Tell us how you feel..." id="postInput" value=""
+                                          class="form-control post-input" row="6"></textarea>
+                                      </div>
+                                      <div class="p-2 text-center">
+                                        <input type="file" id="image-upload" accept="audio/*,video/*,image/*"><i class="fa fa-paperclip"></i> Photo/Video
+                                      </div>
+            
+                                    </form>
+                                  </div>
+                                  <div class="modal-footer">
+                                    <button type="button" class="btn btn-primary btn-block" id="sendPost">Post</button>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+            
+                          </div>
+                        </div>
+                      </div>
+
+                      <div id="post-layout"></div>
 
                         <ul class=" mt-5 nav nav-tabs" id="myTab" role="tablist">
                             <li class="nav-item">
