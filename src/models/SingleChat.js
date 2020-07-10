@@ -23,6 +23,18 @@ module.exports = (sequelize, DataTypes) => {
       onDelete: 'CASADE',
 			foreignKey: 'recipient_uuid'
     })
+    SingleChat.belongsTo(models.Profile, {
+      onDelete: 'CASADE',
+      foreignKey: 'recipient_uuid',
+      targetKey: 'user_uuid',
+      as: 'Profile'
+    })
+    SingleChat.belongsTo(models.Profile, {
+      onDelete: 'CASADE',
+      foreignKey: 'sender_uuid',
+      targetKey: 'user_uuid',
+      as:'SenderProfile'
+    })
   };
   return SingleChat;
 };

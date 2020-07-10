@@ -54,7 +54,6 @@ const PostController = {
              where:{ uuid: post_uuid}
          });
          if (!post) return sendErrorResponse(res, 404, 'post not found');
-         console.log(post)
          await post.comment.push(
              {
            user_uuid: uuid,
