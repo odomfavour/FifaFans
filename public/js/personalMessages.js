@@ -1,5 +1,38 @@
 const myUuid = localStorage.getItem('my_uuid');
 
+ function loadMessage (friend_uuid) {
+    try {
+        localStorage.setItem('friend_data', friend_uuid);
+        getFriendMessageData(friend_uuid);
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+
+const createAMessagedFriend = (data) => {
+    let elArray = [];
+    if (data.length !== 0) {
+        data.forEach(element =>  {
+          const el = `<div class="d-flex justify-content-between bg-bd mt-3" onclick="loadMessage('${element.follower_uuid}')">
+                         <div class="p-2 comment-img text-center"> 
+                            <img src="${element["Profile"].profile_pic || "img/4.jpg"}" class="wd-sz" alt="">
+                         </div>
+                         <div class="p-2 comments-content"> 
+                            <h5>${element["User"].name}</h5>
+                            <p><span class="fan-fn"> ${
+                                element["User"].club
+                              } </span><span class="fan-fn"> (${element["User"].status})</span></p>
+                        </div>
+                     </div>`;
+          elArray.push(el);
+        })
+        return elArray
+    } else {
+        return `<div>No data available</div>`
+    }
+  }
+
 const inflateMessage = (chats) => {
     if ( chats.length !== 0) {
         let x = []
@@ -39,7 +72,6 @@ const createChatBox = (data) => {
               </div>
               <div class="tap-cont-profile pd-3-12 ">
                   <h5 class="font-16 d-flex chat-layout">${data["user"].name}</h5>
-                  <p class="font-14">Active: 1hrs ago</p>
               </div>
           </div>
       </div>
@@ -74,7 +106,6 @@ const getFriendMessageData  = (uuid) => {
      .then((res) => res.json())
      .then((response) => {
        if (response.status != 'error') {
-        console.log('this is response',response);
          createChatBox(response.data);
          };
          joinTheChat(uuid);
@@ -90,8 +121,9 @@ const getFriendMessageData  = (uuid) => {
      .then((response) => {
        if (response.status != 'error') {
         console.log('this is response',response);
-        
-         };
+        const el = createAMessagedFriend(response.data);
+        document.getElementById('message-area').innerHTML = el.join(" ");
+      };
        
      })
      .catch(e => console.log(e)); 

@@ -8,10 +8,14 @@ let commentButton = document.getElementsByClassName("comment-send");
 const userLayout = document.getElementById('media-grid')
 const postLayout = document.getElementById('post')
 
-
-
-
-console.log(layout)
+const displayNumber = (data) => {
+  if (data !== null) {
+    return data.length
+  } else {
+    return 0
+  }
+ 
+}
 const allPost = document.getElementById("getAllPosts")
 
 try {
@@ -289,10 +293,10 @@ const generalPost = (data) => {
                   <div class="tap-content-post">
                     <div class="d-flex justify-content-between m-bd">
                       <p class="p-2 text-center" onclick="likePost('${data.uuid}', this)">
-                        <i class="fa fa-thumbs-up"></i> Likes <span class="comment-number">${data.likes.length || 0} </span>
+                        <i class="fa fa-thumbs-up"></i> Likes <span class="comment-number">${displayNumber(data.likes)} </span>
                       </p>
                       <p class="p-2 text-right">
-                        <i class="fa fa-comments"></i> Comment <span class="comment-number">${data.comment.length || 0}</span>
+                        <i class="fa fa-comments"></i> Comment <span class="comment-number">${displayNumber(data.comment)}</span>
                       </p>
                       <p class="p-2 text-right">
                         <i class="fa fa-share-alt"></i> Share

@@ -542,7 +542,6 @@ const helperMethods = {
 				]
 			}
 		});
-		console.log(followers);
 		return followers;
 	},
 
@@ -716,28 +715,3 @@ const helperMethods = {
 };
 export default helperMethods;
 
-
-
-
-// followers: {
-// 	[ {
-// 		name:
-// 		title:
-// 		messages: [
-// 			{
-// 				message:
-// 				time:
-// 			}
-// 		]
-// 	},
-// 	{
-// 		name:
-// 		title:
-// 		messages: [
-// 			{
-// 				message:
-// 				time:
-// 			}
-// 		]
-// 	}]
-// }
