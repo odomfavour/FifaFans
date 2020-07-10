@@ -13,6 +13,12 @@ function getUserDetails(user_uuid) {
     window.location.replace(`/friendprofile?user_uuid=${user_uuid}&my_uuid=${my_uuid}`);
 }
 
+function getFriendDetails(user_uuid) {
+  const my_uuid = localStorage.getItem("my_uuid");
+  console.log(my_uuid)
+  window.location.replace(`/message`);
+}
+
 
  function searchUser() {
   options.method = "GET"

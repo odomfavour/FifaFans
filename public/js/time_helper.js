@@ -12,3 +12,14 @@ function GETDURATION(incoming_time) {
 
    
 }
+
+function convertDate(joinDate) {
+    let d = joinDate;
+    let n = d.toLocaleString([], { month: "2-digit", day: "2-digit", hour: "2-digit", minute: "2-digit" });
+    console.log(n)
+    // return n
+}
+
+let mydate = new Date();
+console.log(mydate)
+convertDate(mydate)
