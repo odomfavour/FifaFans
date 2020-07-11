@@ -75,7 +75,6 @@ async function listRooms() {
             const el = allRooms(x);
             array.push(el);
           });
-          console.log(array);
           roomlayout.innerHTML = array.join(" ");
     })
 }
@@ -86,7 +85,7 @@ async function suggestRooms() {
   await fetch(`${base}list-rooms`, options)
       .then(res => res.json())
       .then((response) => {
-        console.log(response.data.data)
+        console.log('this are rooms',response.data.data)
         const array = [];
         let shuffled = [];
         response.data.data.forEach(x => {
@@ -155,10 +154,8 @@ const myRoom = (data) => {
         <p><strong><span><a href="#" class="room-name">${ data['ChatRoom'].name}</a></span></strong>
           <span><button class="btn btn-info pull-right" onclick="gotoRoom('${data['ChatRoom'].uuid}')">Enter room</button></span>
         </p>
-        <span>50 Members</span>
       </div>
-    </div>
-                `
+    </div>`;
 }
 
 const allRooms = (data) => {
@@ -171,7 +168,7 @@ const allRooms = (data) => {
               <h4><strong><span><a href="#">${ data.name}</a></span></strong>
                   <span><button class="btn btn-info d-flex pull-right" onclick="gotoRoom('${data.uuid}')">Join Room</button></span>
               </h4>
-              <p><span>50 Members</span></p>
+              <p><span>${data.members.length} Member(s)</span></p>
 
           </div>
       </div>
@@ -190,7 +187,7 @@ const suggestedRooms = (data) => {
         <p><strong><span><a href="#">${data.name}</a></span></strong>
           <span><button class="btn btn-info pull-right" onclick="gotoRoom('${data.uuid}')">Join room</button></span>
         </p>
-        <span>50 Members</span>
+        <span>${data.members.length} Member(s)</span>
       </div>
     </div>
 `;

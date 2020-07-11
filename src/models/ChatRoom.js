@@ -14,6 +14,9 @@ module.exports = (sequelize, DataTypes) => {
   }, {});
   ChatRoom.associate = function(models) {
     // associations can be defined here
+    ChatRoom.hasMany(models.ChatRoomMember, {
+      foreignKey: 'chatroom_uuid', sourceKey: 'uuid', as: 'members'
+    })
   };
   return ChatRoom;
 };
