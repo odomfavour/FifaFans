@@ -39,14 +39,14 @@ const inflateMessage = (chats) => {
         let el;
         chats.forEach(chat => {
           if ( chat.sender_uuid === localStorage.getItem('friend_data')) {
-              el = ` <div class="comment-bot pd-15">
+              el = ` <div class="comment-bot spacing">
                         <div class="sender-text">
                             <p> ${chat.message} </p>
                         </div>
                     </div>`
                     x.push(el)
             } else {
-                el = ` <div class="comment-bot pd-15">
+                el = ` <div class="comment-bot spacing">
                             <div class="owner-text">
                                 <p> ${chat.message} </p>
                             </div>

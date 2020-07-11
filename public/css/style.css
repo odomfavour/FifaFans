@@ -190,9 +190,13 @@ a {
   flex-direction: column;
 }
 
+.spacing {
+  padding: 0 15px;
+}
+
 .scrollable-comments {
    overflow: auto;
-    height: 200px;
+    min-height: 50px;
 
 }
 

@@ -58,6 +58,10 @@ function createRoom(e) {
            }
 }
 
+// hide share btn
+// let shareBtn = document.querySelector('#share-btn');
+// shareBtn.style.visibility = hidden;
+
 
 for (var i = 0; i < room.length; i++) {
   room[i].addEventListener("click", commentPost, false);
