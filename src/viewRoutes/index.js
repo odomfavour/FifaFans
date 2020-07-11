@@ -26,7 +26,7 @@ router.get('/login', function(req, res, next) {
 });
 
 // //this is verify page
-router.get('/verify-message', function(req, res, next) {
+router.get('/verify', function(req, res, next) {
     res.render('verify', { message: 'Kindly Verify Account To Log In, Thanks!!' });
 });
 

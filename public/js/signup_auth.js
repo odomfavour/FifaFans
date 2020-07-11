@@ -51,7 +51,23 @@ function onsubmit(e) {
                 console.log(x);
                 if (x.status != 'error') {
                     document.getElementById('success-message').innerHTML = x.data.message;
-                    return window.location.href = '/verify-message';
+                    return window.location.href = '/verify';
+                } else {
+                    if (x.error.password) {
+        
+                        document.getElementById('error-message').innerHTML = x.error.password;
+                        setTimeout(function () {
+                            document.getElementById('error-message').style.display = 'none';
+                        }, 10000);
+                    } else {
+                        
+                        document.getElementById('error-message').innerHTML = x.error;
+                        setTimeout(function () {
+                            document.getElementById('error-message').style.display = 'none';
+                        }, 10000);
+                        
+                    }
+                    
                 }
             })
     }
