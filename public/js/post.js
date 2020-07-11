@@ -268,7 +268,7 @@ const generalPost = (data) => {
     // let layout = document.getElementById('post-layout');
     // layout
     return `<div class="card mt-5 pd-15" >
-                  <div class="d-flex justify-content-start">
+                  <div class="d-flex justify-content-start py-2" style="border-bottom: 3px solid #ccc;">
                     <div>
                       <img src="${data.profile.profile_pic || 'img/4.jpg'}" class="img-prof">
                     </div>
@@ -282,9 +282,9 @@ const generalPost = (data) => {
                       }</span></p> <span class="fan-time">${GETDURATION(data.createdAt)}(s) ago</span></h4>
                     
                     </div>
-                    
+
                   </div>
-                  <div id="post-canva">
+                  <div id="post-canva" class="py-3">
                       ${createCanva(data)}
                       </div>
                       <div class="img-boxz">

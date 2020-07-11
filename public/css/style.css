@@ -1067,6 +1067,10 @@ textarea { resize: none; }
     border-radius: 50px;
     color: #005391;
     font-size: 12px;
-    padding: 2px 3px;
+    padding: 2px 9px;
+}
+
+.btn-300 {
+  width: 70px;
 }
 
