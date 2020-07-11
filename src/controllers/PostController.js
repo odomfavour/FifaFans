@@ -10,8 +10,9 @@ const PostController = {
         try {
           let file = '';
           const { uuid, email, name} = req.userData;
-          const { post } = req.body;
-          if (!post) return sendErrorResponse(res, 422, 'post body cannot be empty');
+          let { post } = req.body;
+          console.log(post);
+          if (!post) {post = ''}
           if (req.file) {
             console.log(req.file)
             file = await uploadImage(req.file)

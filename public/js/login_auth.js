@@ -5,7 +5,7 @@ const loginLoader = document.querySelector('.lds-circle');
 // const password = document.getElementById('password');
 
 if (loginButton) {
-	loginButton.addEventListener('click', submit);
+	loginButton.addEventListener('click', submitLogin);
 }
 
 // const printMessage = (message, className) => {
@@ -19,7 +19,7 @@ if (loginButton) {
 // 	}, 5000);
 // };
 
-function submit (e){
+function submitLogin (e){
 	e.preventDefault();
 	loginLoader.style.display = 'inline-block';
 	if (!email.value || password.value === '') {
@@ -30,11 +30,7 @@ function submit (e){
 	}
 	else {
 		loginLoader.style.display = 'none';
-
-		tata.info('Signing In', 'Please wait while we are login you in', {
-			duration: 3000
-		});
-
+		TOAST.infoToast('Please wait while we are login you in');
 		const formData = new FormData();
 		formData.append('email', email.value);
 		formData.append('password', password.value);
@@ -48,16 +44,12 @@ function submit (e){
 				if (x.status != 'error') {
 					console.log(x.data.token);
 					localStorage.setItem('token', x.data.token);
-					tata.success('Success', 'Login Successfull', {
-						duration: 3000
-					});
+					TOAST.successToast('Login Successful');
 					document.getElementById('success-message').innerHTML = 'Login successful';
 					return (window.location.href = '/');
 				}
 				else {
-					tata.error('Error', x.error, {
-						duration: 3000
-					});
+					TOAST.errorToast(x.error);
 				}
 			});
 	}

@@ -6,10 +6,11 @@
             <div id="message"></div>
 
             <div id="alert_message"></div>
-            <input type="text" id="fullName" class="form-control" placeholder="Full Name"  autofocus>
-            <input type="text" id="username" class="form-control" placeholder="Username"  autofocus>
-            <input type="email" id="email" class="form-control" placeholder="Email address"  autofocus>
-             <input type="number" id="phone" class="form-control" placeholder="Phone NUmber"  autofocus>
+            <input type="text" id="fullName" class="form-control" placeholder="Full Name"  autofocus required>
+            <input type="text" id="username" class="form-control" placeholder="Username"  autofocus required>
+             <input type="text" id="club" class="form-control" placeholder="Club"  autofocus required required>
+            <input type="email" id="email" class="form-control" placeholder="Email address"  autofocus required>
+             <input type="number" id="phone" class="form-control" placeholder="Phone NUmber"  autofocus required>
             <div class="form-group">
                 <select class="form-control" id="status">
                     <option value="">Status</option>
@@ -18,8 +19,9 @@
                     <option value="fan">fan</option>
                 </select>
             </div>
-            <input type="password" id="password" class="form-control" placeholder="Password" >
-            <input type="password" id="confirmPassword" class="form-control" placeholder="Confirm Password" >
+            <div id="pass-message" style="background-color: red; display: none;"></div>
+            <input type="password" id="password" class="form-control" placeholder="Password" required>
+            <input type="password" id="confirmPassword" class="form-control" placeholder="Confirm Password"  required>
 
             <button class="btn btn-primary btn-block d-flex align-items-center justify-content-center" type="submit" id="submit">
                 Sign Up
