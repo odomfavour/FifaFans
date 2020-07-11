@@ -10,6 +10,7 @@ module.exports = (sequelize, DataTypes) => {
     user_uuid: DataTypes.UUID,
     follower_uuid: DataTypes.UUID,
     blocked: DataTypes.BOOLEAN,
+    messaged: DataTypes.BOOLEAN,
   }, {});
   Follower.associate = function(models) {
     Follower.belongsTo(models.User, {
@@ -21,7 +22,6 @@ module.exports = (sequelize, DataTypes) => {
       foreignKey: 'follower_uuid',
       as: 'Follower'
     })
-
     Follower.belongsTo(models.Profile, {
       foreignKey: 'follower_uuid',
       as : 'Profile',

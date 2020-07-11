@@ -8,6 +8,25 @@ var socketClient = io("", {
   },
 });
 
+const inflatePsersonalMessage = (chat) => {
+      let el;
+        if ( chat.sender_uuid === localStorage.getItem('friend_data')) {
+            el = ` <div class="comment-bot pd-15">
+                      <div class="sender-text">
+                          <p> ${chat.message} </p>
+                      </div>
+                  </div>`
+          } else {
+              el = ` <div class="comment-bot pd-15">
+                          <div class="sender-text">
+                              <p> ${chat.message} </p>
+                          </div>
+                      </div>`
+           }
+      ;
+      return el;
+}
+
 // this adds comment to a post.
 socketClient.on("comments", (data) => {
   const { post, post_uuid, user, date } = data;
@@ -30,9 +49,22 @@ const joinGroup = (group_uuid) => {
   socketClient.emit("join-room", { group_uuid });
 };
 
+const joinChat = (chat_uuid) =>  {
+  console.log(chat_uuid);
+  socketClient.emit("join-chat", { chat_uuid });
+}
+
 const sendGroupMessage = (group_id) => {
   let message = document.getElementById("group-chat");
   socketClient.emit(`${group_id}-message`, { message: message.value, group_id });
+  message.value = "";
+};
+
+const sendPersonalMessage = (chat_uuid) => {
+  console.log(chat_uuid)
+  const friend_uuid = localStorage.getItem('friend_data');
+  let message = document.getElementById("personal-text");
+  socketClient.emit(`${chat_uuid}-message`, { message: message.value, chat_uuid, recipient_uuid: friend_uuid });
   message.value = "";
 };
 
@@ -51,6 +83,14 @@ socketClient.on("message", (data) => {
       `;
   ab.innerHTML = content;
   const post_message = document.getElementById("post-panel");
+  post_message.appendChild(ab);
+});
+
+socketClient.on("personalMessage", (data) => {
+  const ab = document.createElement("div");
+  const content = inflatePsersonalMessage(data);
+  ab.innerHTML = content;
+  const post_message = document.getElementById("chat_list");
   post_message.appendChild(ab);
 });
 
