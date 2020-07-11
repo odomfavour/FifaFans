@@ -11,6 +11,11 @@ const postLayout = document.getElementById('post')
 
 const allPost = document.getElementById("getAllPosts")
 
+function getLocalImage(image) {
+  if (image) return image
+  return '/img/21104.svg'
+}
+
 function displayProfileImage_(profile) {
   if (profile) {
     return profile.profile_pic  
@@ -79,16 +84,17 @@ function getMediaType(data) {
 function createCanva(data) {
 
   if (data.media && data.media !== '') {
+    console.log(data.post)
     console.log('got it');
     return `<p class="comment-p">${data.post}</p>`;
   } else {
-    if (data.post.length < 40) {
+    if (data.post.toString().length < 40) {
       return `<div class="post-bg">
       <div class="post-txt-small">
         <p style="font-size:50px">${data.post}</p>
       </div>
     </div>`
-    } else if (data.post >= 40) {
+    } else if (data.post.toString().length >= 40) {
       return `<div class="post-bg">
       <div class="post-txt">
         <p style="font-size:50px">${data.post}</p>
@@ -311,7 +317,7 @@ const generalPost = (data) => {
                     <div class="d-flex justify-content-between mt-4 bt-2">
                     
                       <div class="text-center">
-                        <img src="/img/21104.svg" class="img-prof">
+                        <img src="${getLocalImage(localStorage.getItem('profile_pics'))}" class="img-prof">
                       </div>
                       <div class=" flex-grow-1 pd-4 ml-2 ">
                         <div class="form-group green-border-focus">

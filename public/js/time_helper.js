@@ -6,8 +6,10 @@ function GETDURATION(incoming_time) {
 
     if ( diff > 0 ) {
         return `${diff} day`
+    } else if (Difference_In_Time >= 60 ) {
+        return `${Math.round(Difference_In_Time/100000/60)} hr`
     } else {
-        return `${Math.round(Difference_In_Time/100000)} Minute`
+        return `${Math.round(Difference_In_Time/100000)} minute`
     }
 
    
