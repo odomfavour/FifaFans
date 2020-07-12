@@ -190,9 +190,13 @@ a {
   flex-direction: column;
 }
 
+.spacing {
+  padding: 0 15px;
+}
+
 .scrollable-comments {
    overflow: auto;
-    height: 200px;
+    min-height: 50px;
 
 }
 
@@ -722,7 +726,7 @@ display: none;
   }
   .navbar-nav{
     background: #005391;
-    width: 50%;
+    width: 54%;
     height:-webkit-fill-available;
     padding: 12px;
     /* text-align: right; */
@@ -1062,6 +1066,18 @@ textarea { resize: none; }
     border-radius: 50px;
     color: #005391;
     font-size: 12px;
-    padding: 2px 3px;
+    padding: 2px 9px;
+}
+
+.btn-300 {
+  width: 70px;
+}
+
+.search-name {
+  width: 160px;
+}
+
+.mt-7 {
+  margin-top: 70px;
 }
 

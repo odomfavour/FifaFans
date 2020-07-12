@@ -10,8 +10,12 @@
       <div class="collapse navbar-collapse closeNavbar " id="navbarResponsive">
         <div class="toggle-close" onclick="document.querySelector('.closeNavbar').style.display='none'"><span class="fa fa-times"></span></div>
         <ul class="navbar-nav ml-auto">
+          
           <li class="nav-item active">
             <a class="nav-link" href="/friendslist">Friends </a>
+          </li>
+          <li class="nav-item d-md-none">
+            <a class="nav-link" href="/search_friend"><i class="fa fa-search"></i></a>
           </li>
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
@@ -43,7 +47,7 @@
               <a class="nav-link" href="/create_room"><i class="fa fa-plus-square"></i></a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="/notification"><i class="fa fa-bell"></i><span class="notification">9</span></a>
+              <a class="nav-link" href="/notification"><i class="fa fa-bell"></i><span class="notification"></span></a>
             </li>
           <div class="border-left"></div>
           <li class="nav-item dropdown">

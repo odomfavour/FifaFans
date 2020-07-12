@@ -56,7 +56,7 @@ function onsubmit(e) {
                 console.log(x);
                 if (x.status != 'error') {
                     errorMessage.innerHTML = x.data.message;
-                    return window.location.href = '/verify-message';
+                    return window.location.href = '/verify';
                 } else {
                     errorMessage.innerHTML = x.error;
                 }

@@ -26,14 +26,19 @@ router.get('/login', function(req, res, next) {
 });
 
 // //this is verify page
-router.get('/verify-message', function(req, res, next) {
-    res.render('verify', { message: 'Kindly Verify Account To Log In, Thanks!!' });
+router.get('/verify', function(req, res, next) {
+    res.render('verify', { message: 'Kindly check your mail. Verify your Account to Log In. Thanks!!' });
 });
 
 
-//this is login page
+//this is edit profile page
 router.get('/editprofile', function(req, res, next) {
     res.render('editprofile', { title: 'FIFA FANS', style: 'style.css' });
+});
+
+//this is search for friend page
+router.get('/search_friend', function(req, res, next) {
+    res.render('search_friend', { title: 'FIFA FANS', style: 'style.css' });
 });
 
 //this is login page
