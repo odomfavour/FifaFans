@@ -15,7 +15,7 @@ const createAMessagedFriend = (data) => {
     if (data.length !== 0) {
         data.forEach(element =>  {
           const el = `<div class="d-flex justify-content-between bg-bd mt-3" onclick="loadMessage('${element.follower_uuid}')">
-                         <div class="p-2 comment-img text-center"> 
+                         <div class="p-2 comment-img text-center mr-2"> 
                             <img src="${element["Profile"].profile_pic || "img/4.jpg"}" class="wd-sz" alt="">
                          </div>
                          <div class="p-2 comments-content"> 
@@ -39,14 +39,14 @@ const inflateMessage = (chats) => {
         let el;
         chats.forEach(chat => {
           if ( chat.sender_uuid === localStorage.getItem('friend_data')) {
-              el = ` <div class="comment-bot pd-15">
+              el = ` <div class="comment-bot spacing">
                         <div class="sender-text">
                             <p> ${chat.message} </p>
                         </div>
                     </div>`
                     x.push(el)
             } else {
-                el = ` <div class="comment-bot pd-15">
+                el = ` <div class="comment-bot spacing">
                             <div class="owner-text">
                                 <p> ${chat.message} </p>
                             </div>
@@ -65,7 +65,7 @@ const createChatBox = (data) => {
     let html = `
       <div class="pd-15 pb-0">
           <div class="d-flex justify-content-start ">
-              <div class="comment-img">
+              <div class="comment-img mr-2">
                   <img src="${
                     data["profile"].profile_pic || "img/4.jpg"
                   }" class="img-prof">

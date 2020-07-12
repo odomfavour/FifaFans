@@ -46,8 +46,8 @@ const result = (data) => {
       <div class="text-center">
         <img src="${ getUserImage(data.profile.profile_pic)}" class="img-prof img-fluid">
       </div>
-      <div class="room-detail">
-        <p onclick="getUserDetails('${data.uuid}')"><strong><span><a href="#">${ data.name}</a></span></strong>
+      <div class="room-detail mr-2">
+        <p onclick="getUserDetails('${data.uuid}')" class="search-name"v><strong><span><a href="#">${ data.name}</a></span></strong>
         </p>
       </div>
       <span><button class="btn btn-primary" onclick="getUserDetails('${data.uuid}')"><i class="fa fa-eye" aria-hidden="true"></i></button></span>
