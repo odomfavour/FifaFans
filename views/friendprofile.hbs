@@ -33,7 +33,7 @@
                             </div>
                             <div class="button-box">
                                 {{#if_eq user.following true }}
-                                <button class="btn btn-primary pull-right" id="follow-box" onclick="unFollowUser(`{{user.uuid}}`)">UnFollow</button>
+                                <button class="btn btn-primary pull-right" id="follow-box" onclick="unFollowUser(`{{user.uuid}}`)">Un-Follow</button>
                                  {{else}}
                                  <button class="btn btn-primary pull-right" id="follow-box" onclick="followUser(`{{user.uuid}}`)">Follow</button>
                                 {{/if_eq}}
