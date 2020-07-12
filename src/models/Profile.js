@@ -23,7 +23,8 @@ module.exports = (sequelize, DataTypes) => {
 		// associations can be defined here
 		Profile.belongsTo(models.User, {
 			onDelete: 'CASADE',
-			foreignKey: 'user_uuid'
+			foreignKey: 'user_uuid',
+			as: 'profile'
 		});
 	};
 	return Profile;

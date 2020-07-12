@@ -67,6 +67,12 @@ module.exports = (sequelize, DataTypes) => {
 			onDelete: 'CASCADE'
 		});
 
+		User.hasOne(models.Profile, {
+			foreignKey: 'user_uuid',
+			as: 'profile',
+			onDelete: 'CASCADE'
+		});
+
 		User.hasMany(models.Post, {
 			foreignKey: 'user_uuid',
 			as: 'posts',

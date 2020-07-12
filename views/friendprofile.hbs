@@ -33,7 +33,7 @@
                             </div>
                             <div class="button-box">
                                 {{#if_eq user.following true }}
-                                <button class="btn btn-primary pull-right" id="follow-box" onclick="unFollowUser(`{{user.uuid}}`)">UnFollow</button>
+                                <button class="btn btn-primary pull-right" id="follow-box" onclick="unFollowUser(`{{user.uuid}}`)">Un-Follow</button>
                                  {{else}}
                                  <button class="btn btn-primary pull-right" id="follow-box" onclick="followUser(`{{user.uuid}}`)">Follow</button>
                                 {{/if_eq}}
@@ -62,9 +62,9 @@
                                         </div>
                                         <div class="ml-2">
                                             <h4 class="fan-name">{{this.owner_name}}<span class="fan-fn"> <br>Player</span><br>
-                                                <p class="fan-fn">Arsenal</p> <span class="fan-time">10(s) ago</span>
+                                                {{!-- <p class="fan-fn">Arsenal</p> <span class="fan-time">10(s) ago</span> --}}
                                             </h4>
-                                            <p class="comment-p">{{this.post}}</p>
+                                            <p class="comment-p" style="width: 300px;">{{this.post}}</p>
                                             <div class="img-boxz">
                                                 {{{this.media}}}
                                             </div>
