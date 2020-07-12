@@ -33,7 +33,9 @@
                             </div>
                             <div class="button-box">
                                 {{#if_eq user.following true }}
-                                <button class="btn btn-primary pull-right" id="follow-box" onclick="unFollowUser(`{{user.uuid}}`)">Un-Follow</button>
+                
+                                <button class="btn btn-primary pull-right ml-3" id="follow-box" onclick="unFollowUser(`{{user.uuid}}`)">Unfollow</button>
+                                <button class="btn btn-primary pull-right" id="" onclick="messagePage(`{{user.uuid}}`)">Message</button>
                                  {{else}}
                                  <button class="btn btn-primary pull-right" id="follow-box" onclick="followUser(`{{user.uuid}}`)">Follow</button>
                                 {{/if_eq}}
@@ -56,7 +58,7 @@
                             <div class="tab-pane fade show active" id="post" role="tabpanel" aria-labelledby="post-tab">
                                 {{#each user.posts}}
                               
-                                    <div class="d-flex justify-content-start">
+                                    <div class="d-flex justify-content-start py-2" style="border-bottom: 3px solid #ccc;">
                                         <div>
                                             <img src="img/4.jpg" class="img-prof">
                                         </div>
@@ -64,14 +66,15 @@
                                             <h4 class="fan-name">{{this.owner_name}}<span class="fan-fn"> <br>Player</span><br>
                                                 {{!-- <p class="fan-fn">Arsenal</p> <span class="fan-time">10(s) ago</span> --}}
                                             </h4>
-                                            <p class="comment-p" style="width: 300px;">{{this.post}}</p>
-                                            <div class="img-boxz">
-                                                {{{this.media}}}
-                                            </div>
-                                            
-                                        </div>
-                                
+                                        </div>                                
                                     </div>
+                                    <div class="posted">
+                                        <p class="comment-p" style="width: 300px;">{{this.post}}</p>
+                                        <div class="img-boxz">
+                                            {{{this.media}}}
+                                        </div>
+                                    </div>
+                                    
                                     
                                     <hr>
                                

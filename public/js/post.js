@@ -149,7 +149,8 @@ const usersPost = (data) => {
                 <img src="/img/21104.svg" class="img-prof">
             </div>
             <div class="tab-profile-detail ml-2">
-              <p class="fan-name">${data.owner_name} <span class="color-red fan-fn">Coach</span> <span class="fan-time"> 1hrs ago</span></p>
+              <p class="fan-name">${data.owner_name}</p> 
+              <p><span class="color-red fan-fn">Coach</span> <span class="fan-time"> 1hrs ago</span></p>
               
               <p class="my-3">${data.post}</p>
                 ${getMediaType(data)}

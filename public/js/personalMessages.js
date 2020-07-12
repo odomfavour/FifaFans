@@ -14,7 +14,7 @@ const createAMessagedFriend = (data) => {
     let elArray = [];
     if (data.length !== 0) {
         data.forEach(element =>  {
-          const el = `<div class="d-flex justify-content-between bg-bd mt-3" onclick="loadMessage('${element.follower_uuid}')">
+          const el = `<div class="d-flex bg-bd mt-3" onclick="loadMessage('${element.follower_uuid}')">
                          <div class="p-2 comment-img text-center mr-2"> 
                             <img src="${element["Profile"].profile_pic || "img/4.jpg"}" class="wd-sz" alt="">
                          </div>

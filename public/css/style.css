@@ -374,6 +374,7 @@ a {
 .fan-name {
   font-weight: 900;
   font-size: 20px;
+  margin-bottom: 0;
 }
 
 .fan-fn {
@@ -586,6 +587,10 @@ display: none;
     position: relative;
     padding: 20px;
 }
+
+  .news-content h4 {
+    font-size: 20px;
+  }
 
 .contact-image {
   display: none;
@@ -1081,3 +1086,7 @@ textarea { resize: none; }
   margin-top: 70px;
 }
 
+.tab-profile-detail {
+  max-width: 100%;
+ width: 260px;
+}
