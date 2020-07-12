@@ -12,7 +12,7 @@ const inflatePsersonalMessage = (chat) => {
       let el;
         if ( chat.sender_uuid === localStorage.getItem('friend_data')) {
             el = ` <div class="comment-bot pd-15">
-                      <div class="sender-text">
+                      <div class="owner-text">
                           <p> ${chat.message} </p>
                       </div>
                   </div>`

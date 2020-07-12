@@ -20,11 +20,16 @@ module.exports = (sequelize, DataTypes) => {
 
     Follower.belongsTo(models.User, {
       foreignKey: 'follower_uuid',
-      as: 'Follower'
+      as: 'follower'
     })
     Follower.belongsTo(models.Profile, {
       foreignKey: 'follower_uuid',
-      as : 'Profile',
+      as : 'FollowerProfile',
+      targetKey: 'user_uuid'
+    })
+    Follower.belongsTo(models.Profile, {
+      foreignKey: 'user_uuid',
+      as : 'UserProfile',
       targetKey: 'user_uuid'
     })
   };

@@ -472,7 +472,14 @@ const helperMethods = {
 	async checkForFollower (table, user_uuid, follower_uuid) {
 		console.log(follower_uuid);
 		const follower = await table.findOne({
-			where: { user_uuid, follower_uuid },
+			where: {
+				user_uuid: {
+				  [Op.or]: [user_uuid,follower_uuid]
+				},
+				follower_uuid: {
+				  [Op.or]: [user_uuid, follower_uuid]
+				}
+			  },
 			attributes: {
 				exclude: [
 					'createdAt',
@@ -514,7 +521,7 @@ const helperMethods = {
 				{ follower_uuid: user_uuid },
 			  ], blocked: false 
 			},
-			include: ['User', 'Profile'],
+			include: ['User', 'follower', 'FollowerProfile', 'UserProfile'],
 			attributes: {
 				exclude: [
 					'createdAt',
@@ -535,7 +542,7 @@ const helperMethods = {
 			  ], blocked: false,
 			  messaged: true
 			},
-			include: ['User', 'Profile'],
+			include: ['User', 'follower', 'FollowerProfile', 'UserProfile'],
 			attributes: {
 				exclude: [
 					'createdAt',
