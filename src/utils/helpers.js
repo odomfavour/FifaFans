@@ -364,6 +364,7 @@ const helperMethods = {
 	// search for all data that looks like input
 	async searchForUser (table, input) {
 		const users = await table.findAll({
+			include: [ 'profile' ],
 			where: {
 				[Op.or]: [
 					{ name: { [Op.iLike]: `%${input}%` } },
@@ -685,7 +686,7 @@ const helperMethods = {
 	},
 
 	// save post
-	async savePost(uuid, name, profile_pic, status, club, comment, post_uuid, Post){
+	async savePost(uuid, name, status, club, comment, post_uuid, Post){
 		const post = await Post.findOne({
 			where:{ uuid: post_uuid}
 		});
@@ -693,7 +694,7 @@ const helperMethods = {
 		await post.comment.push(
 			{
 		  user_uuid: uuid,
-		  user_image: profile_pic,
+		//   user_image: profile_pic,
 		  user_name: name,
 		  user_status: status,
 		  user_club: club,

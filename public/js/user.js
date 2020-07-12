@@ -19,6 +19,10 @@ function getFriendDetails(user_uuid) {
   window.location.replace(`/message`);
 }
 
+function getUserImage(image) {
+  if (image) return image
+  return '/img/21104.svg'
+}
 
  function searchUser() {
   options.method = "GET"
@@ -40,19 +44,19 @@ const result = (data) => {
   return `
   <div class="room-box d-flex">
       <div class="text-center">
-        <img src="${ data.icon}" class="img-prof img-fluid">
+        <img src="${ getUserImage(data.profile.profile_pic)}" class="img-prof img-fluid">
       </div>
       <div class="room-detail">
         <p onclick="getUserDetails('${data.uuid}')"><strong><span><a href="#">${ data.name}</a></span></strong>
         </p>
       </div>
-      <span><button class="btn btn-primary" onclick="followUser('${data.uuid}')">Follow</button></span>
+      <span><button class="btn btn-primary" onclick="getUserDetails('${data.uuid}')"><i class="fa fa-eye" aria-hidden="true"></i></button></span>
     </div>
   `
 }
 
 const followUser = (uuid) => {
-      if(follow_box.innerText == 'unFollow') {
+      if(follow_box.innerText == 'Un-Follow') {
         unFollowUser(uuid);
       } else {
         options.method = "POST";
@@ -61,9 +65,10 @@ const followUser = (uuid) => {
           .then((response) => {
             console.log(response);
             if (response.status != "error") {
-              follow_box.innerText = 'unFollow'
+              TOAST.successToast(response.data)
+              follow_box.innerText = 'Un-Follow'
             } else {
-              Swal.fire(response.error, "", "error");
+               TOAST.errorToast(response.error);
             }
           })
           .catch((e) => console.log(e));
@@ -80,9 +85,10 @@ const unFollowUser = (uuid) => {
       .then((response) => {
         console.log(response);
         if (response.status != "error") {
+          TOAST.successToast(response.data)
           follow_box.innerText = 'Follow'
         } else {
-          Swal.fire(response.error, "", "error");
+          TOAST.errorToast(response.error);
         }
       })
       .catch((e) => console.log(e));
