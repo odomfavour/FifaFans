@@ -8,15 +8,16 @@ let commentButton = document.getElementsByClassName("comment-send");
 const userLayout = document.getElementById('media-grid')
 const postLayout = document.getElementById('post')
 
-const displayNumber = (data) => {
-  if (data !== null) {
-    return data.length
-  } else {
-    return 0
-  }
- 
-}
+
 const allPost = document.getElementById("getAllPosts")
+
+function displayProfileImage_(profile) {
+  if (profile) {
+    return profile.profile_pic  
+  } else {
+    return 'img/4.jpg'
+  }
+}
 
 try {
   sendPost.addEventListener("click", createPost);
@@ -34,7 +35,7 @@ function createPost() {
   //   var clicked = e.target;
   //   var file = clicked.files[0];
   // })
-  formData.append('post', post.value);
+  formData.append('post', post.value || "");
   formData.append('file', file);
     options.body = formData;
     fetch(`${base}/create-post`, options)
@@ -270,7 +271,7 @@ const generalPost = (data) => {
     return `<div class="card mt-5 pd-15" >
                   <div class="d-flex justify-content-start py-2" style="border-bottom: 3px solid #ccc;">
                     <div>
-                      <img src="${data.profile.profile_pic || 'img/4.jpg'}" class="img-prof">
+                      <img src="${displayProfileImage_(data.profile)}" class="img-prof">
                     </div>
                     <div class="ml-2">
                       <h4 class="fan-name">${

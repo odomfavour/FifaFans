@@ -1,5 +1,5 @@
-const errorMessage = document.getElementById('error-message');
-const formList = document.getElementById('form-list');
+const errorMessage = document.getElementById('alert_message');
+const submit = document.getElementById('submit');
 const fullName = document.getElementById('fullName');
 const userName = document.getElementById('username');
 const email = document.getElementById('email');
@@ -9,24 +9,29 @@ const password = document.getElementById('password');
 const confirmPassword = document.getElementById('confirmPassword');
 const checkbox = document.getElementById('checkbox');
 
-if (formList) {
-    formList.addEventListener('submit', onsubmit);
+if (submit) {
+    submit.addEventListener('click', onsubmit);
 }
 
  
 function onsubmit(e) {
+    console.log(club.value);
     e.preventDefault();
+    TOAST.infoToast('Please wait whie we sign you up')
 
     if (!fullName.value || !userName.value || !email.value || !club.value || status.value === "" || password.value === "" || confirmPassword.value === "") {
         errorMessage.innerHTML = 'Please enter all fields';
         if (errorMessage.style.display == 'none') {
             errorMessage.style.display = 'block'
+            TOAST.errorToast('Please enter all fields');
         }
         setTimeout(function() {
             errorMessage.style.display = 'none';
         }, 10000);
 
     } else if (password.value !== confirmPassword.value) {
+        TOAST.errorToast('Password doesn\'t match')
+        document.getElementById('pass-message').style.display = 'block';
         document.getElementById('pass-message').innerHTML = 'Password doesn\'t match';
         setTimeout(function() {
             document.getElementById('pass-message').style.display = 'none';
@@ -50,25 +55,11 @@ function onsubmit(e) {
             .then(x => {
                 console.log(x);
                 if (x.status != 'error') {
-                    document.getElementById('success-message').innerHTML = x.data.message;
+                    errorMessage.innerHTML = x.data.message;
                     return window.location.href = '/verify';
                 } else {
-                    if (x.error.password) {
-        
-                        document.getElementById('error-message').innerHTML = x.error.password;
-                        setTimeout(function () {
-                            document.getElementById('error-message').style.display = 'none';
-                        }, 10000);
-                    } else {
-                        
-                        document.getElementById('error-message').innerHTML = x.error;
-                        setTimeout(function () {
-                            document.getElementById('error-message').style.display = 'none';
-                        }, 10000);
-                        
-                    }
-                    
+                    errorMessage.innerHTML = x.error;
                 }
-            })
+            }).catch(e => TOAST.errorToast(e));
     }
 }

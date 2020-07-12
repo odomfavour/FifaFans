@@ -25,7 +25,7 @@
     var theToken = localStorage.getItem('token');
     console.log(theToken)
     if (!theToken) {
-      if (window.location.pathname != '/login' && window.location.pathname !== '/' && window.location.pathname !== '/signup') {
+      if (window.location.pathname != '/login' && window.location.pathname !== '/' && window.location.pathname !== '/signup' && window.location.pathname !== '/verify-message') {
         window.location.replace("/login");
       }
     }
@@ -35,6 +35,15 @@
         'Authorization': `Bearer ${theToken}`
       })
     }
+
+    const displayNumber = (data) => {
+      if (data !== null) {
+      return data.length
+      } else {
+      return 0
+    }
+ 
+  }
   </script>
   <script src="js/jquery.js"></script>
   <script src="js/bootstrap.min.js"></script>

@@ -7,7 +7,7 @@ function GETDURATION(incoming_time) {
     if ( diff > 0 ) {
         return `${diff} day`
     } else {
-        return `${Difference_In_Time} Minute`
+        return `${Math.round(Difference_In_Time/100000)} Minute`
     }
 
    

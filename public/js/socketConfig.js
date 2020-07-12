@@ -98,7 +98,9 @@ socketClient.on("login_error", (data) => {
   try {
     Swal.fire(data.message, "", "error");
         document.getElementById("lgn-btn").textContent = "Log-in";
-        window.location.replace('/login');
+        if (window.location.pathname != '/login' && window.location.pathname !== '/signup' && window.location.pathname !== '/verify-message') {
+          window.location.replace("/login");
+        }
   } catch (error) {
     console.log(error);
   }

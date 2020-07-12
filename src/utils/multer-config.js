@@ -2,7 +2,7 @@ import multer from 'multer';
 
 export default multer({
   limits: {
-    fileSize: 1000000,
+    fileSize: 100000000,
   },
   fileFilter(req, file, cb) {
     if (!file.originalname.match(/\.(png|jpeg|jpg)$/)) {

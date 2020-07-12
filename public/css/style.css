@@ -302,7 +302,6 @@ a {
   left: 50px;
   width: 140px;
   border-radius: 50%;
-  background-image: url(../img/1.png);
   background-size: 100%;
   margin: 0 auto;
   right: 50px;
@@ -727,7 +726,7 @@ display: none;
   }
   .navbar-nav{
     background: #005391;
-    width: 50%;
+    width: 54%;
     height:-webkit-fill-available;
     padding: 12px;
     /* text-align: right; */
@@ -1072,5 +1071,13 @@ textarea { resize: none; }
 
 .btn-300 {
   width: 70px;
+}
+
+.search-name {
+  width: 150px;
+}
+
+.mt-7 {
+  margin-top: 70px;
 }
 
