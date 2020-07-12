@@ -9,20 +9,33 @@ const myUuid = localStorage.getItem('my_uuid');
     }
 }
 
+function mapMessageList(data) {
+    const mappedData = data.map((x) => {
+      if(localStorage.getItem('my_uuid') === x.user_uuid) {
+        x.Profile = { ...x.follower, ...x.FollowerProfile}
+        return x;
+      } else if (localStorage.getItem('my_uuid') === x.follower_uuid ) {
+        x.Profile = { ...x.User, ...x.UserProfile}
+        return x;
+      }
+    })
+    return mappedData;
+  }
+
 
 const createAMessagedFriend = (data) => {
     let elArray = [];
     if (data.length !== 0) {
         data.forEach(element =>  {
-          const el = `<div class="d-flex bg-bd mt-3" onclick="loadMessage('${element.follower_uuid}')">
+          const el = `<div class="d-flex bg-bd mt-3" onclick="loadMessage('${element['Profile'].user_uuid}')">
                          <div class="p-2 comment-img text-center mr-2"> 
                             <img src="${element["Profile"].profile_pic || "img/4.jpg"}" class="wd-sz" alt="">
                          </div>
                          <div class="p-2 comments-content"> 
-                            <h5>${element["User"].name}</h5>
+                            <h5>${element["Profile"].name}</h5>
                             <p><span class="fan-fn"> ${
-                                element["User"].club
-                              } </span><span class="fan-fn"> (${element["User"].status})</span></p>
+                                element["Profile"].club
+                              } </span><span class="fan-fn"> (${element["Profile"].status})</span></p>
                         </div>
                      </div>`;
           elArray.push(el);
@@ -40,14 +53,14 @@ const inflateMessage = (chats) => {
         chats.forEach(chat => {
           if ( chat.sender_uuid === localStorage.getItem('friend_data')) {
               el = ` <div class="comment-bot spacing">
-                        <div class="sender-text">
+                        <div class="owner-text">
                             <p> ${chat.message} </p>
                         </div>
                     </div>`
                     x.push(el)
             } else {
                 el = ` <div class="comment-bot spacing">
-                            <div class="owner-text">
+                            <div class="sender-text">
                                 <p> ${chat.message} </p>
                             </div>
                         </div>`
@@ -121,7 +134,9 @@ const getFriendMessageData  = (uuid) => {
      .then((response) => {
        if (response.status != 'error') {
         console.log('this is response',response);
-        const el = createAMessagedFriend(response.data);
+        const mapped = mapMessageList(response.data)
+        console.log(mapped)
+        const el = createAMessagedFriend(mapped);
         document.getElementById('message-area').innerHTML = el.join(" ");
       };
        
