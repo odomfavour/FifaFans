@@ -16,6 +16,7 @@ const input_profile_email = document.getElementById('input_profile_email');
 const profile_image_upload = document.getElementById('profile_image_upload');
 const profile_pics = document.getElementById('profile_pics');
 const post_profile_image = document.getElementById('post_profile_image');
+const comment_profile_image = document.getElementById('comment_profile_image');
 const profile_page_name = document.getElementById('profile_page_name');
 const input_profile_gender = document.getElementById('input_profile_gender');
 const input_profile_status = document.getElementById('input_profile_status');
@@ -183,6 +184,8 @@ function getProfile() {
                 if ( x.data.profiles) {
                     localStorage.setItem('profile_pics', x.data.profiles[0].profile_pic);
                     post_profile_image.src = x.data.profiles[0].profile_pic;
+                    comment_profile_image.src = x.data.profiles[0].profile_pic;
+
                 }
             }
         })
