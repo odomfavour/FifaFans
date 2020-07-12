@@ -25,8 +25,8 @@
                                 <div class="news-image">
                                     <img src="{{this.urlToImage}}" alt="a player" class="img-fluid">
                                 </div>
-                                <div class="news-content ml-2">
-                                    <h4>{{ this.title }}
+                                <div class="news-content mt-3 ml-2">
+                                    <h4 onclick="showNewsDetails('{{this.title}}')">{{ this.title }}
                                     </h4>
                                     <p>{{ this.description }}</p>
                                     <p class="btn btn-primary" onclick="showNewsDetails(`{{this.title}}`)">Read</p>
@@ -70,8 +70,8 @@
                                         <img src="{{this.urlToImage}}" alt="a player" class="img-fluid">
                                     </div>
                                     <div class="news-heading ml-2">
-                                        <p>{{ this.title }}</p>
-                                        <p class="" onclick="showNewsDetails('{{this.title}}')">{{ this.description }}
+                                        <p onclick="showNewsDetails('{{this.title}}')">{{ this.title }}</p>
+                                        <p class="" >{{ this.description }}
                                         </p>
                                     </div>
                                 </div>
