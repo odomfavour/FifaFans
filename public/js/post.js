@@ -144,17 +144,19 @@ function listUserPosts() {
 const usersPost = (data) => {
   // let layout = document.getElementById('post-layout');
   // layout
-  return `<div class="d-flex justify-content-start">
+  return `<div class="users-post-section">
+  <div class="d-flex justify-content-start">
             <div>
                 <img src="/img/21104.svg" class="img-prof">
             </div>
             <div class="tab-profile-detail ml-2">
               <p class="fan-name">${data.owner_name}</p> 
               <p><span class="color-red fan-fn">Coach</span> <span class="fan-time"> 1hrs ago</span></p>
-              
+              </div>
+      </div
               <p class="my-3">${data.post}</p>
                 ${getMediaType(data)}
-            </div>
+           
             
         </div>
         <hr style=" border: 1px solid #ccc">`;
