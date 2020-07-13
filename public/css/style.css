@@ -434,7 +434,7 @@ a {
 }
 
 #myTab .nav-link {
-  padding: 10px 69px;
+  padding: 10px 60px;
   
 }
 
@@ -467,8 +467,10 @@ a {
 }
 
 .button-box {
-  padding: 10px 60px 60px;
+    padding: 20px 20px 40px 0;
+    height: 100px;
 }
+
 .button-box button {
   padding:  8px 20px !important;
 }
@@ -550,6 +552,8 @@ textarea {
   overflow-y: scroll;
 }
 
+
+
 /* .message-box {
   position:fixed;
   bottom:0;
@@ -591,6 +595,18 @@ display: none;
   .news-content h4 {
     font-size: 20px;
   }
+  #user-full-name {
+    font-size: 25px;
+  }
+
+  .p-2 {
+    font-size: 14px;
+  }
+
+  .card-taps .tab-profile-detail {
+  max-width: 100%;
+ width: 260px;
+}
 
 .contact-image {
   display: none;
@@ -731,7 +747,7 @@ display: none;
   }
   .navbar-nav{
     background: #005391;
-    width: 54%;
+    width: 60%;
     height:-webkit-fill-available;
     padding: 12px;
     /* text-align: right; */
@@ -739,7 +755,7 @@ display: none;
 .toggle-close{
   color: #fff;
   position: absolute;
-  left: 43%; 
+  left: 36%; 
   background-color: #005391;
   padding: 5px 10px;
   border-radius: 50%;
@@ -1086,7 +1102,3 @@ textarea { resize: none; }
   margin-top: 70px;
 }
 
-.tab-profile-detail {
-  max-width: 100%;
- width: 260px;
-}
