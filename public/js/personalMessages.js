@@ -93,23 +93,25 @@ const createChatBox = (data) => {
          ${inflateMessage(data.chats)}
       </div>
       <div class="line-bd"></div>
-      <div class="d-flex  pd-15 justify-content-start">
-          <div class="pd-pos">
-              <a href="#"><i class="fa fa-image"></i></a>
-          </div>
-          <div class="pd-pos">
-              <a href="#"><i class="fa fa-paperclip"></i></a>
-          </div>
-              <form class="form-inline my-2"></form>
-              <div class=" green-border-focus width-100">
-                  <input type="search" placeholder="Type..." aria-label="Search" class="form-control post-input" id="personal-text">
-                  <button type="submit" class="fa fa-send border-none clip-attach" onclick="(sendPersonalMessage('${myUuid}&${data["user"].uuid}'))"></button>
-              </div>
-          </form>
-          
-      </div>`;
+    <div class="d-flex  pd-15 justify-content-start">
+        <div class="pd-pos">
+            <a href="#"><i class="fa fa-image"></i></a>
+        </div>
+        <div class="pd-pos">
+            <a href="#"><i class="fa fa-paperclip"></i></a>
+        </div>
+        <form class="form-inline my-2"></form>
+        <div class=" green-border-focus w-100">
+            <input type="search" placeholder="Type..." aria-label="Search"
+                class="form-control post-input w-100" id="personal-text">
+        </div>
+
+        <p class="fa fa-1.5x fa-diamond border-none pd-pos room-send" onclick="(sendPersonalMessage('${myUuid}&${data["user"].uuid}'))"</p>
+        </div>`;
    messageLayout.innerHTML = html;
 }
+
+
 
 
 
