@@ -603,6 +603,20 @@ display: none;
     font-size: 14px;
   }
 
+  .profile-pix {
+    flex-direction: column;
+  }
+
+  .profile-pix .imgprofile {
+    text-align: center;
+  }
+
+  .text-profile {
+    margin-left: 10px !important;
+  }
+
+  
+
   .card-taps .tab-profile-detail {
   max-width: 100%;
  width: 260px;
