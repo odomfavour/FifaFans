@@ -90,7 +90,7 @@ function createCanva(data) {
   } else {
     if (data.post.toString().length < 40) {
       return `<div class="post-bg">
-      <div class="post-txt-small">
+      <div class="post-txt">
         <p style="font-size:50px">${data.post}</p>
       </div>
     </div>`
