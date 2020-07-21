@@ -4,7 +4,7 @@ const fullName = document.getElementById('fullName');
 const userName = document.getElementById('username');
 const email = document.getElementById('email');
 const club = document.getElementById('club');
-const status = document.getElementById('status');
+const sTatus = document.getElementById('status');
 const password = document.getElementById('password');
 const confirmPassword = document.getElementById('confirmPassword');
 const checkbox = document.getElementById('checkbox');
@@ -19,7 +19,7 @@ function onsubmit(e) {
     e.preventDefault();
     TOAST.infoToast('Please wait whie we sign you up')
 
-    if (!fullName.value || !userName.value || !email.value || !club.value || status.value === "" || password.value === "" || confirmPassword.value === "") {
+    if (!fullName.value || !userName.value || !email.value || !club.value || sTatus.value === "" || password.value === "" || confirmPassword.value === "") {
         errorMessage.innerHTML = 'Please enter all fields';
         if (errorMessage.style.display == 'none') {
             errorMessage.style.display = 'block'
@@ -45,8 +45,9 @@ function onsubmit(e) {
         formData.append('email', email.value);
         formData.append('password', password.value);
         formData.append('role', 'user');
+        formData.append('status', sTatus.value);
         formData.append('club', club.value);
-        formData.append('status', status.value);
+        
         fetch('/api/v1/auth/signup', {
                 method: "POST",
                 body: formData,

@@ -36,7 +36,7 @@ const AuthController = {
 			// trims the req.body to remove trailling spaces
 			const userData = magicTrimmer(req.body);
 			// destructuring user details
-			const { name, username, email, password, role, phone, status } = userData;
+			const { name, username, email, password, role, phone, status, club } = userData;
 
 			// validation of inputs
 			const schema = {

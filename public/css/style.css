@@ -200,8 +200,9 @@ a {
 }
 
 .scrollable-comments {
-   overflow: auto;
+   overflow: scroll;
     min-height: 50px;
+    max-height: 200px;;
 
 }
 
