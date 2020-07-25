@@ -1144,3 +1144,25 @@ textarea.form-control{
   
 }
 
+#lightbox{
+  position:fixed;
+  z-index: 1000;
+  top:0;
+  width:100%;
+  height:100%;
+  background-color: #000000de;
+  display:none;
+  
+}
+#lightbox.active{
+  display: flex;
+  justify-content: center;
+  align-items:center;
+}
+#lightbox img{
+  max-width:90%;
+border: 2px solid #ffffff;
+padding: 5px;
+transition: 2s;
+
+}
