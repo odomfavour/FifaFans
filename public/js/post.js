@@ -327,9 +327,7 @@ const generalPost = (data) => {
                         <div class="form-group green-border-focus">
                           <textarea name="" placeholder="Write comments..."id="${
                             data.uuid
-                          }-comment-input" class="form-control">
-                          
-                          </textarea>
+                          }-comment-input" class="form-control"></textarea>
                          
                           </div>
                           <p class="fa fa-send border-none clip-attach" onclick="commentPost('${
