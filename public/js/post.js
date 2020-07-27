@@ -72,7 +72,7 @@ function getMediaType(data) {
 
   if (type == 'jpg' || type == 'png') {
     console.log(type);
-    return `<img src="${data.media}" class="img-fluid img-resized" width="500" alt=""></img>`
+    return `<img onclick="showPopUp(this)" src="${data.media}" class="img-fluid img-resized" width="500" alt=""></img>`
   }
 
   if ( type == undefined) {
