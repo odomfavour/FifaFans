@@ -72,7 +72,7 @@ function getMediaType(data) {
 
   if (type == 'jpg' || type == 'png') {
     console.log(type);
-    return `<img src="${data.media}" class="img-fluid img-resized" width="500" alt=""></img>`
+    return `<img onclick="showPopUp(this)" src="${data.media}" class="img-fluid img-resized" width="500" alt=""></img>`
   }
 
   if ( type == undefined) {
@@ -147,7 +147,7 @@ const usersPost = (data) => {
   return `<div class="users-post-section">
   <div class="d-flex justify-content-start">
             <div>
-                <img src="/img/21104.svg" class="img-prof">
+                <a href="/img/21104.svg"><img src="/img/21104.svg" class="img-prof"></a>
             </div>
             <div class="tab-profile-detail ml-2">
               <p class="fan-name">${data.owner_name}</p> 
@@ -320,7 +320,8 @@ const generalPost = (data) => {
                     <div class="d-flex justify-content-between mt-4 bt-2">
                     
                       <div class="text-center">
-                        <img src="${getLocalImage(localStorage.getItem('profile_pics'))}" class="img-prof">
+                       <img src="${getLocalImage(localStorage.getItem('profile_pics'))}" class="img-prof">
+                       
                       </div>
                       <div class=" flex-grow-1 pd-4 ml-2 ">
                         <div class="form-group green-border-focus">
@@ -388,3 +389,6 @@ const loadPosts = async () => {
 }
 
 loadPosts()
+
+
+
