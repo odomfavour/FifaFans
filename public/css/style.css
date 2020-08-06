@@ -264,9 +264,6 @@ a {
   border-left: 3px solid #005391;
 }
 
-.pd-15 {
-    padding: 15px;
-}
 
 .sender-text p {
   margin-bottom: 6px;
@@ -347,10 +344,10 @@ a {
   padding-top: 0.8rem;
 }
 
-.navbar-dark .navbar-nav .nav-link.active,
+/* .navbar-dark .navbar-nav .nav-link.active,
 .navbar-dark .navbar-nav .nav-link:hover {
   color: #1ebba3;
-}
+} */
 
 
 /* landing-page */
@@ -456,7 +453,7 @@ a {
 }
 
 .green-border-focus textarea {
-  border-radius: 28px;
+  border-radius: 0px;
 }
 
 #right .news-image {
@@ -500,6 +497,20 @@ textarea {
     padding: 0;
     outline: none;
     background-color: #D0D0D0;
+     height: 60px !important;
+}
+
+
+.comments p {
+  margin-bottom: 0 !important;
+}
+
+.comments .fa {
+  font-size: 20px;
+}
+.comments .fa:hover {
+  cursor: pointer;
+
 }
 
 .socials ul {
@@ -864,7 +875,7 @@ display: none;
 }
 
 .pd-15 {
-  padding: 15px;
+  padding: 15px 0;
 }
 .card {
   border-radius: 10px;
