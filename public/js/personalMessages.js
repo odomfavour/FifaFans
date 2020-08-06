@@ -106,7 +106,7 @@ const createChatBox = (data) => {
     
                             </div>
 
-                            <p class="fa fa-diamond border-none px-2 py-3 room-send " onclick="(sendPersonalMessage('${myUuid}&${data["user"].uuid}'))"></p>
+                            <p class="fa fa-send border-none px-2 py-3 room-send " onclick="(sendPersonalMessage('${myUuid}&${data["user"].uuid}'))"></p>
                         </div>`;
    messageLayout.innerHTML = html;
 }
