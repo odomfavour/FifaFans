@@ -43,6 +43,14 @@ h4, h2, h5, h6 {
   display: none !important;
 }
 
+#add-friend {
+  cursor: pointer;
+}
+
+.cursor {
+  cursor: pointer;
+}
+
 .wrapper {
     display: flex;
     align-items: center;

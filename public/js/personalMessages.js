@@ -32,7 +32,7 @@ const createAMessagedFriend = (data) => {
                             <img src="${element["Profile"].profile_pic || "img/4.jpg"}" class="wd-sz" alt="">
                          </div>
                          <div class="p-2 comments-content"> 
-                            <h5>${element["Profile"].name}</h5>
+                            <h5 class="cursor"  onclick="getUserDetails('${element['Profile'].user_uuid}')">${element["Profile"].name}</h5>
                             <p><span class="fan-fn"> ${
                                 element["Profile"].club
                               } </span><span class="fan-fn"> (${element["Profile"].status})</span></p>
@@ -84,7 +84,7 @@ const createChatBox = (data) => {
                   }" class="img-prof">
               </div>
               <div class="tap-cont-profile pd-3-12 ">
-                  <h5 class="font-16 d-flex chat-layout">${data["user"].name}</h5>
+                  <h5 class="font-16 d-flex chat-layout cursor" onclick="getUserDetails('${data["user"].uuid}')">${data["user"].name}</h5>
               </div>
           </div>
       </div>
