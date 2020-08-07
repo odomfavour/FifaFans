@@ -283,7 +283,7 @@ const generalPost = (data) => {
                       <img src="${displayProfileImage_(data.profile)}" class="img-prof">
                     </div>
                     <div class="ml-2">
-                      <h4 class="fan-name cursor" onclick="getUserDetails('${data.uuid}')">${
+                      <h4 class="fan-name cursor">${
                         data.owner_name
                       }<p class="fan-fn">${
                         data.User.club
