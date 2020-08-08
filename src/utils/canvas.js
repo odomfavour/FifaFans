@@ -1,5 +1,5 @@
 const fs = require('fs')
-const { createCanvas, loadImage } = require('canvas')
+// const { createCanvas, loadImage } = require('canvas')
 
 
 const Canvas = {
@@ -26,4 +26,4 @@ const Canvas = {
     }
 }
 
-module.exports = Canvas
+// module.exports = Canvas

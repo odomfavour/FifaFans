@@ -43,6 +43,14 @@ h4, h2, h5, h6 {
   display: none !important;
 }
 
+#add-friend {
+  cursor: pointer;
+}
+
+.cursor {
+  cursor: pointer;
+}
+
 .wrapper {
     display: flex;
     align-items: center;
@@ -264,9 +272,6 @@ a {
   border-left: 3px solid #005391;
 }
 
-.pd-15 {
-    padding: 15px;
-}
 
 .sender-text p {
   margin-bottom: 6px;
@@ -347,10 +352,10 @@ a {
   padding-top: 0.8rem;
 }
 
-.navbar-dark .navbar-nav .nav-link.active,
+/* .navbar-dark .navbar-nav .nav-link.active,
 .navbar-dark .navbar-nav .nav-link:hover {
   color: #1ebba3;
-}
+} */
 
 
 /* landing-page */
@@ -455,9 +460,9 @@ a {
   letter-spacing: 2px;
 }
 
-.green-border-focus textarea {
-  border-radius: 28px;
-}
+/* .green-border-focus textarea {
+  border-radius: 0px;
+} */
 
 #right .news-image {
   width: 200px;
@@ -494,12 +499,26 @@ a {
   margin-bottom: 20px;
 }
 
-textarea {
+/* textarea {
    border: 0 none white;
     overflow: hidden;
     padding: 0;
     outline: none;
     background-color: #D0D0D0;
+    
+} */
+
+
+.comments p {
+  margin-bottom: 0 !important;
+}
+
+.comments .fa {
+  font-size: 20px;
+}
+.comments .fa:hover {
+  cursor: pointer;
+
 }
 
 .socials ul {
@@ -1052,7 +1071,7 @@ pd-3 {
   right: 38px;
   bottom: 26px;
 }
-textarea { resize: none; }
+/* textarea { resize: none; } */
 
 .max-350{
   max-height: 350px;
@@ -1140,10 +1159,17 @@ textarea { resize: none; }
   margin-top: 70px;
 }
 
-textarea.form-control{
-  height: 40px;
-  
+/* textarea.form-control{ */
+  /* min-height: 60px !important; */
+    /* height: auto !important; */
+/* } */
+
+textarea.textarea-autosize {
+  min-height: 60px;
+  resize: none;
+  overflow-y:hidden;
 }
+
 
 #lightbox{
   position:fixed;
