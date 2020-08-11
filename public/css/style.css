@@ -575,6 +575,7 @@ a {
   position: fixed;
   max-height: 80%;
   overflow-y: scroll;
+  max-width: 28%;
 }
 
 
@@ -605,6 +606,41 @@ a {
 display: none;
 }
 }
+
+@media (min-width: 767px) and (max-width: 1024px) {
+  .hidden-mobile {
+    display: none;
+}
+
+.side-like {
+  display: none;
+}
+
+.main-area {
+  width: 100%;
+  max-width: 100%;
+}
+
+.nav-item .nav-link .fa-home {
+  display: none;
+}
+
+.navbar .container {
+  margin: 0;
+}
+
+.navbar-nav li {
+    padding-right: 0.5rem;
+}
+
+.navbar-brand {
+  font-size: 1.6rem;;
+}
+
+  
+}
+
+
 @media (max-width: 767px){
   .nav-item .dropdown-menu {
       background-color: rgba(226, 219, 219, 0.021);;
