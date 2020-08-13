@@ -508,6 +508,13 @@ a {
     
 } */
 
+#alert_message {
+  text-align: center;
+  /* background: rgb(243, 79, 79); */
+  /* color: rgb(243, 79, 79); */
+  padding: 10px 0;
+}
+
 
 .comments p {
   margin-bottom: 0 !important;
