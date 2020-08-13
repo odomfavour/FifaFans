@@ -32,7 +32,7 @@ const createAMessagedFriend = (data) => {
                             <img src="${element["Profile"].profile_pic || "img/4.jpg"}" class="wd-sz" alt="">
                          </div>
                          <div class="p-2 comments-content"> 
-                            <h5>${element["Profile"].name}</h5>
+                            <h5 class="cursor"  onclick="getUserDetails('${element['Profile'].user_uuid}')">${element["Profile"].name}</h5>
                             <p><span class="fan-fn"> ${
                                 element["Profile"].club
                               } </span><span class="fan-fn"> (${element["Profile"].status})</span></p>
@@ -76,7 +76,7 @@ const inflateMessage = (chats) => {
 const createChatBox = (data) => {
     const messageLayout = document.getElementById('message-layout');
     let html = `
-      <div class="pd-15 pb-0">
+      <div class="py-3 px-2 pb-0">
           <div class="d-flex justify-content-start ">
               <div class="comment-img mr-2">
                   <img src="${
@@ -84,7 +84,7 @@ const createChatBox = (data) => {
                   }" class="img-prof">
               </div>
               <div class="tap-cont-profile pd-3-12 ">
-                  <h5 class="font-16 d-flex chat-layout">${data["user"].name}</h5>
+                  <h5 class="font-16 d-flex chat-layout cursor" onclick="getUserDetails('${data["user"].uuid}')">${data["user"].name}</h5>
               </div>
           </div>
       </div>
@@ -93,21 +93,21 @@ const createChatBox = (data) => {
          ${inflateMessage(data.chats)}
       </div>
       <div class="line-bd"></div>
-    <div class="d-flex  pd-15 justify-content-start">
-        <div class="pd-pos">
-            <a href="#"><i class="fa fa-image"></i></a>
-        </div>
-        <div class="pd-pos">
-            <a href="#"><i class="fa fa-paperclip"></i></a>
-        </div>
-        <form class="form-inline my-2"></form>
-        <div class=" green-border-focus w-100">
-            <input type="search" placeholder="Type..." aria-label="Search"
-                class="form-control post-input w-100" id="personal-text">
-        </div>
+          <div class="d-flex  pd-15 justify-content-start comments">
+                            <div class="pd-pos">
+                                <a href="#"><i class="fa fa-image"></i></a>
+                            </div>
+                            <div class="pd-pos">
+                                <a href="#"><i class="fa fa-paperclip"></i></a>
+                            </div>
+                            <form class="form-inline my-2"></form>
+                            <div class=" green-border-focus w-100">
+                                <textarea name="" placeholder="Write ..." id="personal-text" class="form-control"></textarea>
+    
+                            </div>
 
-        <p class="fa fa-1.5x fa-diamond border-none pd-pos room-send" onclick="(sendPersonalMessage('${myUuid}&${data["user"].uuid}'))"</p>
-        </div>`;
+                            <p class="fa fa-send border-none px-2 py-3 room-send " onclick="(sendPersonalMessage('${myUuid}&${data["user"].uuid}'))"></p>
+                        </div>`;
    messageLayout.innerHTML = html;
 }
 

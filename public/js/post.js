@@ -72,7 +72,7 @@ function getMediaType(data) {
 
   if (type == 'jpg' || type == 'png') {
     console.log(type);
-    return `<img src="${data.media}" class="img-fluid img-resized" width="500" alt=""></img>`
+    return `<img onclick="showPopUp(this)" src="${data.media}" class="img-fluid img-resized" width="500" alt=""></img>`
   }
 
   if ( type == undefined) {
@@ -147,7 +147,7 @@ const usersPost = (data) => {
   return `<div class="users-post-section">
   <div class="d-flex justify-content-start">
             <div>
-                <img src="/img/21104.svg" class="img-prof">
+                <a href="/img/21104.svg"><img src="/img/21104.svg" class="img-prof"></a>
             </div>
             <div class="tab-profile-detail ml-2">
               <p class="fan-name">${data.owner_name}</p> 
@@ -283,7 +283,7 @@ const generalPost = (data) => {
                       <img src="${displayProfileImage_(data.profile)}" class="img-prof">
                     </div>
                     <div class="ml-2">
-                      <h4 class="fan-name">${
+                      <h4 class="fan-name cursor">${
                         data.owner_name
                       }<p class="fan-fn">${
                         data.User.club
@@ -317,25 +317,28 @@ const generalPost = (data) => {
                     }">
                        ${displayComments(data.comment)}
                     </div>
-                    <div class="d-flex justify-content-between mt-4 bt-2">
-                    
-                      <div class="text-center">
-                        <img src="${getLocalImage(localStorage.getItem('profile_pics'))}" class="img-prof">
+
+                    <div class="d-flex  pd-15 justify-content-start comments">
+                            <div class="text-center mr-2">
+                       <img src="${getLocalImage(localStorage.getItem('profile_pics'))}" class="img-prof">
+                       
                       </div>
-                      <div class=" flex-grow-1 pd-4 ml-2 ">
-                        <div class="form-group green-border-focus">
-                          <textarea name="" placeholder="Write comments..."id="${
-                            data.uuid
-                          }-comment-input" class="form-control"></textarea>
-                         
-                          </div>
-                          <p class="fa fa-send border-none clip-attach" onclick="commentPost('${
-                            data.uuid
-                          }')"</p>
+                            <form class="form-inline my-2"></form>
+                            <div class=" green-border-focus w-100">
+                                <textarea name="" placeholder="Write comments..."id="${
+      data.uuid
+                          }-comment-input" class="form-control textarea-autosize"></textarea>
+                            </div>
+
+                            <p class="fa fa-send border-none px-2 py-3" onclick="commentPost('${data.uuid}')"></p>
                         </div>
-                      
-                    </div>
-                  </div>
+</div>
+
+
+
+
+
+                   
                 </div>`;
 }
 
@@ -388,3 +391,6 @@ const loadPosts = async () => {
 }
 
 loadPosts()
+
+
+
