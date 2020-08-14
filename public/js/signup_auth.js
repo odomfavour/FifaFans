@@ -14,7 +14,8 @@ if (submit) {
 function onsubmit (e){
 	console.log(club.value);
 	e.preventDefault();
-	TOAST.infoToast('Please wait whie we sign you up');
+	TOAST.infoToast('Please wait while we sign you up');
+
 	if (
 		!fullName.value ||
 		!userName.value ||
@@ -25,8 +26,12 @@ function onsubmit (e){
 		confirmPassword.value === ''
 	) {
 		errorMessage.innerHTML = 'Please enter all fields';
+		errorMessage.style.color = 'white';
+		errorMessage.style.backgroundColor = 'red';
+		errorMessage.style.marginBottom = '20px';
 		if (errorMessage.style.display == 'none') {
 			errorMessage.style.display = 'block';
+
 			TOAST.errorToast('Please enter all fields');
 		}
 		setTimeout(function (){
@@ -35,8 +40,13 @@ function onsubmit (e){
 	}
 	else if (password.value !== confirmPassword.value) {
 		TOAST.errorToast("Password doesn't match");
-		document.getElementById('pass-message').style.display = 'block';
 		document.getElementById('pass-message').innerHTML = "Password doesn't match";
+		document.getElementById('pass-message').style.display = 'block';
+		document.getElementById('pass-message').style.textAlign = 'center';
+		document.getElementById('pass-message').style.marginBottom = '20px';
+		document.getElementById('pass-message').style.paddingBottom = '10px';
+		document.getElementById('pass-message').style.paddingTop = '10px';
+		document.getElementById('pass-message').style.color = 'white';
 		setTimeout(function (){
 			document.getElementById('pass-message').style.display = 'none';
 		}, 10000);
@@ -51,6 +61,7 @@ function onsubmit (e){
 		formData.append('role', 'user');
 		formData.append('status', sTatus.value);
 		formData.append('club', club.value);
+
 		fetch('/api/v1/auth/signup', {
 			method: 'POST',
 			body: formData
