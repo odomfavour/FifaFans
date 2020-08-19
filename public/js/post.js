@@ -140,6 +140,10 @@ function listUserPosts() {
     })
 }
 
+function resetPassword() {
+  options.method = 'POST'
+} 
+
 
 const usersPost = (data) => {
   // let layout = document.getElementById('post-layout');
