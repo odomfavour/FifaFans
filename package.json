@@ -3,6 +3,9 @@
   "version": "0.0.0",
   "description": "FifaFan is a platform that connect football players, fans, personnel",
   "private": true,
+  "engines": {
+    "node": "12.18.3"
+  },
   "scripts": {
     "lint": "eslint --fix \"./src/**/*.js\"",
     "test": "cross-env NODE_ENV=test npm run db:migrate:undo && npm run db:migrate && nyc mocha --no-timeout './tests/index.js' --exit",
