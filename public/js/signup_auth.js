@@ -8,6 +8,8 @@ const sTatus = document.getElementById('status');
 const password = document.getElementById('password');
 const confirmPassword = document.getElementById('confirmPassword');
 const checkbox = document.getElementById('checkbox');
+const resetPasswordForm = document.getElementById("reset-form");
+const newPassword = document.getElementById('new-password');
 if (submit) {
 	submit.addEventListener('click', onsubmit);
 }
@@ -80,4 +82,41 @@ function onsubmit (e){
 			})
 			.catch((e) => TOAST.errorToast(e));
 	}
+}
+
+
+if (resetPasswordForm) {
+  resetPasswordForm.addEventListener("submit", resetPassword);
+}
+
+
+
+function resetPassword(e) {
+	e.preventDefault();
+	options.method = "POST";
+	console.log('here')
+    if (!email.value || !newPassword.value) {
+        errorMessage.innerHTML = "Please enter all fields";
+	} else {
+		 const formData = new FormData();
+     formData.append("email", email.value);
+     formData.append("password", newPassword.value);
+		
+		options.body = formData;
+     fetch(`${base}auth/resetpassword`, options)
+       .then((res) => res.json())
+       .then((x) => {
+         console.log(x.data);
+         console.log(x.error);
+         // if (x.status !== "error" || x.error === "Internal Server Error") {
+         //   errorMessage.innerHTML = x.error;
+         //   return (window.location.href = "/verify");
+         // } else {
+         //   const error = Object.values(x.error);
+         //   errorMessage.innerHTML = error;}
+       })
+       .catch((e) => TOAST.errorToast(e));
+
+	}
+   
 }

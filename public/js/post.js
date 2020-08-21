@@ -7,6 +7,8 @@ let commentSection = document.getElementsByClassName("comment-section");
 let commentButton = document.getElementsByClassName("comment-send");
 const userLayout = document.getElementById('media-grid')
 const postLayout = document.getElementById('post')
+let textArea = document.getElementsByTagName('textarea');
+// console.log(textarea)
 
 
 const allPost = document.getElementById("getAllPosts")
@@ -30,35 +32,44 @@ try {
   console.log(error)
 }
 function createPost() {
-  let file = document.getElementById("image-upload").files[0];
-  // readAsDataURL(file)
-  console.log(file)
+
+  if (post.value == "") {
+    Swal.fire('Please type a message');
+  } else {
+    let file = document.getElementById("image-upload").files[0];
+    // readAsDataURL(file)
+    console.log(file)
     options.method = 'POST'
     const formData = new FormData();
 
-  // imageUpload.change((e) => {
-  //   var clicked = e.target;
-  //   var file = clicked.files[0];
-  // })
-  formData.append('post', post.value || "");
-  formData.append('file', file);
+    // imageUpload.change((e) => {
+    //   var clicked = e.target;
+    //   var file = clicked.files[0];
+    // })
+
+
+    formData.append('post', post.value);
+    formData.append('file', file);
     options.body = formData;
     fetch(`${base}/create-post`, options)
-        .then(res => res.json())
-        .then(x => {
-            console.log(x);
-            if (x.status != 'error') {
-              // if (file) {
-                
-              // }
-                Swal.fire(x.data);
-                window.location.reload();
-            } else {
-                Swal.fire(x.error, '', 'error');
-            }
-        }).catch(e =>  Swal.fire(e));
-}
+      .then(res => res.json())
+      .then(x => {
+        console.log(x);
+        if (x.status != 'error') {
+          // if (file) {
 
+          // }
+          Swal.fire(x.data);
+          window.location.reload();
+        } else {
+          Swal.fire(x.error, '', 'error');
+        }
+      }).catch(e => Swal.fire(e));
+  }
+
+    
+  }
+  
 
 function getMediaType(data) {
   console.log(data);
@@ -97,7 +108,7 @@ function createCanva(data) {
     } else if (data.post.toString().length >= 40) {
       return `<div class="post-bg">
       <div class="post-txt">
-        <p style="font-size:50px">${data.post}</p>
+        <p style="font-size:16px">${data.post}</p>
       </div>
     </div>`
     }
@@ -140,9 +151,6 @@ function listUserPosts() {
     })
 }
 
-function resetPassword() {
-  options.method = 'POST'
-} 
 
 
 const usersPost = (data) => {
@@ -198,7 +206,8 @@ async function listAllPosts() {
                 const array = [];
               response.data.forEach(x => { 
                  const el = generalPost(x);
-                 array.push(el);
+                array.push(el);
+                console.log(array)
                 });
               layout.innerHTML = array.join(" ");
          }
@@ -208,10 +217,18 @@ async function listAllPosts() {
 
 // socket io for posting comments 
 function commentPost(post_uuid) {
-    TOAST.infoToast('Sending your comment....');
+    
+    console.log('i see you')
+   
     const post = document.getElementById(`${post_uuid}-comment-input`);
-    socketClient.emit('post-comment', { post_uuid, post: post.value })
-    post.value = ''
+    if (post.value == "") {
+      Swal.fire('Type a comment');
+    } else {
+      TOAST.infoToast('Sending your comment....');
+      socketClient.emit('post-comment', { post_uuid, post: post.value })
+      post.value = ''
+    }
+    
   }
 
 
@@ -243,10 +260,11 @@ const displayComments = (data) => {
   console.log('my comment',data);
     const array = [];
     if (data) { 
+      console.log(data)
         data.forEach(x => {
         const element = ` <div class="d-flex justify-content-start mt-3">
           <div>
-            <img src="img/4.jpg" class="img-prof ">
+            <img src="${displayProfileImage_(data.profile)}" class="img-prof ">
           </div>
           <div class="ml-2">
             <h4 class="fan-name">${x.user_name}<p class="fan-fn">${x.user_club}<span class="fan-fn"> ${x.user_status}</span></p> <span class="fan-time">${GETDURATION(x.date_sent)}(s) ago</span></h4>
@@ -279,6 +297,7 @@ const displayRoomChats = (data) => {
 }
 //${ GETDURATION(data.createdAt)}
 const generalPost = (data) => {
+  console.log(data)
     // let layout = document.getElementById('post-layout');
     // layout
     return `<div class="card mt-5 pd-15" >
@@ -287,6 +306,7 @@ const generalPost = (data) => {
                       <img src="${displayProfileImage_(data.profile)}" class="img-prof">
                     </div>
                     <div class="ml-2">
+                    <a href="/profile">
                       <h4 class="fan-name cursor">${
                         data.owner_name
                       }<p class="fan-fn">${
@@ -294,7 +314,7 @@ const generalPost = (data) => {
                       } <span class="fan-fn">${
                         data.User.status
                       }</span></p> <span class="fan-time">${GETDURATION(data.createdAt)}(s) ago</span></h4>
-                    
+                    </a>
                     </div>
 
                   </div>
@@ -323,10 +343,7 @@ const generalPost = (data) => {
                     </div>
 
                     <div class="d-flex  pd-15 justify-content-start comments">
-                            <div class="text-center mr-2">
-                       <img src="${getLocalImage(localStorage.getItem('profile_pics'))}" class="img-prof">
-                       
-                      </div>
+                            
                             <form class="form-inline my-2"></form>
                             <div class=" green-border-focus w-100">
                                 <textarea name="" placeholder="Write comments..."id="${
@@ -336,21 +353,20 @@ const generalPost = (data) => {
 
                             <p class="fa fa-send border-none px-2 py-3" onclick="commentPost('${data.uuid}')"></p>
                         </div>
-</div>
-
-
-
-
-
-                   
+</div>                   
                 </div>`;
 }
 
-function messageBox() {
-  return `
+{/* <div class="text-center mr-2">
+  <img src="${getLocalImage(localStorage.getItem('profile_pics'))}" class="img-prof">
+                       
+                      </div> */}
 
-  `
-}
+// function messageBox() {
+//   return `
+
+//   `
+// }
 
 function removeMessageBox(e) {
   if (e.target.classList.contains('remove-btn')) {

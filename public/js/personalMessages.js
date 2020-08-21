@@ -57,7 +57,8 @@ const inflateMessage = (chats) => {
                             <p> ${chat.message} </p>
                         </div>
                     </div>`
-                    x.push(el)
+            x.push(el)
+            console.log(x)
             } else {
                 el = ` <div class="comment-bot spacing">
                             <div class="sender-text">
@@ -67,13 +68,15 @@ const inflateMessage = (chats) => {
                         x.push(el)
              }
         });
-        return x;
+      
+        return x.join("");
     } else {
         return `<div></div>`
     }
 }
 
 const createChatBox = (data) => {
+  // console.log(data)
     const messageLayout = document.getElementById('message-layout');
     let html = `
       <div class="py-3 px-2 pb-0">
