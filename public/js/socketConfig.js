@@ -64,8 +64,13 @@ const sendPersonalMessage = (chat_uuid) => {
   console.log(chat_uuid)
   const friend_uuid = localStorage.getItem('friend_data');
   let message = document.getElementById("personal-text");
-  socketClient.emit(`${chat_uuid}-message`, { message: message.value, chat_uuid, recipient_uuid: friend_uuid });
-  message.value = "";
+  if (message.value == "") {
+    Swal.fire('Textbox is empty');
+  } else {
+    socketClient.emit(`${chat_uuid}-message`, { message: message.value, chat_uuid, recipient_uuid: friend_uuid });
+    message.value = "";
+  }
+  
 };
 
 socketClient.on("message", (data) => {

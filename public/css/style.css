@@ -647,6 +647,10 @@ display: none;
   
 }
 
+.post-txt p {
+  white-space: pre-wrap;
+}
+
 
 @media (max-width: 767px){
   .nav-item .dropdown-menu {
@@ -660,6 +664,7 @@ display: none;
   }
   .post-txt p{
     font-size: 30px !important;
+    white-space: pre;
   }
   .nav-item .dropdown-menu >a{
     color: #f6f5f5;
@@ -1208,7 +1213,7 @@ pd-3 {
 /* } */
 
 textarea.textarea-autosize {
-  min-height: 60px;
+  min-height: 30px;
   resize: none;
   overflow-y:hidden;
 }

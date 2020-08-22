@@ -10,7 +10,8 @@ const follow_box = document.getElementById('follow-box');
 
 function getUserDetails(user_uuid) {
     const my_uuid = localStorage.getItem('my_uuid');
-    window.location.replace(`/friendprofile?user_uuid=${user_uuid}&my_uuid=${my_uuid}`);
+  window.location.replace(`/friendprofile?user_uuid=${user_uuid}&my_uuid=${my_uuid}`);
+  console.log(user_uuid)
 }
 
 function mapFriendList(data) {
