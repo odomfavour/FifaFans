@@ -120,9 +120,15 @@ if (logout_user) {
 
 
 function logoutUSer() {
-    prompt('Are you sure? ...... (Yes/No)')
-    localStorage.removeItem('token');
-    window.location.replace('/login');
+   let response =  prompt('Are you sure? ...... (Yes/No)')
+    if (response != null) {
+        if (response == "yes" || response == "Yes") {
+            localStorage.removeItem('token');
+            window.location.replace('/login'); 
+        }
+        
+    }
+    
 }
 
 
