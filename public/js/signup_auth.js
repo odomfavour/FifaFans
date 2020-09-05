@@ -107,7 +107,8 @@ function resetPassword(e) {
        .then((res) => res.json())
        .then((x) => {
          console.log(x.data);
-         console.log(x.error);
+		   console.log(x.error);
+		   
          // if (x.status !== "error" || x.error === "Internal Server Error") {
          //   errorMessage.innerHTML = x.error;
          //   return (window.location.href = "/verify");
