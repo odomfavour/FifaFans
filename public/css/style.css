@@ -768,7 +768,6 @@ display: none;
 
   #right .d-flex {
     margin-bottom: 10px;
-    flex-direction: column;
   }
   .signin {
     max-width: 330px !important;
@@ -1208,18 +1207,15 @@ pd-3 {
   margin-top: 70px;
 }
 
-textarea.form-control{
-  border-radius: 30px !important;
-
+/* textarea.form-control{ */
   /* min-height: 60px !important; */
     /* height: auto !important; */
-}
+/* } */
 
 textarea.textarea-autosize {
   min-height: 30px;
   resize: none;
   overflow-y:hidden;
-  
 }
 
 
