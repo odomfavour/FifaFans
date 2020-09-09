@@ -97,7 +97,7 @@ function createCanva(data) {
   if (data.post.toString().substring(0, 4) === "http"){
     return `<div class="post-bg">
     <div class="post-txt">
-      <a class="n_link" href="${data.post}" target="_blank" style="font-size:50px">${data.post}</a>
+      <a class="n_link" href="${data.post}" target="_blank" style="font-size:20px;">${data.post}</a>
     </div>
   </div>`
   } else {
@@ -113,7 +113,7 @@ function createCanva(data) {
       } else if (data.post.toString().length >= 40) {
         return `<div class="post-bg">
         <div class="post-txt">
-          <p style="font-size:16px">${data.post}</p>
+          <p class="small-post" style="font-size:16px;">${data.post}</p>
         </div>
       </div>`
       }
@@ -350,7 +350,7 @@ const generalPost = (data) => {
                        ${displayComments(data.comment)}
                     </div>
 
-                    <div class="d-flex  pd-15 justify-content-start comments">
+                    <div class="d-flex  pd-155 justify-content-start comments">
                             
                             <form class="form-inline my-2"></form>
                             <div class=" green-border-focus w-100">
