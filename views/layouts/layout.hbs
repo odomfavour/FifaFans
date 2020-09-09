@@ -9,9 +9,12 @@
   <link rel="stylesheet" href="css/style.css">
   <title>{{{ title }}}</title>
 </head>
+{{!-- onload="init()" --}}
 
 <body>
   {{{ body }}}
+
+
 
   <!-- Bootstrap core JavaScript
     ================================================== -->
@@ -20,9 +23,12 @@
   <script>
 
     var base = 'api/v1/';
-    var theToken = localStorage.getItem('token');
+    
+  var theToken = localStorage.getItem('token');
+  console.log(theToken)
+  
     if (!theToken) {
-      if (window.location.pathname != '/login' && window.location.pathname !== '/' && window.location.pathname !== '/signup') {
+      if (window.location.pathname != '/login' && window.location.pathname !== '/' && window.location.pathname !== '/signup' && window.location.pathname !== '/verify-message' && window.location.pathname !== '/forgetpassword') {
         window.location.replace("/login");
       }
     }
@@ -32,7 +38,17 @@
         'Authorization': `Bearer ${theToken}`
       })
     }
+
+    const displayNumber = (data) => {
+      if (data !== null) {
+      return data.length
+      } else {
+      return 0
+    }
+ 
+  }
   </script>
+  <script src="/js/popup.js"></script>
   <script src="js/jquery.js"></script>
   <script src="js/bootstrap.min.js"></script>
   <script src="js/bootstrap.bundle.min.js"></script>
@@ -41,6 +57,7 @@
   <script src="/js/AUTHUI.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
 <script src="/js/socketConfig.js"></script>
+<script src="js/expand-textarea.js"></script>
 <script src="/js/time_helper.js"></script>
 <script src="/js/toast.js"></script>
 <script src="/js/profile.js"></script>
@@ -51,7 +68,11 @@
 <script src="/js/room.js"></script>
 <script src="/js/news.js"></script>
 <script src="/js/friend_profile.js"></script>
+<script src="/js/personalMessages.js"></script>
+
+<script src="/js/sidenav.js"></script>
 <script src="https://use.fontawesome.com/bcf5ac36e8.js"></script>
+
   {{!-- <script
   src="https://code.jquery.com/jquery-3.4.1.min.js"
   integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="

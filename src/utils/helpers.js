@@ -2,7 +2,7 @@
 import Sequelize, { Op, fn, col, and } from 'sequelize';
 import models from '../models'
 
-const { ChatRoomMember, RoomChat, User, Post, SingleChat, Profile } = models;
+const { ChatRoomMember, RoomChat, User, Post, SingleChat, Profile, Follower } = models;
 
 const helperMethods = {
 	async searchWithCategoryAndLocation (point, category_uuid, Service) {
@@ -195,11 +195,13 @@ const helperMethods = {
 			{
 			 model: Profile, 
 			 as:'profiles'	
-			}],
+			},
+			'followers',
+			'following'	
+			],
 			attributes: {
 				exclude: [
 					'password',
-					'createdAt',
 					'updatedAt'
 				]
 			}
@@ -362,6 +364,7 @@ const helperMethods = {
 	// search for all data that looks like input
 	async searchForUser (table, input) {
 		const users = await table.findAll({
+			include: [ 'profile' ],
 			where: {
 				[Op.or]: [
 					{ name: { [Op.iLike]: `%${input}%` } },
@@ -404,6 +407,42 @@ const helperMethods = {
 		return datas;
 	},
 
+		// list all data in a post table
+		async listAllDataInPost (table) {
+			let datas = await table.findAll({
+				include: ['User'],
+				attributes: {
+					exclude: [
+						'updatedAt'
+					]
+				},
+				order: [
+					[
+						'createdAt',
+						'DESC'
+					]
+				]
+			});
+			if (datas) {
+				const xxx =   Promise.all(datas.map(  async (x) => {
+					const profile =  await Profile.findOne({
+						where: { user_uuid: x.dataValues.user_uuid },
+						attributes: {
+							exclude: [
+								'createdAt',
+								'updatedAt'
+							]
+						}
+					});
+					if(profile){ x.dataValues.profile = profile.dataValues };
+					return x;
+				}))
+				datas = await xxx;
+				return datas;
+			}
+			
+		},
+
 	// find if a user have a friend
 	async checkForFriendship (table, user_uuid, friend_uuid) {
 		const friend = await table.findOne({
@@ -433,7 +472,14 @@ const helperMethods = {
 	async checkForFollower (table, user_uuid, follower_uuid) {
 		console.log(follower_uuid);
 		const follower = await table.findOne({
-			where: { user_uuid, follower_uuid },
+			where: {
+				user_uuid: {
+				  [Op.or]: [user_uuid,follower_uuid]
+				},
+				follower_uuid: {
+				  [Op.or]: [user_uuid, follower_uuid]
+				}
+			  },
 			attributes: {
 				exclude: [
 					'createdAt',
@@ -469,8 +515,13 @@ const helperMethods = {
 	// list all user's follower
 	async listAllFollowers (table, user_uuid) {
 		const followers = await table.findAll({
-			// include: User,
-			where: { user_uuid, blocked: false },
+			where: { 
+				[Op.or]: [
+				{ user_uuid: user_uuid },
+				{ follower_uuid: user_uuid },
+			  ], blocked: false 
+			},
+			include: ['User', 'follower', 'FollowerProfile', 'UserProfile'],
 			attributes: {
 				exclude: [
 					'createdAt',
@@ -480,6 +531,28 @@ const helperMethods = {
 		});
 		return followers;
 	},
+
+	// list all friends messages 
+	async listAllFollowersMessages (table, user_uuid) {
+		const followers = await table.findAll({
+			where: { 
+				[Op.or]: [
+				{ user_uuid: user_uuid },
+				{ follower_uuid: user_uuid },
+			  ], blocked: false,
+			  messaged: true
+			},
+			include: ['User', 'follower', 'FollowerProfile', 'UserProfile'],
+			attributes: {
+				exclude: [
+					'createdAt',
+					'updatedAt'
+				]
+			}
+		});
+		return followers;
+	},
+
 
 	// list user joined rooms
 	async getUserGroups(user, table){
@@ -553,6 +626,21 @@ const helperMethods = {
 
 	  async createPersonalChat(data){
 		const chat =await SingleChat.create(data);
+		await Follower.update(
+			{
+			  messaged: true,
+			},
+			{
+				where: {
+					user_uuid: {
+					  [Op.or]: [data.sender_uuid, data.recipient_uuid]
+					},
+					follower_uuid: {
+					  [Op.or]: [data.sender_uuid, data.recipient_uuid]
+					}
+				  },
+			},
+		  );
 		return chat;
 	  },
 
@@ -571,7 +659,13 @@ const helperMethods = {
 				}
 			  },
 		 }) 
-		 return chats;
+		 const profile = await Profile.findOne({
+			 where: { user_uuid: secondP_uuid }
+		 })
+		 const user = await User.findOne({
+			 where: { uuid: secondP_uuid}
+		 })
+		 return { chats, profile, user };
 	  },
 
 	
@@ -599,7 +693,7 @@ const helperMethods = {
 	},
 
 	// save post
-	async savePost(uuid, name, comment, post_uuid, Post){
+	async savePost(uuid, name, status, club, comment, post_uuid, Post){
 		const post = await Post.findOne({
 			where:{ uuid: post_uuid}
 		});
@@ -607,7 +701,10 @@ const helperMethods = {
 		await post.comment.push(
 			{
 		  user_uuid: uuid,
+		//   user_image: profile_pic,
 		  user_name: name,
+		  user_status: status,
+		  user_club: club,
 		  date_sent: new Date(),
 		  comment,
 	   });
@@ -625,3 +722,4 @@ const helperMethods = {
 
 };
 export default helperMethods;
+

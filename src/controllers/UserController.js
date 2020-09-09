@@ -55,6 +55,7 @@ const UserController = {
            id = user_uuid
          }
          const user = await helperMethods.getAUserByUuid(User, id);
+         console.log(user);
          if (!user) return sendErrorResponse(res, 404, 'User not found');
          if (!follow) { 
            user.following  = false

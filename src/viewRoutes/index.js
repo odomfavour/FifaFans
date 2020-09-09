@@ -26,14 +26,19 @@ router.get('/login', function(req, res, next) {
 });
 
 // //this is verify page
-router.get('/verify-message', function(req, res, next) {
-    res.render('verify', { message: 'Kindly Verify Account To Log In, Thanks!!' });
+router.get('/verify', function(req, res, next) {
+    res.render('verify', { message: 'Kindly check your mail. Verify your Account to Log In. Thanks!!' });
 });
 
 
-//this is login page
+//this is edit profile page
 router.get('/editprofile', function(req, res, next) {
     res.render('editprofile', { title: 'FIFA FANS', style: 'style.css' });
+});
+
+//this is search for friend page
+router.get('/search_friend', function(req, res, next) {
+    res.render('search_friend', { title: 'FIFA FANS', style: 'style.css' });
 });
 
 //this is login page
@@ -99,6 +104,11 @@ router.get('/roommessagebox', function(req, res, next) {
     res.render('roommessagebox', { title: 'FIFA FANS', style: 'style.css'});
 });
 
+//this is contact page
+router.get('/contact', function(req, res, next) {
+    res.render('contact', { title: 'FIFA FANS', style: 'style.css'});
+});
+
 //this is message page
 // router.get('/news', function(req, res, next) {
 //     res.render('news', { title: 'FIFA FANS', style: 'style.css' });
@@ -118,6 +128,12 @@ router.get('/rooms', function(req, res, next) {
 router.get('/create_room', function(req, res, next) {
     res.render('create_room', { title: 'FIFA FANS', style: 'style.css' });
 });
+
+//for creating list of friends
+router.get('/friendslist', function(req, res, next) {
+    res.render('friendslist', { title: 'FIFA FANS', style: 'style.css' });
+});
+
 
 router.get('/view-news', NewsController.viewNew)
 

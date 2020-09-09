@@ -2,11 +2,10 @@
 
 
 <main>
-    {{log  data}}
     <section id="landing-page">
         <div class="container">
             <div class="row">
-                <div class="col-md-4">
+                <div class="col-md-4 mx-0 px-0">
 
                     {{> sidenav}}
 
@@ -28,7 +27,7 @@
                                     <div>
                                         <button class="btn btn-primary" onclick="joinGroup('{{data.room.uuid}}')" id="join-g-btn"
                                             style="">Join</button>
-                                        <button class="btn btn-primary"><i class="fa fa-share"></i>Share</button>
+                                        {{!-- <button class="btn btn-primary" id="share-btn"><i class="fa fa-share"></i>Share</button> --}}
                                     </div>
                                 </div>
                             </div>
@@ -48,7 +47,7 @@
                             
                         </div>
                         <div class="line-bd"></div>
-                        <div class="d-flex  pd-15 justify-content-start">
+                        <div class="d-flex  pd-15 justify-content-start comments">
                             <div class="pd-pos">
                                 <a href="#"><i class="fa fa-image"></i></a>
                             </div>
@@ -57,11 +56,11 @@
                             </div>
                             <form class="form-inline my-2"></form>
                             <div class=" green-border-focus w-100">
-                                <input type="search" placeholder="Type..." aria-label="Search"
-                                    class="form-control post-input w-100" id="group-chat">
+                                <textarea name="" placeholder="Write ..." id="group-chat" class="form-control"></textarea>
+    
                             </div>
 
-                            <span class="fa fa-1.5x fa-diamond border-none pd-pos room-send" onclick="sendGroupMessage('{{data.room.uuid}}')"></span>
+                            <p class="fa fa-send border-none px-2 py-3 room-send " onclick="sendGroupMessage('{{data.room.uuid}}')"></p>
                         </div>
 
 

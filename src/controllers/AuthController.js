@@ -36,7 +36,7 @@ const AuthController = {
 			// trims the req.body to remove trailling spaces
 			const userData = magicTrimmer(req.body);
 			// destructuring user details
-			const { name, username, email, password, role, phone, status } = userData;
+			const { name, username, email, password, role, phone, status, club } = userData;
 
 			// validation of inputs
 			const schema = {
@@ -64,11 +64,9 @@ const AuthController = {
 				email,
 				password: hashedPassword,
 				phone,
+				club,
 				status,
-				role:
-
-						role === 'user' ? 'user' :
-						'admin'
+				role:role === 'user' ? 'user' : 'admin'
 			});
 
 			//create a binary 64 string for user identity and save user
@@ -76,6 +74,10 @@ const AuthController = {
 				user_uuid: newUser.dataValues.uuid,
 				verifyId
 			});
+
+			// await Profile.create({
+			// 	user_uuid: newUser.dataValues.uuid
+			// });
 
 			//send email verification mail
 			SendMail(email, verifyId, newUser.uuid);
@@ -148,7 +150,7 @@ const AuthController = {
 					}
 				}
 			);
-			return sendSuccessResponse(res, 200, '<h2>Your Account has been Verified Successfully</h2>');
+			return res.render('login');
 		} catch (e) {
 			return next(e);
 		}

@@ -10,8 +10,9 @@ const PostController = {
         try {
           let file = '';
           const { uuid, email, name} = req.userData;
-          const { post } = req.body;
-          if (!post) return sendErrorResponse(res, 422, 'post body cannot be empty');
+          let { post } = req.body;
+          console.log(post);
+          if (!post) {post = ''}
           if (req.file) {
             console.log(req.file)
             file = await uploadImage(req.file)
@@ -54,7 +55,6 @@ const PostController = {
              where:{ uuid: post_uuid}
          });
          if (!post) return sendErrorResponse(res, 404, 'post not found');
-         console.log(post)
          await post.comment.push(
              {
            user_uuid: uuid,
@@ -88,6 +88,7 @@ const PostController = {
              where:{ uuid: post_uuid}
          });
          if (!post) return sendErrorResponse(res, 404, 'post not found');
+         if (post.likes == null) {post.likes = [] }
          await post.likes.push(
              {
            user_uuid: uuid,
@@ -129,7 +130,7 @@ const PostController = {
     //list platform post
     async listPosts(req, res) {
       try {
-        const datas = await helperMethods.listAllDataInTable(Post);
+        const datas = await helperMethods.listAllDataInPost(Post);
         return sendSuccessResponse(res, 200, datas);
       } catch (error) {
         console.log(error);

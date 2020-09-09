@@ -58,6 +58,10 @@ function createRoom(e) {
            }
 }
 
+// hide share btn
+// let shareBtn = document.querySelector('#share-btn');
+// shareBtn.style.visibility = hidden;
+
 
 for (var i = 0; i < room.length; i++) {
   room[i].addEventListener("click", commentPost, false);
@@ -85,7 +89,7 @@ async function suggestRooms() {
   await fetch(`${base}list-rooms`, options)
       .then(res => res.json())
       .then((response) => {
-        console.log(response.data.data)
+        console.log('this are rooms',response.data.data)
         const array = [];
         let shuffled = [];
         response.data.data.forEach(x => {
@@ -107,16 +111,19 @@ async function userRooms() {
       .then((response) => {
         const array = [];
         response.data.data.forEach(x => {
+          console.log(x);
           const el = myRoom(x);
           array.push(el);
         });
+        console.log(array);
         myRoomLayout.innerHTML = array.join(" ");
       });
 }
 
 function gotoRoom(group_uuid){
   localStorage.setItem("group_uuid", group_uuid);
-  window.location.replace(`/room?group_uuid=${group_uuid}`)
+  joinGroup(group_uuid);
+  window.location.replace(`/room?group_uuid=${group_uuid}`);
 }
 
 function checkRoom() {
@@ -126,9 +133,11 @@ function checkRoom() {
   fetch(`${base}check-membership?group_uuid=${group_uuid}`, options)
       .then((res) => res.json())
       .then((response) => {
+        console.log(response.data)
         if (response.data !== 'not a member') {
+           console.log('here here here')
            document.getElementById('join-g-btn').style.display = 'none';
-           joinGroup (group_uuid)
+           joinGroup ( group_uuid )
         }
 
         if (response.data === 'not a member') {
@@ -139,19 +148,18 @@ function checkRoom() {
 }
 
 const myRoom = (data) => {
+  console.log(data['ChatRoom'])
   return `
     <div class="room-box d-flex">
       <div class="text-center">
-        <img src="${ data.ChatRoom.icon}" class="img-prof img-fluid">
+        <img src="${data['ChatRoom'].icon}" class="img-prof img-fluid">
       </div>
       <div class="room-detail">
-        <p><strong><span><a href="#">${ data.ChatRoom.name}</a></span></strong>
-          <span><button class="btn btn-info pull-right" onclick="gotoRoom('${data.ChatRoom.uuid}')">Enter room</button></span>
+        <p><strong><span><a href="#" class="room-name">${ data['ChatRoom'].name}</a></span></strong>
+          <span><button class="btn btn-info pull-right" onclick="gotoRoom('${data['ChatRoom'].uuid}')">Enter room</button></span>
         </p>
-        <span>50 Members</span>
       </div>
-    </div>
-                `
+    </div>`;
 }
 
 const allRooms = (data) => {
@@ -160,14 +168,15 @@ const allRooms = (data) => {
           <div class="text-center">
               <img src="${ data.icon}" class="img-prof img-fluid">
           </div>
-          <div class=" room-detail">
+          <div class="room-detail">
               <h4><strong><span><a href="#">${ data.name}</a></span></strong>
                   <span><button class="btn btn-info d-flex pull-right" onclick="gotoRoom('${data.uuid}')">Join Room</button></span>
               </h4>
-              <p><span>50 Members</span></p>
+              <p><span>${data.members.length} Member(s)</span></p>
 
           </div>
       </div>
+      
     `
 }
 
@@ -182,12 +191,48 @@ const suggestedRooms = (data) => {
         <p><strong><span><a href="#">${data.name}</a></span></strong>
           <span><button class="btn btn-info pull-right" onclick="gotoRoom('${data.uuid}')">Join room</button></span>
         </p>
-        <span>50 Members</span>
+        <span>${data.members.length} Member(s)</span>
       </div>
     </div>
 `;
   
 }
+
+
+
+const filteredRoomSearch = () => {
+  console.log('hey')
+          // Declare variables
+          let input, filter, roomsContainer, room, a, i, txtValue;
+          input = document.getElementById("roomSearchInput");
+          filter = input.value.toUpperCase();
+          roomsContainer = document.getElementById("all-rooms-layout" );
+          room = roomsContainer.getElementsByClassName("room-box");
+  console.log(room)
+          
+
+          // Loop through all list items, and hide those who don't match the search query
+          for (i = 0; i < room.length; i++) {
+            a = room[i].getElementsByTagName("a")[0];
+            txtValue = a.textContent || a.innerText;
+            if (
+              txtValue.toUpperCase().indexOf(filter) >
+              -1
+            ) {
+              room[i].classList.remove('hidden');
+            } else {
+              room[i].classList.add("hidden");
+            }
+             
+  }
+ console.log(room.length);
+}
+
+
+
+// if (window.location.pathname === "/rooms") {
+//   filteredRoomSearch();
+// } 
 
 const loadPage = async () => {
   try {
@@ -200,7 +245,11 @@ const loadPage = async () => {
 }
 
 if (window.location.pathname == '/room') {
-  checkRoom();
+  window.onload = () => {
+    checkRoom();
+    console.log('I am here')
+  }
+
 }
 
 loadPage()

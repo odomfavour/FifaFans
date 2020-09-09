@@ -13,13 +13,18 @@ const location_profile = document.getElementById('location-profile');
 const input_profile_fullname = document.getElementById('input_profile_fullname');
 const input_profile_username = document.getElementById('input_profile_username');
 const input_profile_email = document.getElementById('input_profile_email');
+const profile_image_upload = document.getElementById('profile_image_upload');
+const profile_pics = document.getElementById('profile_pics');
+const post_profile_image = document.getElementById('post_profile_image');
+const comment_profile_image = document.getElementById('comment_profile_image');
+const profile_page_name = document.getElementById('profile_page_name');
 const input_profile_gender = document.getElementById('input_profile_gender');
 const input_profile_status = document.getElementById('input_profile_status');
 const input_short_bio_profile = document.getElementById('input_short_bio_profile');
 const input_favorite_quote_profile = document.getElementById('input_favorite_quote_profile');
 const old_pass_change_pass = document.getElementById('old_pass_change_pass');
 const new_pass_change_pass = document.getElementById('new_pass_change_pass');
-const input_address_profile = document.getElementById('input_address_profile');
+const input_address_profile = document.getElementById('input_state_profile');
 const input_website_profile = document.getElementById('input_website_profile');
 const input_club_profile = document.getElementById('input_club_profile');
 const input_language_profile = document.getElementById('input_language_profile');
@@ -29,6 +34,7 @@ const edit_contact_button = document.getElementById('edit_contact_button');
 const edit_profile_about_button = document.getElementById('edit_profile_about_button');
 const edit_profile_button = document.getElementById('edit_profile_button');
 const logout_user = document.getElementById('logout_user');
+const my_image = document.getElementById('my_image');
 
 
 const edit_profile = document.getElementById('edit_profile');
@@ -114,7 +120,8 @@ if (logout_user) {
 
 
 function logoutUSer() {
-    prompt('Are you sure? ...... (Yes/No)')
+    // prompt('Are you sure? ...... (Yes/No)')
+    TOAST.infoToast('Please wait while we are login you in');
     localStorage.removeItem('token');
     window.location.replace('/login');
 }
@@ -126,17 +133,23 @@ function logoutUSer() {
 const profileObject = (data) => {
     fullname_profile.innerText = data.name;
     status_profile.innerText = data.status;
-    simple_quotes.innerText = data.profiles[0].favoriteQuote;
     location_profile.innerText = data.address;
     user_club.innerText = data.club;
+    simple_quotes.innerText = data.profiles[0].favoriteQuote;
+    my_image.src = data.profiles[0].profile_pic;
+
 }
 
 const fillEditInputs = (data) => {
+    console.log('this is data',data);
     input_profile_fullname.value = data.name;
     input_profile_email.value = data.email;
     input_profile_username.value = data.username;
+    profile_page_name.innerText = data.name;
+    profile_pics.src = data.profiles[0].profile_pic;
     const el = input_profile_status.options;
     Array.from(el).forEach(element => {
+        console.log(element);
         if (element.text == data.status) { element.selected = true }
     });
 };
@@ -149,9 +162,9 @@ const fillInDetails = (data) => {
 
 const fillContact = (data) => {
     input_club_profile.value = data.club;
-    input_address_profile.value = data.address;
+    // input_address_profile.value = data.address;
     input_language_profile.value = data.profiles[0].language !== undefined ? data.profiles[0].language : '';
-    input_website_profile.value = data.profiles[0].website !== undefined ? data.profiles[0].website : '';
+    input_state_profile.value = data.address !== undefined ? data.address : '';
 }
 
 function getProfile() {
@@ -160,7 +173,7 @@ function getProfile() {
         .then(res => res.json())
         .then(x => {
             console.log(x);
-            if (x.status != 'error') {
+            if (x.status !== 'error') {
                 username_profile.innerText = x.data.username;
                 localStorage.setItem('my_uuid', x.data.uuid);
                 console.log(localStorage.getItem('my_uuid'));
@@ -168,6 +181,13 @@ function getProfile() {
                 if (window.location.pathname == '/editprofile') { fillEditInputs(x.data) };
                 if (window.location.pathname == '/aboutuser') { fillInDetails(x.data) };
                 if (window.location.pathname == '/usercontactinfo') { fillContact(x.data) };
+
+                if ( x.data.profiles) {
+                    localStorage.setItem('profile_pics', x.data.profiles[0].profile_pic);
+                    post_profile_image.src = x.data.profiles[0].profile_pic;
+                    comment_profile_image.src = x.data.profiles[0].profile_pic;
+
+                }
             }
         })
         .catch((e) => {console.log(e)})
@@ -176,6 +196,7 @@ function getProfile() {
 // Edit profile
 
 function editProfile(e) {
+    TOAST.infoToast('Updating your profile, please wait....')
     e.preventDefault();
     const theToken = localStorage.getItem('token');
     if (!theToken) {
@@ -188,6 +209,7 @@ function editProfile(e) {
         formData.append('name', input_profile_fullname.value);
         formData.append('username', input_profile_username.value);
         formData.append('gender', input_profile_gender.value);
+        formData.append('file', profile_image_upload.files[0]);
     }
 
     if (window.location.pathname == '/aboutuser') {
@@ -198,7 +220,7 @@ function editProfile(e) {
     if (window.location.pathname == '/usercontactinfo') {
         formData.append('club', input_club_profile.value);
         formData.append('language', input_language_profile.value);
-        formData.append('website', input_website_profile.value);
+        // formData.append('website', input_website_profile.value);
         formData.append('address', input_address_profile.value);
     }
     fetch('/api/v1/auth/updateprofile', {
@@ -212,9 +234,9 @@ function editProfile(e) {
         .then(x => {
             console.log(x);
             if (x.status != 'error') {
-                Swal.fire('update successfully')
+                TOAST.successToast('update successfully');
                 window.location.reload();
-            } else { Swal.fire(x.error) };
+            } else { TOAST.errorToast(x.error) };
         })
 };
 
@@ -255,7 +277,12 @@ function changePassword(e) {
 
 
 if (window.location.pathname !== '/login' && window.location.pathname !== '/signup') {
-    getProfile()
+    try {
+        getProfile()
+    } catch (error) {
+        console.log(error);
+    }
+    
 }
 
 //side nave section

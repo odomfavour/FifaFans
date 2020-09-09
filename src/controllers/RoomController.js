@@ -2,7 +2,7 @@ import model from './../models';
 import { sendErrorResponse, sendSuccessResponse } from './../utils/sendResponse';
 import helperMethods from './../utils/helpers';
 import uploadImage from './../services/imageuploader';
-// import Canvas from '../utils/canvas';
+import Canvas from '../utils/canvas';
 const { User, Profile, Post, Friend, ChatRoom, ChatRoomMember, RoomChat } = model;
 
 const RoomController = {
@@ -13,12 +13,12 @@ const RoomController = {
 			const { groupname, description } = req.body;
 			if (!groupname && !description)
 				return sendErrorResponse(res, 409, 'Groupname and description cannot be empty!!!');
-			// const file = await Canvas.createBanner(groupname);
-			// const url = await uploadImage(file, groupname);
+			const file = await Canvas.createBanner(groupname);
+			const url = await uploadImage(file, groupname);
 			const group = await ChatRoom.create({
 				name: groupname,
 				description,
-				// icon: url,
+				icon: url,
 				visibility: 'private'
 			});
 			if (!group) return sendErrorResponse(res, 500, 'Failed to create group please try again later');
@@ -42,7 +42,9 @@ const RoomController = {
 		try {
 			const { uuid } = req.userData;
 			if (!uuid) return res.status(403).send('Access denied');
-			const groups = await ChatRoom.findAll();
+			const groups = await ChatRoom.findAll({
+				include: ['members']
+			});
 			return sendSuccessResponse(res, 200, { message: 'Success', data: groups });
 		} catch (error) {
 			return res.status(500).send(error);
