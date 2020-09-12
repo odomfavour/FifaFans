@@ -121,7 +121,7 @@ if (logout_user) {
 
 function logoutUSer() {
     // prompt('Are you sure? ...... (Yes/No)')
-    TOAST.infoToast('Please wait while we are login you in');
+    TOAST.infoToast('You are logging out');
     localStorage.removeItem('token');
     window.location.replace('/login');
 }
