@@ -23,8 +23,9 @@
                             <div class="profile-text m-0">
                                 <div class="">
                                     <p id="simple-quotes">{{ user.profiles.0.favoriteQuote}}</p>
-                                    <p><span> <i class="fa fa-map-marker" id="location-profile"></i> {{user.address}}</span>
-                                        <span> <i class="fa fa-calendar ml-11" id="date-joined"></i> Joined {{user.createdAt}}</span></p>
+                                    <p><span> <i class="fa fa-map-marker" id="location-profile"></i> {{user.address}}</span></p>
+                                    <p>
+                                        <span> <i class="fa fa-calendar ml-11" id="date-joined"></i> Joined: {{user.createdAt}}</span></p>
                                 </div>
                                 <div>
                                     <p><span><b>{{user.followers.length}}</b> Followers</span></p>
@@ -57,25 +58,24 @@
                             <div class="tab-pane fade show active" id="post" role="tabpanel" aria-labelledby="post-tab">
                                 {{#each user.posts}}
                               
-                                    <div class="d-flex justify-content-start py-2" style="border-bottom: 3px solid #ccc;">
+                                <div class="users-post-section">
+                                    <div class="d-flex justify-content-start">
                                         <div>
-                                            <img src="img/4.jpg" class="img-prof">
+                                            <a href="/img/21104.svg"><img src="/img/21104.svg" class="img-prof"></a>
                                         </div>
-                                        <div class="ml-2">
-                                            <h4 class="fan-name">{{this.owner_name}}<span class="fan-fn"> <br>Player</span><br>
-                                                {{!-- <p class="fan-fn">Arsenal</p> <span class="fan-time">10(s) ago</span> --}}
-                                            </h4>
-                                        </div>                                
-                                    </div>
-                                    <div class="posted">
-                                        <p class="comment-p" style="width: 300px;">{{this.post}}</p>
-                                        <div class="img-boxz">
-                                            {{{this.media}}}
+                                        <div class=" ml-2">
+                                            <p class="fan-name">{{this.owner_name}}</p>
+                                            <p><span class="color-red fan-fn">Coach</span> <span class="fan-time"> 1hrs ago</span></p>
                                         </div>
-                                    </div>
-                                    
-                                    
+                                    </div> <p class="my-3 comment-p">{{this.post}}</p>
                                     <hr>
+                                    <div class="img-boxz">
+                                        {{{this.media}}}
+                                    </div>
+                                
+                                
+                                </div>
+
                                
                                 {{/each}}
                             </div>

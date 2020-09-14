@@ -24,10 +24,10 @@
                                     <p><span> <i class="fa fa-map-marker" id="location-profile"></i></span>
                                     <span> <i class="fa fa-calendar ml-11" id="date-joined"></i> </span></p>
                                 </div>
-                                <div >
+                                {{!-- <div >
                                     <p><span><b>99</b> Followers</span>
                                     <span class="ml-11 "><b>50</b> Following</span></p>
-                                </div>
+                                </div> --}}
                             </div>
                         
                             <div class="button-box m-3">
@@ -37,7 +37,7 @@
                         </div>
                         </div>
 
-                    <div class="card p-0">
+                    {{!-- <div class="card p-0">
                         <div class="create-post-h5">
                           <h4 class="color-blue">Create post</h4>
                         </div>
@@ -86,9 +86,9 @@
             
                           </div>
                         </div>
-                      </div>
+                      </div> --}}
 
-                      <div id="post-layout"></div>
+                      
 
                         <ul class=" mt-5 nav nav-tabs" id="myTab" role="tablist">
                             <li class="nav-item">
@@ -103,58 +103,17 @@
                         <div class="card card-taps mb-5">
                             <div class="tab-content" id="myTabContent">
                                     <div class="tab-pane fade show active" id="post" role="tabpanel" aria-labelledby="post-tab">
-                                        <div class="d-flex justify-content-start">
-                                            <div>
-                                                <img src="/img/21104.svg" class="img-prof">
-                                            </div>
-                                            <div class="tap-cont-profile pd-3-12">
-                                                <h5>Ogochukwu Odom</h5>
-                                                <h6 class="color-red">Coach</h6>
-                                                <p>1hrs ago</p>
-                                            </div>
+                                        <div id="post-layout"></div>
                                         </div>
-                                        <div class="tap-content-post">
-                                            <p>Asenal playes against Man-U and score 3:0. I have never seen Asenal becoming a world class 
-                                        player. Man-U be strong ooo</p>
-                                        <img src="img/bg-img.jpg" class="img-fluid img-responsive" alt="">
-                                        <div class="d-flex justify-content-between">
-                                            <div class="p-2 text-center"> 
-                                                <b>123</b> <i class="fa fa-thumbs-up"></i>
-                                            </div>
-                                            <div class="p-2 text-right"> 
-                                                <b>44</b> <i class="fa fa-comments"></i>
-                                            </div>
-                                        </div>
-                                        <div class="d-flex justify-content-between m-bd">
-                                            <div class="p-2 text-center"> 
-                                                <i class="fa fa-thumbs-up"></i> Like
-                                            </div>
-                                            <div class="p-2 text-right"> 
-                                                <i class="fa fa-comments"></i> Comment
-                                            </div>
-                                            <div class="p-2 text-right"> 
-                                                <i class="fa fa-share-alt"></i> Share
-                                            </div>
-                                        </div>
-                                        <div class="d-flex justify-content-between mt-4">
-                                            <div class="text-center">
-                                                <img src="/img/21104.svg" class="img-prof">
-                                            </div>
-                                            <div class=" flex-grow-1 pd-4 ">
-                                                <div class="form-group green-border-focus">
-                                                    <input type="text" placeholder="Write comments..." id="exampleForm2" class="form-control post-input">
-                                                    <i class="fa fa-paperclip clip-attach"></i>
-                                                </div>
-                                            </div>
-                                        </div>
+
+                                        <div class="tab-pane fade" id="media" role="tabpanel" aria-labelledby="media-tab">
+                                          <div class="grid" id="media-grid"></div>
+                                        
+                                        
                                         </div>
                                         
                                     </div>
-                                    <div class="tab-pane fade" id="media" role="tabpanel" aria-labelledby="media-tab">
-                                        <div class="grid" id="media-grid"></div>
-                                       
-                                        
-                                    </div>
+                                    
                                    
                                         
                                     </div>

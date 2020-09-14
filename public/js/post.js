@@ -140,6 +140,7 @@ function listUserPosts() {
             });
             userLayout.innerHTML = mediapost.join(' ')
             console.log(mediapost)
+            console.log(userLayout)
 
             response.data.forEach(x => {
               const el = usersPost(x);
@@ -270,15 +271,24 @@ const displayComments = (data) => {
     if (data) { 
       console.log(data)
         data.forEach(x => {
-        const element = ` <div class="d-flex justify-content-start mt-3">
+          const element = `
           <div>
-            <img src="${displayProfileImage_(data.profile)}" class="img-prof ">
-          </div>
-          <div class="ml-2">
-            <h4 class="fan-name">${x.user_name}<p class="fan-fn">${x.user_club}<span class="fan-fn"> ${x.user_status}</span></p> <span class="fan-time">${GETDURATION(x.date_sent)}(s) ago</span></h4>
-              <p class="comment-p">${x.comment}</p>
-          </div>
-          
+          <div class="d-flex mt-2">
+              <div class="mr-2">
+                <img src="${displayProfileImage_(
+                  data.profile
+                )}" class="img-prof ">
+              </div>
+              <div>
+                <h4 class="fan-name">${x.user_name}</h4>
+                <p class="fan-fn font-weight-bold">${x.user_club}<span class="fan-fn"> ${
+            x.user_status
+          }</span></p> 
+              <span class="fan-time">${GETDURATION(x.date_sent)}(s) ago</span>
+            </div>
+                
+            </div>
+          <p class="comment-p">${x.comment}</p>
         </div>
         <hr>
          `; 
@@ -287,6 +297,13 @@ const displayComments = (data) => {
     }
    return array.join(" ")
 }
+
+{/* <div class="d-flex mt-3 w-100">
+          <div>
+            <img src="${displayProfileImage_(data.profile)}" class="img-prof ">
+          </div>
+          <div class="ml-2">
+            <h4 class="fan-name">${x.user_name}<p class="fan-fn">${x.user_club}<span class="fan-fn"> ${x.user_status}</span></p> <span class="fan-time">${GETDURATION(x.date_sent)}(s) ago</span></h4> */}
 
 const displayRoomChats = (data) => {
   const array = [];
@@ -311,17 +328,21 @@ const generalPost = (data) => {
     return `<div class="card mt-5 pd-15" >
                   <div class="d-flex justify-content-start py-2" style="border-bottom: 3px solid #ccc;">
                     <div>
-                      <img src="${displayProfileImage_(data.profile)}" class="img-prof">
+                      <img src="${displayProfileImage_(
+                        data.profile
+                      )}" class="img-prof">
                     </div>
                     <div class="ml-2">
-                    <a href="/profile">
+                    <a href="#" onclick="getUserDetails('${data.user_uuid}')">
                       <h4 class="fan-name cursor">${
                         data.owner_name
                       }<p class="fan-fn">${
-                        data.User.club
-                      } <span class="fan-fn">${
-                        data.User.status
-                      }</span></p> <span class="fan-time">${GETDURATION(data.createdAt)}(s) ago</span></h4>
+      data.User.club
+    } <span class="fan-fn">${
+      data.User.status
+    }</span></p> <span class="fan-time">${GETDURATION(
+      data.createdAt
+    )}(s) ago</span></h4>
                     </a>
                     </div>
 
@@ -334,11 +355,17 @@ const generalPost = (data) => {
                       </div>
                   <div class="tap-content-post">
                     <div class="d-flex justify-content-between m-bd">
-                      <p class="p-2 text-center" onclick="likePost('${data.uuid}', this)">
-                        <i class="fa fa-thumbs-up"></i> Likes <span class="comment-number">${displayNumber(data.likes)} </span>
+                      <p class="p-2 text-center" onclick="likePost('${
+                        data.uuid
+                      }', this)">
+                        <i class="fa fa-thumbs-up"></i> Likes <span class="comment-number">${displayNumber(
+                          data.likes
+                        )} </span>
                       </p>
                       <p class="p-2 text-right">
-                        <i class="fa fa-comments"></i> Comment <span class="comment-number">${displayNumber(data.comment)}</span>
+                        <i class="fa fa-comments"></i> Comment <span class="comment-number">${displayNumber(
+                          data.comment
+                        )}</span>
                       </p>
                       <p class="p-2 text-right">
                         <i class="fa fa-share-alt"></i> Share
@@ -354,10 +381,14 @@ const generalPost = (data) => {
                             
                     <form class="form-inline my-2"></form>
                     <div class=" green-border-focus w-100">
-                        <textarea name="" placeholder="Write comments..."id="${ data.uuid }-comment-input" class="form-control textarea-autosize"></textarea>
+                        <textarea name="" placeholder="Write comments..."id="${
+                          data.uuid
+                        }-comment-input" class="form-control textarea-autosize"></textarea>
                     </div>
 
-                    <p class="fa fa-send border-none px-2 py-3" onclick="commentPost('${data.uuid}')"></p>
+                    <p class="fa fa-send border-none px-2 py-3" onclick="commentPost('${
+                      data.uuid
+                    }')"></p>
                 </div>
 </div>                   
                 </div>`;
